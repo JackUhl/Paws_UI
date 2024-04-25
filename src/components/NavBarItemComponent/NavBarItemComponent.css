@@ -1,0 +1,27 @@
+.navBarItemContainer {
+    width: fit-content;
+    margin: .5em 1.5em;
+    text-align: center;
+}
+
+.navBarItemText {
+    user-select: none;
+    text-decoration: none;
+}
+
+.navBarItemText {
+    user-select: none;
+    text-decoration: none;
+}
+
+.navBarItemText:hover {
+    color: #483174 !important;
+}
+
+.navBarItemTextNormal {
+    color: #FFFFFF;
+}
+
+.navBarItemTextSelected {
+    color: #483174;
+}
