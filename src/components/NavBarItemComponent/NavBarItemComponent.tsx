@@ -1,5 +1,5 @@
 import './NavBarItemComponent.css'
-import { INavBarItemComponent } from "../../models/props/INavBarItemComponent"
+import { INavBarItemComponent } from "./INavBarItemComponent"
 import { Link, useLocation } from 'react-router-dom'
 
 

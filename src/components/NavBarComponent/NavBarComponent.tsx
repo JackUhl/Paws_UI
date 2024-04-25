@@ -1,6 +1,6 @@
 import './NavBarComponent.css'
-import { INavBarComponent } from '../../models/props/INavBarComponent'
-import NavBarItemComponent from '../NavBarItem/NavBarItemComponent'
+import { INavBarComponent } from './INavBarComponent'
+import NavBarItemComponent from '../NavBarItemComponent/NavBarItemComponent'
 import { v4 as uuidv4 } from 'uuid';
 
 export default function NavBarComponent(props: INavBarComponent) {

@@ -1,4 +1,4 @@
-import { NavBarItem } from "../objects/NavBarItem";
+import { NavBarItem } from "../../models/objects/NavBarItem";
 
 export interface INavBarItemComponent {
     key: string;
