@@ -5,6 +5,86 @@ img.imageSliderImg{
 }
 
 div.imageSliderContainer{
+    position: relative;
+    display: flex;
+    overflow: hidden;
     width: 100%;
     height: 45vh;
+}
+
+/* Arrow shape */
+.arrow {
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 8px;
+}
+.right {
+    transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+}
+.left {
+    transform: rotate(135deg);
+    -webkit-transform: rotate(135deg);
+}
+
+/* Arrow container animation logic and fade in/out */
+.arrowSpanLeft, .arrowSpanRight {
+    position: absolute;
+    top: 50%;
+}
+
+.imageSliderContainer:hover .arrowSpanLeft{
+    opacity: 1;
+    transition: opacity 1s;
+    animation: fadeInLeft 0.5s forwards;
+}
+.imageSliderContainer:hover .arrowSpanRight {
+    opacity: 1;
+    animation: fadeInRight 0.5s forwards;
+}
+.arrowSpanLeft.fade-out {
+    animation: fadeOutLeft 0.5s forwards;
+}
+
+.arrowSpanRight.fade-out {
+    animation: fadeOutRight 0.5s forwards;
+}
+
+/* Arrow tranform animations */
+
+@keyframes fadeInLeft {
+    from {
+        left: -2%;
+    }
+    to {
+        left: 2%;
+    }
+}
+
+@keyframes fadeInRight {
+    from {
+        right: -2%;
+    }
+    to {
+        right: 2%;
+    }
+}
+
+@keyframes fadeOutLeft {
+    from {
+        left: 2%;
+    }
+    to {
+        left: -1%;
+    }
+}
+
+@keyframes fadeOutRight {
+    from {
+        right: 2%;
+    }
+    to {
+        right: -1%;
+    }
 }
