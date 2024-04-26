@@ -34,6 +34,10 @@ div.imageSliderContainer{
     top: 50%;
 }
 
+.arrowSpanLeft:hover, .arrowSpanRight:hover {
+    cursor: pointer;
+}
+
 .imageSliderContainer:hover .arrowSpanLeft{
     opacity: 1;
     transition: opacity 1s;
