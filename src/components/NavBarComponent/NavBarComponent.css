@@ -6,14 +6,19 @@
 
 .navBarBoxMobile {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     width: 100%;
+    height: 50px;
     background-color: #CB6CE6;
+    position: relative;
 }
 
 .dropDownMenu {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 50px;
     width: 100%;
-    height: 100%;
     background-color: #CB6CE6;
 }
 
