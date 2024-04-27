@@ -3,30 +3,30 @@ import { AdoptablePetsNav, DonateNav, FosterNav, VolunteerNav } from "./NavBarCo
 
 export const HomePageSlides: ImageSlide[] = [
     {
-        src:`src\\assets\\HomePageImageSlider\\Cat1.jpg`,
-        headerText:'This cat looks so polite lol',
-        subHeaderText:'Look at the silly smile :)',
+        src:`src\\assets\\HomePageImageSlider\\dog1.jpg`,
+        headerText:'Meet Our Furry Friends',
+        subHeaderText:'Discover the Hearts Behind Our Tails',
         buttonText:'Adopt',
         buttonRoute:AdoptablePetsNav.route
     },
     {
-        src:`src\\assets\\HomePageImageSlider\\Cat2.jpg`,
-        headerText:'This one has a little suit! Wow!',
-        subHeaderText:'Doin some serious business',
+        src:`src\\assets\\HomePageImageSlider\\dog2.jpg`,
+        headerText:'Foster Heroes Wanted',
+        subHeaderText:'Become a Foster Parent and Change Lives',
         buttonText:'Foster',
         buttonRoute:FosterNav.route
     },
     {
-        src:`src\\assets\\HomePageImageSlider\\Cat3.jpg`,
-        headerText:'CRONCH.... MoNcH cRuNcH.... nom',
-        subHeaderText:'me eating chips',
+        src:`src\\assets\\HomePageImageSlider\\dog3.jpg`,
+        headerText:'Support Our Mission',
+        subHeaderText:'Donate Today to Make a Pawsitive Impact',
         buttonText:'Volunteer',
         buttonRoute:VolunteerNav.route
     },
     {
-        src:`src\\assets\\HomePageImageSlider\\Cat4.jpg`,
-        headerText:'Uh oh they arguin... he in trouble',
-        subHeaderText:'oope',
+        src:`src\\assets\\HomePageImageSlider\\dog4.jpg`,
+        headerText:'Community Outreach',
+        subHeaderText:'Join Us in Making a Difference Beyond Our Doors',
         buttonText:'Donate',
         buttonRoute:DonateNav.route
     }

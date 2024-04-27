@@ -1,0 +1,16 @@
+.routeBtn{
+    color: white;
+    text-shadow: none;
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 20px;
+    font-size: 20px;
+    font-weight: 500;
+    padding: .3em 1em;
+    line-height: 1.7em !important;
+    background-size: cover;
+    background-position: 50%;
+    background-repeat: no-repeat;
+    transition-duration: .2s;
+    background-color: #483174;
+}

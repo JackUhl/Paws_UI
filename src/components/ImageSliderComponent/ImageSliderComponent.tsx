@@ -1,6 +1,8 @@
 import './ImageSliderComponent.css'
 import { useState } from 'react';
 import { IImageSliderComponent } from './IImageSliderComponent'
+import '../RouteButtonComponent/RouteButtonComponent'
+import RouteButtonComponent from '../RouteButtonComponent/RouteButtonComponent';
 
 
 export default function ImageSliderComponent(props: IImageSliderComponent) {
@@ -59,6 +61,12 @@ export default function ImageSliderComponent(props: IImageSliderComponent) {
           <div className='slideTextConainer'>
             <h1>{props.slides[curImgIndex].headerText}</h1>
             <h2>{props.slides[curImgIndex].subHeaderText}</h2>
+            <div className='routeBtnContainer'>
+              <RouteButtonComponent
+                route={props.slides[curImgIndex].buttonRoute}
+                text={props.slides[curImgIndex].buttonText}
+              />
+            </div>
           </div>
         </div>
       </div>

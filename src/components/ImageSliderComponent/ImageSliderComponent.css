@@ -3,6 +3,7 @@ img.imageSliderImg{
     width: 100%;
     height: 100%;
     object-fit: cover;
+    filter: brightness(50%);
     opacity: 0;
 }
 
@@ -129,7 +130,7 @@ h1 {
     font-size: 5vw; /* Adjust the percentage value as needed */
     width: 100%; /* Ensure full width */
     top: 10%; /* Position at the top */
-    -webkit-text-stroke-width: 2%;
+    -webkit-text-stroke-width: 10%;
     -webkit-text-stroke-color: black;
 }
 
@@ -138,6 +139,11 @@ h2 {
     font-size: 3vw; /* Adjust the percentage value as needed */
     width: 100%; /* Ensure full width */
     top: 35%; /* Position at the bottom */
-    -webkit-text-stroke-width: 2%;
+    -webkit-text-stroke-width: 10%;
     -webkit-text-stroke-color: black;
+}
+
+.routeBtnContainer{
+    top: 40%;
+    padding-top: 25%;
 }
