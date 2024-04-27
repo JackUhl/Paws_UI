@@ -1,0 +1,47 @@
+.maxContentWrapper {
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.pairRowFlex {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 5%;
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+
+.pairRowFlex img {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.pairColumnFlex {
+    display: flex;
+    flex-direction: column;
+    background-color: #f8f4f1;
+    padding: 2%;
+    row-gap: 3vh;
+}
+
+.spaceBetween {
+    justify-content: space-between;
+}
+
+.center {
+    justify-content: center;
+}
+
+.pairColumnFlex p {
+    margin: 0;
+}
+
+.pairColumnFlex h2 {
+    margin: 0;
+    color: #483174
+}
+
+.homeDog1Img {
+    height: 400px;
+}
