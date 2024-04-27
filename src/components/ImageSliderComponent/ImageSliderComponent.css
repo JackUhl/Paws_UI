@@ -1,7 +1,27 @@
 img.imageSliderImg{
+    position: absolute;
     width: 100%;
     height: 100%;
     object-fit: cover;
+}
+
+.imageSliderImg.active {
+    opacity: 1;
+    animation: fadeIn 1s;
+}
+.imageSliderImg.inactive{
+    opacity: 0;
+    animation: fadeOut 1s;
+}
+
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+@keyframes fadeOut {
+    100% { opacity: 0; }
+    0% { opacity: 1; }
 }
 
 div.imageSliderContainer{
@@ -9,7 +29,7 @@ div.imageSliderContainer{
     display: flex;
     overflow: hidden;
     width: 100%;
-    height: 45vh;
+    height: 35vw;
 }
 
 /* Arrow shape */
@@ -17,7 +37,7 @@ div.imageSliderContainer{
     border: solid white;
     border-width: 0 3px 3px 0;
     display: inline-block;
-    padding: 8px;
+    padding: 10px;
 }
 .right {
     transform: rotate(-45deg);
@@ -38,12 +58,12 @@ div.imageSliderContainer{
     cursor: pointer;
 }
 
-.imageSliderContainer:hover .arrowSpanLeft{
+.arrowSpanLeft.fade-in{
     opacity: 1;
     transition: opacity 1s;
     animation: fadeInLeft 0.5s forwards;
 }
-.imageSliderContainer:hover .arrowSpanRight {
+.arrowSpanRight.fade-in {
     opacity: 1;
     animation: fadeInRight 0.5s forwards;
 }
@@ -59,7 +79,7 @@ div.imageSliderContainer{
 
 @keyframes fadeInLeft {
     from {
-        left: -2%;
+        left: -3%;
     }
     to {
         left: 2%;
@@ -68,7 +88,7 @@ div.imageSliderContainer{
 
 @keyframes fadeInRight {
     from {
-        right: -2%;
+        right: -3%;
     }
     to {
         right: 2%;
@@ -80,7 +100,7 @@ div.imageSliderContainer{
         left: 2%;
     }
     to {
-        left: -1%;
+        left: -3%;
     }
 }
 
@@ -89,6 +109,6 @@ div.imageSliderContainer{
         right: 2%;
     }
     to {
-        right: -1%;
+        right: -3%;
     }
 }

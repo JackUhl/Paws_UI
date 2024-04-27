@@ -27,17 +27,24 @@ export default function ImageSliderComponent(props: IImageSliderComponent) {
       onMouseLeave={ () => {setHover(false);}}
       >
         <div className='imageSliderContainer' id='imageSlider'>
-            <span className={`arrowSpanLeft ${hover ? '' : 'fade-out'}`}> 
-                <i className='arrow left'
-                onClick={() => {changeCurImg(curImgIndex-1)}}
-                /> 
-            </span>
-            <span className={`arrowSpanRight ${hover ? '' : 'fade-out'}`}>
-                <i className='arrow right'
-                onClick={() => {changeCurImg(curImgIndex+1)}}
-                /> 
-            </span>
-            <img className='imageSliderImg' id= {'selectedImg' + curImgIndex } src={props.filePaths[curImgIndex]}/>
+          {props.filePaths.map((filePath, index) => (
+              <img
+                key={index}
+                className={`imageSliderImg ${curImgIndex === index ? 'active' : 'inactive'}`}
+                id={`selectedImg${index}`}
+                src={filePath}
+              />
+            ))}
+          <span className={`arrowSpanLeft ${hover ? 'fade-in' : 'fade-out'}`}> 
+              <i className='arrow left'
+              onClick={() => {changeCurImg(curImgIndex-1)}}
+              /> 
+          </span>
+          <span className={`arrowSpanRight ${hover ? 'fade-in' : 'fade-out'}`}>
+              <i className='arrow right'
+              onClick={() => {changeCurImg(curImgIndex+1)}}
+              /> 
+          </span>
         </div>
       </div>
     </>
