@@ -1,5 +1,24 @@
-#navBarBox {
+.navBarBox {
     display: flex;
     width: 100%;
     background-color: #CB6CE6;
+}
+
+.navBarBoxMobile {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    background-color: #CB6CE6;
+}
+
+.dropDownMenu {
+    width: 100%;
+    height: 100%;
+    background-color: #CB6CE6;
+}
+
+.burgerIcon {
+    width: 4em;
+    height: 3em;
+    cursor: pointer;
 }
