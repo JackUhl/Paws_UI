@@ -1,4 +1,14 @@
 .logo {
-    height: 6em;
-    padding: 1em;
-  }
+  height: 6em;
+  padding: 1em;
+}
+
+.logoDesktop {
+  display: flex;
+  justify-content: start;
+}
+
+.logoMobile {
+  display: flex;
+  justify-content: center;
+}

@@ -1,10 +1,15 @@
 import './Home.css';
 import homeDog1 from '../../assets/homeDog1.jpg';
 import homeDog2 from '../../assets/homeDog2.jpg';
+import ImageSliderComponent from '../../components/ImageSliderComponent/ImageSliderComponent'
+import { HomePageSlides } from '../../models/constants/HomePageImgSliderConstants'
 
 export default function Home() {
     return (
         <>
+            <ImageSliderComponent 
+                slides={HomePageSlides}
+            />
             <div className='maxContentWrapper'>
                 <div className='pairRowFlex'>
                     <div className='pairColumnFlex center'>

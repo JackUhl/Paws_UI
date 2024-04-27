@@ -1,0 +1,149 @@
+img.imageSliderImg{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(50%);
+    opacity: 0;
+}
+
+.imageSliderImg.first {
+    opacity: 1;
+}
+.imageSliderImg.active {
+    opacity: 1;
+    animation: fadeIn 1s;
+}
+.imageSliderImg.inactive{
+    opacity: 0;
+    animation: fadeOut 1s;
+}
+
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+@keyframes fadeOut {
+    100% { opacity: 0; }
+    0% { opacity: 1; }
+}
+
+div.imageSliderContainer{
+    position: relative;
+    display: flex;
+    overflow: hidden;
+    width: 100%;
+    height: 35vw;
+}
+
+/* Arrow shape */
+.arrow {
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 10px;
+}
+.right {
+    transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+}
+.left {
+    transform: rotate(135deg);
+    -webkit-transform: rotate(135deg);
+}
+
+/* Arrow container animation logic and fade in/out */
+.arrowSpanLeft, .arrowSpanRight {
+    position: absolute;
+    top: 50%;
+}
+
+.arrowSpanLeft:hover, .arrowSpanRight:hover {
+    cursor: pointer;
+}
+
+.arrowSpanLeft.fade-in{
+    opacity: 1;
+    transition: opacity 1s;
+    animation: fadeInLeft 0.5s forwards;
+}
+.arrowSpanRight.fade-in {
+    opacity: 1;
+    animation: fadeInRight 0.5s forwards;
+}
+.arrowSpanLeft.fade-out {
+    animation: fadeOutLeft 0.5s forwards;
+}
+
+.arrowSpanRight.fade-out {
+    animation: fadeOutRight 0.5s forwards;
+}
+
+/* Arrow tranform animations */
+
+@keyframes fadeInLeft {
+    from {
+        left: -3%;
+    }
+    to {
+        left: 2%;
+    }
+}
+
+@keyframes fadeInRight {
+    from {
+        right: -3%;
+    }
+    to {
+        right: 2%;
+    }
+}
+
+@keyframes fadeOutLeft {
+    from {
+        left: 2%;
+    }
+    to {
+        left: -3%;
+    }
+}
+
+@keyframes fadeOutRight {
+    from {
+        right: 2%;
+    }
+    to {
+        right: -3%;
+    }
+}
+
+div.slideTextConainer{
+    position: relative;
+    display: flex;
+    width: 80%;
+    left:10%;
+}
+
+h1 {
+    position: absolute;
+    font-size: 5vw; /* Adjust the percentage value as needed */
+    width: 100%; /* Ensure full width */
+    top: 10%; /* Position at the top */
+    -webkit-text-stroke-width: 10%;
+    -webkit-text-stroke-color: black;
+}
+
+h2 {
+    position: absolute;
+    font-size: 3vw; /* Adjust the percentage value as needed */
+    width: 100%; /* Ensure full width */
+    top: 35%; /* Position at the bottom */
+    -webkit-text-stroke-width: 10%;
+    -webkit-text-stroke-color: black;
+}
+
+.routeBtnContainer{
+    top: 40%;
+    padding-top: 25%;
+}
