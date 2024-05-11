@@ -1,5 +1,5 @@
 import './ImageSliderComponent.css'
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { IImageSliderComponent } from './IImageSliderComponent'
 import '../RouteButtonComponent/RouteButtonComponent'
 import RouteButtonComponent from '../RouteButtonComponent/RouteButtonComponent';
@@ -9,10 +9,21 @@ export default function ImageSliderComponent(props: IImageSliderComponent) {
 
     const [imgNum, setImgNum] = useState(props.slides.length);
     const [curImgIndex, setCurImgIndex] = useState(0);
-    const [prevImgIndex, setPrevImg] = useState(0)
+    const [prevImgIndex, setPrevImgIndex] = useState(0);
     const [hover, setHover] = useState(false);
+    const [timeoutId, setTimeoutId] = useState(0);
 
-    const changeCurImg = (newIndex : number) => {
+    useEffect(() => {
+      if(timeoutId != 0) {
+        clearTimeout(timeoutId);
+      }
+      let id = setTimeout(() => {
+        changeImageIndex(curImgIndex, curImgIndex+1);
+      }, 15000);
+      setTimeoutId(id);
+    }, [curImgIndex]);
+
+    const changeImageIndex = (currentIndex: number, newIndex : number) => {
         if (newIndex == imgNum){
             setCurImgIndex(0);
         }
@@ -22,14 +33,21 @@ export default function ImageSliderComponent(props: IImageSliderComponent) {
         else {
             setCurImgIndex(newIndex);
         }
+        setPrevImgIndex(currentIndex);
     }
 
-    const setImgActiveState = (index:number) => {
-      if(index === prevImgIndex){
-        return curImgIndex === index ? 'first' : 'inactive'
+    const setImgClass = (index : number) => {
+      if (index == prevImgIndex && index == curImgIndex) {
+        return 'first';
       }
-      else{
-        return curImgIndex === index ? 'active' : ''
+      else if (index == prevImgIndex) {
+        return 'inactive';
+      }
+      else if (index == curImgIndex) {
+        return 'active';
+      }
+      else {
+        return ''
       }
     }
 
@@ -43,22 +61,22 @@ export default function ImageSliderComponent(props: IImageSliderComponent) {
           {props.slides.map((filePath, index) => (
               <img
                 key={index}
-                className={`imageSliderImg ${setImgActiveState(index)}`}
+                className={`imageSliderImg ${setImgClass(index)}`}
                 id={`selectedImg${index}`}
                 src={filePath.src}
               />
             ))}
           <span className={`arrowSpanLeft ${hover ? 'fade-in' : 'fade-out'}`}> 
               <i className='arrow left'
-              onClick={() => {changeCurImg(curImgIndex-1)}}
+              onClick={() => {changeImageIndex(curImgIndex, curImgIndex-1)}}
               /> 
           </span>
           <span className={`arrowSpanRight ${hover ? 'fade-in' : 'fade-out'}`}>
               <i className='arrow right'
-              onClick={() => {changeCurImg(curImgIndex+1)}}
+              onClick={() => {changeImageIndex(curImgIndex, curImgIndex+1)}}
               /> 
           </span>
-          <div className='slideTextConainer'>
+          <div className='slideTextContainer'>
             <h1>{props.slides[curImgIndex].headerText}</h1>
             <h2>{props.slides[curImgIndex].subHeaderText}</h2>
             <div className='routeBtnContainer'>

@@ -118,14 +118,15 @@ div.imageSliderContainer{
     }
 }
 
-div.slideTextConainer{
+div.slideTextContainer{
     position: relative;
     display: flex;
     width: 80%;
     left:10%;
+    color: white;
 }
 
-h1 {
+#imageSlider h1 {
     position: absolute;
     font-size: 5vw; /* Adjust the percentage value as needed */
     width: 100%; /* Ensure full width */
@@ -134,7 +135,7 @@ h1 {
     -webkit-text-stroke-color: black;
 }
 
-h2 {
+#imageSlider h2 {
     position: absolute;
     font-size: 3vw; /* Adjust the percentage value as needed */
     width: 100%; /* Ensure full width */
