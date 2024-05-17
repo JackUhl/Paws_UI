@@ -39,7 +39,7 @@ export default function Donate() {
                 </div>
                 <div className='flexColumn contentBox'>
                     <h2>Donate</h2>
-                    <div className='flexRow flexGap'>
+                    <div className='flexRow alignCenter flexGap'>
                         <p className='donateArea'>Any and all donations ares appreciated. Rest assured that your genrous contributions will be respectfully allocated towards bettering the lives of our rescues</p>
                         <LinkButtonComponent
                             linksToInternalRoute={false}
