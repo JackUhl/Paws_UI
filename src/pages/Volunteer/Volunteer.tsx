@@ -59,16 +59,18 @@ export default function Volunteer() {
                     <div className='centerChildren'>
                         <h2>Join our cause!</h2>
                     </div>
-                    <p>Volunteering at P.A.W.S offers a chance to directly impact the lives of animals in need. By dedicating your time, you provide essential care and attention to neglected or abandoned pets, helping them on their path to finding loving homes.</p>
-                    <div className='centerChildren'>  
-                        <img src="https://pawsomeanimalwelfare.com/wp-content/uploads/2023/09/PAWS_Cincinnati_08-e1695005136704.jpeg" />
-                    </div>  
-                    <p> Join a community passionate about animal welfare! It's a meaningful opportunity to contribute to a cause that relies on our collective kindness and support.</p>
+                    <div className='pinkBackground'>
+                        <p>Volunteering at P.A.W.S offers a chance to directly impact the lives of animals in need. By dedicating your time, you provide essential care and attention to neglected or abandoned pets, helping them on their path to finding loving homes.</p>
+                        <div className='centerChildren'>  
+                            <img src="https://tonsofgoodness.com/wp-content/uploads/2020/09/1-2-1024x576.jpg" />
+                        </div>  
+                        <p> Join a community passionate about animal welfare! It's a meaningful opportunity to contribute to a cause that relies on our collective kindness and support.</p>
+                    </div>
                 </div>
                 <div className='seperator'/>
                 <div className='form'>
                     <div className='centerChildren'>
-                        <h2>Personal Information</h2>
+                        <h2>Contact Information</h2>
                     </div>
                     <div className='nameContain flexRow flexGap'>
                         <div>
