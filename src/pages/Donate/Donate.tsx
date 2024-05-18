@@ -3,10 +3,11 @@ import LinkButtonComponent from '../../components/RouteButtonComponent/LinkButto
 import TitleBanner from '../../components/TitleBannerComponent/TitleBannerComponent'
 import paypalIcon from '../../assets/paypalLogoIcon.svg'
 import venmoIcon from '../../assets/venmoLogoIcon.svg'
+import amazonIcon from '../../assets/amazonLogoIcon.svg'
 import yalina from '../../assets/yalina.jpeg'
 import winston from '../../assets/winston.jpg'
 import dogToys from '../../assets/dogToys.jpg'
-import { PaypalUrl, VenmoUrl } from '../../models/constants/UrlConstants'
+import { PaypalUrl, VenmoUrl, AmazonWishlistUrl } from '../../models/constants/UrlConstants'
 
 export default function Donate() {
     return (
@@ -25,11 +26,11 @@ export default function Donate() {
                     <div className='flexRow flexGap'>
                         <div className='flexColumn alignCenter donateExamplesRow'>
                             <img src={yalina} alt="yalina" className='donateExampleImage' />
-                            <p>With your help, we are able to afford medical procedures such as providing life-saving heartworm treatment for one of our rescues, Yalina, ensuring her journey towards a happy and healthy life.</p>
+                            <p>With your help, we are able to afford medical procedures such as providing life-saving heartworm treatment for one of our rescues, Yalina, ensuring a happy and healthy life.</p>
                         </div>
                         <div className='flexColumn alignCenter donateExamplesRow'>
                             <img src={winston} alt="winston" className='donateExampleImage' />
-                            <p>Donations allow us to afford services such as hospice care which offered comfort and dignity for one of our rescues, Winston, ensuring he felt loved and supported.</p>
+                            <p>Donations allow us to afford services such as hospice care which offered comfort and dignity for one of our rescues, Winston, so that he felt loved and supported.</p>
                         </div>
                         <div className='flexColumn alignCenter donateExamplesRow'>
                             <img src={dogToys} alt="dog toys" className='donateExampleImage' />
@@ -40,16 +41,24 @@ export default function Donate() {
                 <div className='flexColumn contentBox'>
                     <h2>Donate</h2>
                     <div className='flexRow alignCenter flexGap'>
-                        <p className='donateArea'>Any and all donations are appreciated. Rest assured that your genrous contributions will be respectfully allocated towards bettering the lives of our rescues</p>
+                        <p className='donateArea'>Any and all donations are appreciated! If you'd like to donate by mail, you can send your donation to our PO box at: 8901-A Beechmont #249, Cincinnati, OH 45255</p>
                         <LinkButtonComponent
                             linksToInternalRoute={false}
                             route={PaypalUrl}
-                            text='Donate with Paypal'>
+                            text='Paypal'
+                            imgPath={paypalIcon}>
                         </LinkButtonComponent>
                         <LinkButtonComponent
                             linksToInternalRoute={false}
                             route={VenmoUrl}
-                            text='Donate with Venmo'>
+                            text='Venmo'
+                            imgPath={venmoIcon}>
+                        </LinkButtonComponent>
+                        <LinkButtonComponent
+                            linksToInternalRoute={false}
+                            route={AmazonWishlistUrl}
+                            text='Amazon'
+                            imgPath={amazonIcon}>
                         </LinkButtonComponent>
                     </div>
                 </div>

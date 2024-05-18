@@ -84,6 +84,7 @@ export default function ImageSliderComponent(props: IImageSliderComponent) {
                 linksToInternalRoute={true}
                 route={props.slides[curImgIndex].buttonRoute}
                 text={props.slides[curImgIndex].buttonText}
+                imgPath=''
               />
             </div>
           </div>
