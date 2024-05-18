@@ -17,15 +17,12 @@
     gap: 5%;
 }
 
-.volunteerPage{
-    h2{
-        color: #483174;
-    }
-}
-
 .mainContain{
     height: 100%;
     width: 100%;
+    h2{
+        color: #483174;
+    }
 }
 
 .whyYouShould{
