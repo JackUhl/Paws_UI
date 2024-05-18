@@ -27,22 +27,22 @@ export default function Volunteer() {
     const handlePhoneChange = (event:React.FormEvent<HTMLInputElement>) => {
         setPhone(event.currentTarget.value);
     }
-    const handleTransportChange = (event:React.FormEvent<HTMLInputElement>) => {
+    const handleTransportChange = () => {
         setTransport(!transport);
     }
-    const handleEventSetUpChange = (event:React.FormEvent<HTMLInputElement>) => {
+    const handleEventSetUpChange = () => {
         setEventSetUp(!eventSetUp);
     }
-    const handleFundraisingChange = (event:React.FormEvent<HTMLInputElement>) => {
+    const handleFundraisingChange = () => {
         setFundraising(!fundraising);
     }
-    const handlePhotographyChange = (event:React.FormEvent<HTMLInputElement>) => {
+    const handlePhotographyChange = () => {
         setPhotography(!photography);
     }
-    const handleGroomingChange = (event:React.FormEvent<HTMLInputElement>) => {
+    const handleGroomingChange = () => {
         setGrooming(!grooming);
     }
-    const handleTrainingChange = (event:React.FormEvent<HTMLInputElement>) => {
+    const handleTrainingChange = () => {
         setTraining(!training);
     }
     const validateAndSendInfo = () => {
