@@ -11,6 +11,13 @@
     background-size: cover;
     background-position: 50%;
     background-repeat: no-repeat;
-    transition-duration: .2s;
     background-color: #483174;
+}
+
+.buttonContainer {
+    transition: .2s;
+}
+
+.buttonContainer:hover {
+    opacity: 75%;
 }

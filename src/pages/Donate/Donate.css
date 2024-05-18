@@ -1,0 +1,56 @@
+.maxContentWrapper {
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.contentBox {
+    row-gap: 3vh;
+    margin-top: 3%;
+    margin-bottom: 3%;
+}
+
+.contentBox p {
+    margin: 0;
+}
+
+.contentBox h2 {
+    margin: 0;
+    color: #483174
+}
+
+.justifyCenter {
+    justify-content: center;
+}
+
+.alignCenter {
+    align-items: center;
+}
+
+.flexRow {
+    display: flex;
+    flex-direction: row;
+}
+
+.flexColumn {
+    display: flex;
+    flex-direction: column;
+}
+
+.flexGap {
+    gap: 5%;
+}
+
+.donateExamplesRow {
+    width: 33%;
+}
+
+.donateExampleImage {
+    width: 250px;
+    margin-bottom: 5%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.donateArea {
+    width: 40%;
+}

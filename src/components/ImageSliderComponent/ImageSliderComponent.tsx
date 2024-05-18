@@ -1,8 +1,8 @@
 import './ImageSliderComponent.css'
 import { useEffect, useState } from 'react';
 import { IImageSliderComponent } from './IImageSliderComponent'
-import '../RouteButtonComponent/RouteButtonComponent'
-import RouteButtonComponent from '../RouteButtonComponent/RouteButtonComponent';
+import '../RouteButtonComponent/LinkButtonComponent'
+import LinkButtonComponent from '../RouteButtonComponent/LinkButtonComponent';
 
 
 export default function ImageSliderComponent(props: IImageSliderComponent) {
@@ -80,7 +80,8 @@ export default function ImageSliderComponent(props: IImageSliderComponent) {
             <h1>{props.slides[curImgIndex].headerText}</h1>
             <h2>{props.slides[curImgIndex].subHeaderText}</h2>
             <div className='routeBtnContainer'>
-              <RouteButtonComponent
+              <LinkButtonComponent
+                linksToInternalRoute={true}
                 route={props.slides[curImgIndex].buttonRoute}
                 text={props.slides[curImgIndex].buttonText}
               />

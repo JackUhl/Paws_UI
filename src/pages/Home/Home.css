@@ -1,5 +1,5 @@
 .maxContentWrapper {
-    max-width: 800px;
+    max-width: 900px;
     margin-left: auto;
     margin-right: auto;
 }
@@ -20,7 +20,6 @@
 .pairColumnFlex {
     display: flex;
     flex-direction: column;
-    background-color: #f8f4f1;
     padding: 2%;
     row-gap: 3vh;
 }
