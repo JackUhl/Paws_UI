@@ -56,7 +56,9 @@ export default function Volunteer() {
 
             <div className='mainContain flexRow'>
                 <div className='whyYouShould'>
-                    <h2>Join our cause!</h2>
+                    <div className='centerChildren'>
+                        <h2>Join our cause!</h2>
+                    </div>
                     <p>Volunteering at P.A.W.S offers a chance to directly impact the lives of animals in need. By dedicating your time, you provide essential care and attention to neglected or abandoned pets, helping them on their path to finding loving homes.</p>
                     <div className='centerChildren'>  
                         <img src="https://pawsomeanimalwelfare.com/wp-content/uploads/2023/09/PAWS_Cincinnati_08-e1695005136704.jpeg" />
