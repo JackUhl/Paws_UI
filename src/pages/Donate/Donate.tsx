@@ -23,16 +23,16 @@ export default function Donate() {
                 </div>
                 <div className='flexColumn contentBox'>
                     <h2>How Your Donations Help</h2>
-                    <div className='flexRow flexGap'>
-                        <div className='flexColumn alignCenter donateExamplesRow'>
+                    <div className='flexRow spaceAround flexWrap alignStart'>
+                        <div className='flexColumn donateExamplesRow'>
                             <img src={yalina} alt="yalina" className='donateExampleImage' />
                             <p>With your help, we are able to afford medical procedures such as providing life-saving heartworm treatment for one of our rescues, Yalina, ensuring a happy and healthy life.</p>
                         </div>
-                        <div className='flexColumn alignCenter donateExamplesRow'>
+                        <div className='flexColumn donateExamplesRow'>
                             <img src={winston} alt="winston" className='donateExampleImage' />
                             <p>Donations allow us to afford services such as hospice care which offered comfort and dignity for one of our rescues, Winston, so that he felt loved and supported.</p>
                         </div>
-                        <div className='flexColumn alignCenter donateExamplesRow'>
+                        <div className='flexColumn donateExamplesRow'>
                             <img src={dogToys} alt="dog toys" className='donateExampleImage' />
                             <p>We're able to purchase essential pet supplies such as food, bedding, and toys to make sure our rescue dogs had their needs met as they await adoption</p>                        
                         </div>
@@ -40,8 +40,8 @@ export default function Donate() {
                 </div>
                 <div className='flexColumn contentBox'>
                     <h2>Donate</h2>
-                    <div className='flexRow alignCenter flexGap'>
-                        <p className='donateArea'>Any and all donations are appreciated! If you'd like to donate by mail, you can send your donation to our PO box at: 8901-A Beechmont #249, Cincinnati, OH 45255</p>
+                    <p>Any and all donations are appreciated! If you'd like to donate by mail, you can send your donation to our PO box at: 8901-A Beechmont #249, Cincinnati, OH 45255</p>
+                    <div className='flexRow justifyCenter alignCenter flexWrap'>
                         <LinkButtonComponent
                             linksToInternalRoute={false}
                             route={PaypalUrl}
