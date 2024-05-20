@@ -6,9 +6,12 @@ import { Link } from 'react-router-dom'
 export default function LinkButtonComponent(props: ILinkButtonComponent) {
     return (
         <>
-            <div className='buttonContainer'>
-                <Link to={props.route} target={props.linksToInternalRoute ? "_self" : "_blank"}><p className='routeBtn'>{props.text}</p></Link>
-            </div>
+            <Link to={props.route} target={props.linksToInternalRoute ? "_self" : "_blank"}>
+                <div className='buttonContainer buttonRow'>
+                    {props.imgPath != '' && <img src={props.imgPath} className='buttonImage'/>}
+                    <p className='buttonText'>{props.text}</p>
+                </div>
+            </Link>
         </>
     )
 }
