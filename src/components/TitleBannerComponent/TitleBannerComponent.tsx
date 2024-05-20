@@ -7,6 +7,7 @@ export default function TitleBanner(props: ITitleBannerComponent) {
             <div className="titleContainer">
                 <h2>{props.title}</h2>
             </div>
+            <div className='coolTransitionThing' />
         </>
     )
 }
