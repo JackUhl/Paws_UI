@@ -84,6 +84,14 @@
             font-size: 20px;
             margin-bottom: 2.5%;
         }
+        textarea:focus{
+            background: #f7f7f7;
+            border: 1px solid #c4c4c4;
+            border-radius: 0;
+            box-shadow: none;
+            color: #787878;
+            transition: all .5s;
+        }
     }
     input:focus{
         background: #f7f7f7;
