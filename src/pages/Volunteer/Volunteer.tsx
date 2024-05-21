@@ -1,4 +1,4 @@
-import { FormEvent, useState } from 'react';
+import { useState } from 'react';
 import TitleBanner from '../../components/TitleBannerComponent/TitleBannerComponent'
 import './Volunteer.css'
 
@@ -49,71 +49,75 @@ export default function Volunteer() {
         //TODO when setting up the email API
     }
     return (
-        <div className='volunteerPage'>
+        <div className='volunteer'>
             <TitleBanner
                 title='Volunteer'
             ></TitleBanner>
 
-            <div className='mainContain flexRow'>
-                <div className='whyYouShould'>
-                    <div className='centerChildren'>
-                        <h2>Join our cause!</h2>
-                    </div>
-                    <div className='pinkBackground'>
-                        <p>Volunteering at P.A.W.S offers a chance to directly impact the lives of animals in need. By dedicating your time, you provide essential care and attention to neglected or abandoned pets, helping them on their path to finding loving homes.</p>
-                        <div className='centerChildren'>  
-                            <img src="https://tonsofgoodness.com/wp-content/uploads/2020/09/1-2-1024x576.jpg" />
-                        </div>  
+            <div className='mainContainer flexRow justifyAround rowGap flexWrap'>
+                <div className='whyYouShould flexColumn rowGap'>
+                    <h2 className='centerSelf'>Join Our Cause!</h2>
+                    <div className='pinkBackground flexColumn rowGap'>
+                        <p>Volunteering at P.A.W.S offers a chance to directly impact the lives of animals in need. By dedicating your time, you provide essential care and attention to neglected or abandoned pets, helping them on their path to finding loving homes.</p>  
+                        <img src="https://tonsofgoodness.com/wp-content/uploads/2020/09/1-2-1024x576.jpg" /> 
                         <p> Join a community passionate about animal welfare! It's a meaningful opportunity to contribute to a cause that relies on our collective kindness and support.</p>
                     </div>
                 </div>
-                <div className='seperator'/>
-                <div className='form'>
-                    <div className='centerChildren'>
-                        <h2>Contact Information</h2>
-                    </div>
-                    <div className='nameContain flexRow flexGap'>
-                        <div>
+                <div className='form flexColumn rowGap'>
+                    <h2 className='centerSelf'>Contact Information</h2>
+                    <div className='flexRow justifyBetween'>
+                        <div className='shortInputContainer'>
                             <label> First Name </label><br/>
-                            <input className='short' type='text' value={firstName} onChange={handleFirstNameChange}></input>
+                            <input className='textInput' type='text' value={firstName} onChange={handleFirstNameChange}></input>
                         </div>
-                        <div>
+                        <div className='shortInputContainer'>
                             <label> Last Name </label><br/>
-                            <input className='short' type='text' value={lastName} onChange={handleLastNameChange}></input>
+                            <input className='textInput' type='text' value={lastName} onChange={handleLastNameChange}></input>
                         </div>
                     </div>
-                    <div>
+                    <div className='longInputContainer'>
                         <label> Email </label><br/>
-                        <input className='long' type='text' value={email} onChange={handleEmailChange}></input>
+                        <input className='textInput' type='text' value={email} onChange={handleEmailChange}></input>
                     </div>
-                    <div>
+                    <div className='longInputContainer'>
                         <label> Phone Number </label><br/>
-                        <input className='long' type='tel' value={phone} onChange={handlePhoneChange}></input>
+                        <input className='textInput' type='tel' value={phone} onChange={handlePhoneChange}></input>
                     </div>
-                    <div className='centerChildren'>
-                        <h4>What can you help with?</h4>
+                    <div className='centerSelf'>
+                        <h2>What can you help with?</h2>
                     </div>
-                    
-                    <div className='checkBoxContainer '>
-                        <div>
-                            <input type='checkbox' checked={transport} onChange={handleTransportChange}></input>
-                            <label>Transport</label><br/>
-                            <input type='checkbox' checked={eventSetUp} onChange={handleEventSetUpChange}></input>
-                            <label>Event Set Up</label><br/>
-                            <input type='checkbox' checked={fundraising} onChange={handleFundraisingChange}></input>
-                            <label>Fundraising</label><br/>
+                    <div className='flexRow justifyAround'>
+                        <div className='checkboxPairWidth'>
+                            <div className='flexRow alignCenter'>
+                                <input type='checkbox' checked={transport} onChange={handleTransportChange}></input>
+                                <label>Transport</label>
+                            </div>
+                            <div className='flexRow alignCenter'>
+                                <input type='checkbox' checked={eventSetUp} onChange={handleEventSetUpChange}></input>
+                                <label>Event Set Up</label>
+                            </div>
+                            <div className='flexRow alignCenter'>
+                                <input type='checkbox' checked={fundraising} onChange={handleFundraisingChange}></input>
+                                <label>Fundraising</label>
+                            </div>
                         </div>
-                        <div>
-                            <input type='checkbox' checked={photography} onChange={handlePhotographyChange}></input>
-                            <label>Photography</label><br/>
-                            <input type='checkbox' checked={grooming} onChange={handleGroomingChange}></input>
-                            <label>Grooming</label><br/>
-                            <input type='checkbox' checked={training} onChange={handleTrainingChange}></input>
-                            <label>Training</label><br/>
+                        <div className='checkboxPairWidth'>
+                            <div className='flexRow alignCenter'>
+                                <input type='checkbox' checked={photography} onChange={handlePhotographyChange}></input>
+                                <label>Photography</label>
+                            </div>
+                            <div className='flexRow alignCenter'>
+                                <input type='checkbox' checked={grooming} onChange={handleGroomingChange}></input>
+                                <label>Grooming</label>
+                            </div>
+                            <div className='flexRow alignCenter'>
+                                <input type='checkbox' checked={training} onChange={handleTrainingChange}></input>
+                                <label>Training</label>
+                            </div>
                         </div>
                     </div>
-                    <div className='centerChildren'>
-                        <button className='submitBtn' onClick={validateAndSendInfo}>Submit</button>
+                    <div className='centerSelf'>
+                        <button className='submitButton' onClick={validateAndSendInfo}>Submit</button>
                     </div>
                 </div>
             </div>

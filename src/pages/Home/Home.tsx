@@ -6,22 +6,22 @@ import { HomePageSlides } from '../../models/constants/HomePageImgSliderConstant
 
 export default function Home() {
     return (
-        <>
+        <div className='home'>
             <ImageSliderComponent 
                 slides={HomePageSlides}
             />
-            <div className='maxContentWrapper'>
-                <div className='pairRowFlex'>
-                    <div className='pairColumnFlex center'>
+            <div className='mainContainer'>
+                <div className='contentBox flexRow alignCenter justifyAround flexWrap'>
+                    <div className='flexColumn rowGap justifyAround info'>
                         <h2>Nurturing Hope: We are P.A.W.S</h2>
                         <p>Welcome to P.A.W.S, the Pawsome Animal Welfare Society, where compassion meets action. Our dedicated team rescues animals in distress, providing them with medical care and finding them loving homes. But our mission goes further. We advocate for their well-being every step of the way, ensuring each paw print tells a tale of hope and restoration. Beyond rescue, we prioritize fostering animal-human connections through rehabilitation and personalized care. Join us in nurturing hope, one paw at a time.</p>
                     </div>
-                    <img src={homeDog1} alt="homeDog1" className='homeDog1Img'/>
+                    <img src={homeDog1} alt="homeDog1"/>
                 </div>
 
-                <div className='pairRowFlex'>
-                    <img src={homeDog2} alt="homeDog2" className='homeDog1Img'/>
-                    <div className='pairColumnFlex spaceBetween'>
+                <div className='contentBox flexRow alignCenter justifyAround flexWrapReverse'>
+                    <img src={homeDog2} alt="homeDog2"/>
+                    <div className='flexColumn rowGap justifyAround info'>
                         <h2>Get Involved, Make a Difference</h2>
                         <p>Are you ready to join our journey of compassion? There are countless ways you can get involved and help make a lasting impact:</p>
                         <p><b>Adopt</b>: Give a loving home to a furry friend in need and experience the joy of companionship like no other.</p>
@@ -31,6 +31,6 @@ export default function Home() {
                     </div>
                 </div>
             </div>
-        </>
+        </div>
     )
 }

@@ -1,8 +1,8 @@
 import './ImageSliderComponent.css'
 import { useEffect, useState } from 'react';
 import { IImageSliderComponent } from './IImageSliderComponent'
-import '../RouteButtonComponent/LinkButtonComponent'
-import LinkButtonComponent from '../RouteButtonComponent/LinkButtonComponent';
+import '../LinkButtonComponent/LinkButtonComponent'
+import LinkButtonComponent from '../LinkButtonComponent/LinkButtonComponent';
 
 
 export default function ImageSliderComponent(props: IImageSliderComponent) {

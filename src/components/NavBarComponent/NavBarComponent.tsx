@@ -23,7 +23,8 @@ export default function NavBarComponent(props: INavBarComponent) {
   }
 
   const nonMobileView = (
-    <div className='navBarBox'>
+    <div className='navBar'>
+      <div className='navBarBox flexRow alignCenter'>
       {props.navBarItems.map(navBarItem => (
         <div key={uuidv4()}>
           <NavBarItemComponent
@@ -31,24 +32,27 @@ export default function NavBarComponent(props: INavBarComponent) {
           />
         </div>
       ))}
+      </div>
     </div>
   )
 
   const mobileView = (
-    <div className='navBarBoxMobile'>
-      <img src={burgerIcon} className='burgerIcon' alt='burger icon' onClick={handleHamburgerClick}></img>
-      {mobileMenuExpanded && <div className='dropDownMenu'>
-        {props.navBarItems.map(navBarItem => (
-          <div 
-            onClick={handleNavBarItemClicked} 
-            key={uuidv4()}
-          >
-            <NavBarItemComponent
-              item={navBarItem}
-            />
-          </div>
-        ))}
-      </div>}
+    <div className='navBar'>
+      <div className='navBarBox relativePosition flexRow alignCenter'>
+        <img src={burgerIcon} className='burgerIcon' alt='burger icon' onClick={handleHamburgerClick}></img>
+        {mobileMenuExpanded && <div className='dropDownMenu flexColumn'>
+          {props.navBarItems.map(navBarItem => (
+            <div 
+              onClick={handleNavBarItemClicked} 
+              key={uuidv4()}
+            >
+              <NavBarItemComponent
+                item={navBarItem}
+              />
+            </div>
+          ))}
+        </div>}
+      </div>
     </div>
   )
 

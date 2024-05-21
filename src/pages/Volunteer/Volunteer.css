@@ -1,124 +1,55 @@
-.flexRow {
-    display: flex;
-    flex-direction: row;
-}
+.volunteer {
+    .whyYouShould {
+        width: 400px;
 
-.flex-wrap{
-    display: flex;
-    flex-wrap: wrap;
-}
-
-.flexColumn {
-    display: flex;
-    flex-direction: column;
-}
-
-.flexGap {
-    gap: 5%;
-}
-
-.volunteerPage{
-    h4{
-        font-size: 20px;
+        img {
+            width: 100%;
+            height: 100%;
+        }
     }
-}
 
-.mainContain{
-    height: 100%;
-    width: 100%;
-    h2{
-        color: #483174;
-        font-size: 30px;
-    }
-}
-
-.whyYouShould{
-    width: 50%;
-}
-
-.whyYouShould{
-    padding: 5%;
-    img{
-        width: 100%;
-        height: 100%;
-    }
-    .pinkBackground{
+    .pinkBackground {
         background-color: #CB6CE6;
-        padding-top: 2vh;
-        padding-left: 2vh;
-        padding-right: 2vh;
-        padding-bottom: 2vh;
+        padding: 10px;
     }
-    p{
-        display: block;
-        margin-block-start: 1em;
-        margin-block-end: 1em;
-        margin-inline-start: 0px;
-        margin-inline-end: 0px;
-        unicode-bidi: isolate;
-        font-family: 'Lato', Helvetica, Arial, Lucida, sans-serif;
-    }
-}
 
-.nameContain{
-    div{
-        width: 50%;
-        margin-bottom: 2.5%;
-    }
-}
+    .form{
+        width: 400px;
 
-.form{
-    padding: 5%;
-    width: 50%;
-    input:focus{
-        background: #f7f7f7;
-        border: 1px solid #c4c4c4;
-        border-radius: 0;
-        box-shadow: none;
-        color: #787878;
-        transition: all .5s;
+        input:focus{
+            background-color: #f7f7f7;
+            border: 1px solid #c4c4c4;
+            border-radius: 0;
+            box-shadow: none;
+            color: #787878;
+            transition: all .5s;
+        }
     }
-    input.short{
+
+    input[type='text'], input[type='tel'] {
         width: 100%;
         height: 30px;
-        font-size: 20px;
     }
-    input.long{
-        width: 100%;
+
+    input[type='checkbox'] {
+        width: 30px;
         height: 30px;
-        font-size: 20px;
-        margin-bottom: 2.5%;
     }
-}
 
-.centerChildren{
-    display: flex;
-    justify-content: center;
-}
-
-.seperator{
-    border-left:1px solid #e2e2e2;
-}
-
-.checkBoxContainer{
-    display: flex;
-    justify-content: center;
-    gap: 20%;
-    input{
-        margin-bottom: 0%;
-        width: 20px;
-        height: 20px;
+    .shortInputContainer {
+        width: 45%;
     }
-    label{
-        font-size: 20px;
-        line-height: 20px;
-        display: inline-flex;
-        align-items: center;
-    }
-}
 
-.submitBtn {
-    margin-top: 5%;
-    color: white;
-    background-color: #483174;
+    .longInputContainer {
+        width: 100%;
+    }
+
+    .checkboxPairWidth {
+        width: 150px;
+    }
+
+    .submitButton {
+        color: white;
+        background-color: #483174;
+    }
 }

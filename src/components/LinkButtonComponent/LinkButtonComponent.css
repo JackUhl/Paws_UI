@@ -2,7 +2,7 @@
     transition: .2s;
     padding: 10px 20px;
     background-color: #483174;
-    border-radius: .25em;
+    border-radius: 8px;
 }
 
 .buttonContainer:hover {

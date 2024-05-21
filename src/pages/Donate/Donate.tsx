@@ -1,5 +1,5 @@
 import './Donate.css'
-import LinkButtonComponent from '../../components/RouteButtonComponent/LinkButtonComponent'
+import LinkButtonComponent from '../../components/LinkButtonComponent/LinkButtonComponent'
 import TitleBanner from '../../components/TitleBannerComponent/TitleBannerComponent'
 import paypalIcon from '../../assets/paypalLogoIcon.svg'
 import venmoIcon from '../../assets/venmoLogoIcon.svg'
@@ -11,37 +11,37 @@ import { PaypalUrl, VenmoUrl, AmazonWishlistUrl } from '../../models/constants/U
 
 export default function Donate() {
     return (
-        <>
+        <div className='donate'>
             <TitleBanner
                 title='Donate'
             ></TitleBanner>
-            <div className='maxContentWrapper'>
-                <div className='flexColumn contentBox'>
+            <div className='mainContainer'>
+                <div className='contentBox flexColumn'>
                     <h2>Make an Impact Today!</h2>
                     <p>Looking for a way to make a pawsitive impact? Support PAWS, the Pawsome Animal Welfare Society, and help us continue our mission! With your generous donations and unwavering support, we can create a warm and nurturing environment where all pets feel safe and loved.</p>
                     <p>Your contributions are the backbone of our mission. With the majority of donations allocated towards essential pet supplies and vet bills, every dollar you donate directly impacts the well-being and care of our rescue pets, ensuring they receive the support they need to thrive.</p>
                 </div>
-                <div className='flexColumn contentBox'>
+                <div className='contentBox flexColumn'>
                     <h2>How Your Donations Help</h2>
-                    <div className='flexRow spaceAround flexWrap alignStart'>
-                        <div className='flexColumn donateExamplesRow'>
-                            <img src={yalina} alt="yalina" className='donateExampleImage' />
+                    <div className='flexRow alignStart justifyAround flexWrap'>
+                        <div className='flexColumn rowGap exampleItem'>
+                            <img src={yalina} alt="yalina" />
                             <p>With your help, we are able to afford medical procedures such as providing life-saving heartworm treatment for one of our rescues, Yalina, ensuring a happy and healthy life.</p>
                         </div>
-                        <div className='flexColumn donateExamplesRow'>
-                            <img src={winston} alt="winston" className='donateExampleImage' />
+                        <div className='flexColumn rowGap exampleItem'>
+                            <img src={winston} alt="winston" />
                             <p>Donations allow us to afford services such as hospice care which offered comfort and dignity for one of our rescues, Winston, so that he felt loved and supported.</p>
                         </div>
-                        <div className='flexColumn donateExamplesRow'>
-                            <img src={dogToys} alt="dog toys" className='donateExampleImage' />
+                        <div className='flexColumn rowGap exampleItem'>
+                            <img src={dogToys} alt="dog toys" />
                             <p>We're able to purchase essential pet supplies such as food, bedding, and toys to make sure our rescue dogs had their needs met as they await adoption</p>                        
                         </div>
                     </div>
                 </div>
-                <div className='flexColumn contentBox'>
+                <div className='contentBox flexColumn'>
                     <h2>Donate</h2>
                     <p>Any and all donations are appreciated! If you'd like to donate by mail, you can send your donation to our PO box at: 8901-A Beechmont #249, Cincinnati, OH 45255</p>
-                    <div className='flexRow justifyCenter alignCenter flexWrap'>
+                    <div className='flexRow alignCenter justifyCenter rowGap columnGap flexWrap'>
                         <LinkButtonComponent
                             linksToInternalRoute={false}
                             route={PaypalUrl}
@@ -63,6 +63,6 @@ export default function Donate() {
                     </div>
                 </div>
             </div>
-        </>
+        </div>
     )
 }
