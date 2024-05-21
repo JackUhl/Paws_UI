@@ -28,10 +28,12 @@
     background-repeat: no-repeat;
     padding: 5%;
     p{
+        color: white;
         font-size: 20px;
         margin: 5%;
     }
     h2{
+        color: white;
         font-size: 35px;
         margin-left: 5%;
         margin-right: 5%;
