@@ -10,6 +10,7 @@
 
     .pinkBackground {
         background-color: #CB6CE6;
+        border-radius: 3px;
         padding: 10px;
     }
 

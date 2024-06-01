@@ -1,11 +1,12 @@
 .navBar {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    z-index: 100;
+
     .navBarBox {
         height: 50px;
         background-color: #CB6CE6;
-    }
-    
-    .relativePosition {
-        position: relative;
     }
     
     .dropDownMenu {

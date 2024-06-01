@@ -1,8 +1,9 @@
 import './ImageSliderComponent.css'
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { IImageSliderComponent } from './IImageSliderComponent'
 import '../LinkButtonComponent/LinkButtonComponent'
 import LinkButtonComponent from '../LinkButtonComponent/LinkButtonComponent';
+import { IsMobileContext } from '../../contexts/IsMobileContext';
 
 
 export default function ImageSliderComponent(props: IImageSliderComponent) {
@@ -12,19 +13,24 @@ export default function ImageSliderComponent(props: IImageSliderComponent) {
     const [prevImgIndex, setPrevImgIndex] = useState(0);
     const [hover, setHover] = useState(false);
     const [timeoutId, setTimeoutId] = useState(0);
+    const isMobile = useContext<boolean>(IsMobileContext);
 
     useEffect(() => {
       if(timeoutId != 0) {
         clearTimeout(timeoutId);
       }
+
       let id = setTimeout(() => {
-        changeImageIndex(curImgIndex, curImgIndex+1);
+        changeImageIndex(curImgIndex+1);
       }, 15000);
+
       setTimeoutId(id);
     }, [curImgIndex]);
 
-    const changeImageIndex = (currentIndex: number, newIndex : number) => {
-        if (newIndex == imgNum){
+    const changeImageIndex = (newIndex : number) => {
+      let currentIndex = curImgIndex;  
+      
+      if (newIndex == imgNum){
             setCurImgIndex(0);
         }
         else if (newIndex < 0){
@@ -33,6 +39,7 @@ export default function ImageSliderComponent(props: IImageSliderComponent) {
         else {
             setCurImgIndex(newIndex);
         }
+
         setPrevImgIndex(currentIndex);
     }
 
@@ -52,34 +59,29 @@ export default function ImageSliderComponent(props: IImageSliderComponent) {
     }
 
   return (
-    <>
-      <div 
+    <div 
       onMouseEnter={ () => {setHover(true);}}
       onMouseLeave={ () => {setHover(false);}}
-      >
-        <div className='imageSliderContainer' id='imageSlider'>
-          {props.slides.map((filePath, index) => (
-              <img
-                key={index}
-                className={`imageSliderImg ${setImgClass(index)}`}
-                id={`selectedImg${index}`}
-                src={filePath.src}
-              />
-            ))}
-          <span className={`arrowSpanLeft ${hover ? 'fade-in' : 'fade-out'}`}> 
-              <i className='arrow left'
-              onClick={() => {changeImageIndex(curImgIndex, curImgIndex-1)}}
-              /> 
-          </span>
-          <span className={`arrowSpanRight ${hover ? 'fade-in' : 'fade-out'}`}>
-              <i className='arrow right'
-              onClick={() => {changeImageIndex(curImgIndex, curImgIndex+1)}}
-              /> 
-          </span>
-          <div className='slideTextContainer'>
+      className='imageSlider'
+    >
+      <div className='relativeContainer'>
+        {props.slides.map((filePath, index) => (
+          <img
+            key={index}
+            className={`${setImgClass(index)}`}
+            src={filePath.src}
+          />
+        ))}
+        <div className='absoluteContainer flexRow'>
+          <div className='arrowFlex justifySelf alignSelf'>
+            <div className={`arrow left ${isMobile ? 'showArrow' : hover ? 'arrowFadeInLeft' : 'arrowFadeOutLeft'}`}
+              onClick={() => {changeImageIndex(curImgIndex-1)}}
+            />
+          </div>
+          <div className='imageTextFlex flexColumn justifyCenter'>
             <h1>{props.slides[curImgIndex].headerText}</h1>
             <h2>{props.slides[curImgIndex].subHeaderText}</h2>
-            <div className='routeBtnContainer'>
+            <div className='routeButtonContainer'>
               <LinkButtonComponent
                 linksToInternalRoute={true}
                 route={props.slides[curImgIndex].buttonRoute}
@@ -88,8 +90,13 @@ export default function ImageSliderComponent(props: IImageSliderComponent) {
               />
             </div>
           </div>
+          <div className='arrowFlex justifySelf alignSelf'>
+            <div className={`arrow right ${isMobile ? 'showArrow' : hover ? 'arrowFadeInRight' : 'arrowFadeOutRight'}`}
+              onClick={() => {changeImageIndex(curImgIndex+1)}}
+            />
+          </div>
         </div>
       </div>
-    </>
+    </div>
   )
 }

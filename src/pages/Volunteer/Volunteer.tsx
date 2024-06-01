@@ -56,7 +56,7 @@ export default function Volunteer() {
 
             <div className='mainContainer flexRow justifyAround rowGap flexWrap'>
                 <div className='whyYouShould flexColumn rowGap'>
-                    <h2 className='centerSelf'>Join Our Cause!</h2>
+                    <h2 className='justifySelf'>Join Our Cause!</h2>
                     <div className='pinkBackground flexColumn rowGap'>
                         <p>Volunteering at P.A.W.S offers a chance to directly impact the lives of animals in need. By dedicating your time, you provide essential care and attention to neglected or abandoned pets, helping them on their path to finding loving homes.</p>  
                         <img src="https://tonsofgoodness.com/wp-content/uploads/2020/09/1-2-1024x576.jpg" /> 
@@ -64,7 +64,7 @@ export default function Volunteer() {
                     </div>
                 </div>
                 <div className='form flexColumn rowGap'>
-                    <h2 className='centerSelf'>Contact Information</h2>
+                    <h2 className='justifySelf'>Contact Information</h2>
                     <div className='flexRow justifyBetween'>
                         <div className='shortInputContainer'>
                             <label> First Name </label><br/>
@@ -83,7 +83,7 @@ export default function Volunteer() {
                         <label> Phone Number </label><br/>
                         <input className='textInput' type='tel' value={phone} onChange={handlePhoneChange}></input>
                     </div>
-                    <div className='centerSelf'>
+                    <div className='justifySelf'>
                         <h2>What can you help with?</h2>
                     </div>
                     <div className='flexRow justifyAround'>
@@ -116,7 +116,7 @@ export default function Volunteer() {
                             </div>
                         </div>
                     </div>
-                    <div className='centerSelf'>
+                    <div className='justifySelf'>
                         <button className='submitButton' onClick={validateAndSendInfo}>Submit</button>
                     </div>
                 </div>
