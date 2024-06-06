@@ -7,7 +7,8 @@ import { useContext } from 'react';
 import { IsMobileContext } from '../../contexts/IsMobileContext';
 
 export default function Home() {
-    const isMobile = useContext<boolean>(IsMobileContext)
+    
+    const isMobile = useContext<boolean>(IsMobileContext);
 
     return (
         <div className='home'>
@@ -16,16 +17,16 @@ export default function Home() {
             />
             <div className='mainContainer'>
                 <div className='contentBox flexRow alignCenter justifyAround flexWrap'>
-                    <div className='flexColumn rowGap justifyAround info'>
+                    <div className={(isMobile ? 'infoMobileWidth' : 'infoDesktopWidth') + ' flexColumn rowGap justifyAround'}>
                         <h2 className={isMobile ? 'justifySelf' : ''}>Nurturing Hope: We are P.A.W.S</h2>
                         <p>Welcome to P.A.W.S, the Pawsome Animal Welfare Society, where compassion meets action. Our dedicated team rescues animals in distress, providing them with medical care and finding them loving homes. But our mission goes further. We advocate for their well-being every step of the way, ensuring each paw print tells a tale of hope and restoration. Beyond rescue, we prioritize fostering animal-human connections through rehabilitation and personalized care. Join us in nurturing hope, one paw at a time.</p>
                     </div>
-                    <img src={homeDog1} alt="homeDog1"/>
+                    <img src={homeDog1} className={(isMobile ? 'imageMobileWidth' : 'imageDesktopWidth') + ' image'}/>
                 </div>
 
                 <div className='contentBox flexRow alignCenter justifyAround flexWrapReverse'>
-                    <img src={homeDog2} alt="homeDog2"/>
-                    <div className='flexColumn rowGap justifyAround info'>
+                    <img src={homeDog2} className={(isMobile ? 'imageMobileWidth' : 'imageDesktopWidth') + ' image'}/>
+                    <div className={(isMobile ? 'infoMobileWidth' : 'infoDesktopWidth') + ' flexColumn rowGap justifyAround'}>
                         <h2 className={isMobile ? 'justifySelf' : ''}>Get Involved, Make a Difference</h2>
                         <p>Are you ready to join our journey of compassion? There are countless ways you can get involved and help make a lasting impact:</p>
                         <p><b>Adopt</b>: Give a loving home to a furry friend in need and experience the joy of companionship like no other.</p>

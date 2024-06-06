@@ -1,6 +1,7 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import TitleBanner from '../../components/TitleBannerComponent/TitleBannerComponent'
 import './Volunteer.css'
+import { IsMobileContext } from '../../contexts/IsMobileContext';
 
 export default function Volunteer() {
 
@@ -14,6 +15,8 @@ export default function Volunteer() {
     const [photography, setPhotography] = useState(false);
     const [grooming, setGrooming] = useState(false);
     const [training, setTraining] = useState(false);
+
+    const isMobile = useContext<boolean>(IsMobileContext)
 
     const handleFirstNameChange = (event:React.FormEvent<HTMLInputElement>) => {
         setFirstName(event.currentTarget.value);
@@ -54,8 +57,8 @@ export default function Volunteer() {
                 title='Volunteer'
             ></TitleBanner>
 
-            <div className='mainContainer flexRow justifyAround rowGap flexWrap'>
-                <div className='whyYouShould flexColumn rowGap'>
+            <div className={(isMobile ? 'justifyCenter' : 'justifyAround') + ' mainContainer flexRow rowGap flexWrap'}>
+                <div className={(isMobile ? 'whyYouShouldMobileWidth' : 'whyYouShouldDesktopWidth') + ' whyYouShould flexColumn rowGap'}>
                     <h2 className='justifySelf'>Join Our Cause!</h2>
                     <div className='pinkBackground flexColumn rowGap'>
                         <p>Volunteering at P.A.W.S offers a chance to directly impact the lives of animals in need. By dedicating your time, you provide essential care and attention to neglected or abandoned pets, helping them on their path to finding loving homes.</p>  
@@ -63,7 +66,8 @@ export default function Volunteer() {
                         <p> Join a community passionate about animal welfare! It's a meaningful opportunity to contribute to a cause that relies on our collective kindness and support.</p>
                     </div>
                 </div>
-                <div className='form flexColumn rowGap'>
+                <div className={isMobile ? 'hidden' : '' + ' seperator'}/>
+                <div className={(isMobile ? 'formMobileWidth' : 'formDesktopWidth') +' form flexColumn rowGap'}>
                     <h2 className='justifySelf'>Contact Information</h2>
                     <div className='flexRow justifyBetween'>
                         <div className='shortInputContainer'>

@@ -28,16 +28,16 @@ export default function Donate() {
                 <div className='contentBox flexColumn'>
                     <h2 className={isMobile ? 'justifySelf' : ''}>How Your Donations Help</h2>
                     <div className='flexRow alignStart justifyAround flexWrap rowGap'>
-                        <div className='flexColumn rowGap exampleItem'>
-                            <img src={yalina} alt="yalina" />
+                        <div className={(isMobile ? 'exampleMobileWidth' : 'exampleDesktopWidth') + ' flexColumn rowGap'}>
+                            <img src={yalina} />
                             <p>With your help, we are able to afford medical procedures such as providing life-saving heartworm treatment for one of our rescues, Yalina, ensuring a happy and healthy life.</p>
                         </div>
-                        <div className='flexColumn rowGap exampleItem'>
-                            <img src={winston} alt="winston" />
+                        <div className={(isMobile ? 'exampleMobileWidth' : 'exampleDesktopWidth') + ' flexColumn rowGap'}>
+                            <img src={winston} />
                             <p>Donations allow us to afford services such as hospice care which offered comfort and dignity for one of our rescues, Winston, so that he felt loved and supported.</p>
                         </div>
-                        <div className='flexColumn rowGap exampleItem'>
-                            <img src={dogToys} alt="dog toys" />
+                        <div className={(isMobile ? 'exampleMobileWidth' : 'exampleDesktopWidth') + ' flexColumn rowGap'}>
+                            <img src={dogToys} />
                             <p>We're able to purchase essential pet supplies such as food, bedding, and toys to make sure our rescue dogs had their needs met as they await adoption</p>                        
                         </div>
                     </div>

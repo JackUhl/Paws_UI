@@ -78,7 +78,7 @@
         position: relative;
         display: flex;
         width: 100%;
-        height: 35vw;
+        height: min(30vw, 400px);
     }
 
     .absoluteContainer {

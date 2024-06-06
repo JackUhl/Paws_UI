@@ -69,6 +69,10 @@
   align-items: start;
 }
 
+.alignEnd {
+  align-items: end;
+}
+
 .justifyAround {
   justify-content: space-around;
 }
@@ -83,6 +87,10 @@
 
 .justifyBetween {
   justify-content: space-between;
+}
+
+.justifyEnd {
+  justify-content: end;
 }
 
 .justifySelf {
