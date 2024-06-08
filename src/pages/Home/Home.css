@@ -1,46 +1,21 @@
-.maxContentWrapper {
-    max-width: 900px;
-    margin-left: auto;
-    margin-right: auto;
-}
+.home {
+    .image {
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    }
 
-.pairRowFlex {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 5%;
-    margin-top: 5%;
-    margin-bottom: 5%;
-}
+    .imageDesktopWidth {
+        width: 30%;
+    }
 
-.pairRowFlex img {
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-}
+    .imageMobileWidth {
+        width: 300px;
+    }
 
-.pairColumnFlex {
-    display: flex;
-    flex-direction: column;
-    padding: 2%;
-    row-gap: 3vh;
-}
+    .infoDesktopWidth {
+        width: 60%;
+    }
 
-.spaceBetween {
-    justify-content: space-between;
-}
-
-.center {
-    justify-content: center;
-}
-
-.pairColumnFlex p {
-    margin: 0;
-}
-
-.pairColumnFlex h2 {
-    margin: 0;
-    color: #483174
-}
-
-.homeDog1Img {
-    height: 400px;
+    .infoMobileWidth {
+        width: 100%;
+    }
 }

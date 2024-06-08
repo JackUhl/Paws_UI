@@ -19,44 +19,27 @@ export default function NavBarComponent(props: INavBarComponent) {
   }
 
   const handleNavBarItemClicked = () => {
-    setMobileMenuExpanded(false)
+    window.scrollTo(0,0);
+    setMobileMenuExpanded(false);
   }
 
-  const nonMobileView = (
-    <div className='navBarBox'>
-      {props.navBarItems.map(navBarItem => (
-        <div key={uuidv4()}>
-          <NavBarItemComponent
-            item={navBarItem}
-          />
-        </div>
-      ))}
-    </div>
-  )
-
-  const mobileView = (
-    <div className='navBarBoxMobile'>
-      <img src={burgerIcon} className='burgerIcon' alt='burger icon' onClick={handleHamburgerClick}></img>
-      {mobileMenuExpanded && <div className='dropDownMenu'>
-        {props.navBarItems.map(navBarItem => (
-          <div 
-            onClick={handleNavBarItemClicked} 
-            key={uuidv4()}
-          >
-            <NavBarItemComponent
-              item={navBarItem}
-            />
-          </div>
-        ))}
-      </div>}
-    </div>
-  )
-
   return (
-    <>
-      {!isMobile && nonMobileView}
-
-      {isMobile && mobileView}
-    </>
+    <div className='navBar'>
+      <div className='navBarBox flexRow alignCenter'>
+        {isMobile && <img src={burgerIcon} className='burgerIcon' alt='burger icon' onClick={handleHamburgerClick}></img>}
+        <div className={isMobile ? 'dropDownMenu flexColumn' : 'navBarBox flexRow alignCenter'}>
+          {(isMobile && mobileMenuExpanded || !isMobile) && props.navBarItems.map(navBarItem => (
+            <div 
+              onClick={handleNavBarItemClicked} 
+              key={uuidv4()}
+            >
+              <NavBarItemComponent
+                item={navBarItem}
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
   )
 }

@@ -1,102 +1,99 @@
-.flexRow {
-    display: flex;
-    flex-direction: row;
-}
-
-.flex-wrap{
-    display: flex;
-    flex-wrap: wrap;
-}
-
-.flexColumn {
-    display: flex;
-    flex-direction: column;
-}
-
-.flexGap {
-    gap: 5%;
-}
-
-.centerChildren{
-    display: flex;
-    justify-content: center;
-}
-
-@media (prefers-color-scheme: dark) {
-    .fosterHeros{
+.foster {  
+    @media (prefers-color-scheme: dark) {
+        .fosterHeros {
+            background:
+                linear-gradient( rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.5) ),
+                url('https://pawsomeanimalwelfare.com/wp-content/uploads/2023/09/dog-grooming_32.jpg') !important;
+        }
+    }
+    
+    .fosterHeros {
         background:
-            linear-gradient( rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.5) ),
-            url('https://pawsomeanimalwelfare.com/wp-content/uploads/2023/09/dog-grooming_32.jpg') !important;
-    }
-}
+            linear-gradient( rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.1) ),
+            url('https://pawsomeanimalwelfare.com/wp-content/uploads/2023/09/dog-grooming_32.jpg');
+        background-size: cover !important;
+        background-repeat: no-repeat !important;
 
-.fosterHeros{
-    background:
-        linear-gradient( rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.1) ),
-        url('https://pawsomeanimalwelfare.com/wp-content/uploads/2023/09/dog-grooming_32.jpg');
-    background-size: cover !important;
-    background-repeat: no-repeat !important;
-    padding: 5%;
-    p{
-        color: white;
-        font-size: 20px;
-        margin: 5%;
-    }
-    h2{
-        color: white;
-        font-size: 35px;
-        margin-left: 5%;
-        margin-right: 5%;
-        margin-top: 5%;
-        margin-bottom: 0%;
-    }
-    .imgTextAlign{
-        margin-top: 5%;
-        margin-left: 10%;
-        margin-right: 10%;
-        margin-bottom: 5%;
-    }
-    img{
-        width: 30%;
-        aspect-ratio: auto 1290 / 1643;
-    }
-    .pinkBackground{
-        background-color: #CB6CE6;
-        padding-top: 2vh;
-        padding-left: 2vh;
-        padding-right: 2vh;
-        padding-bottom: 2vh;
-    }
-}
+        padding-top: 5%;
+        padding-bottom: 5%;
 
-.fosterForm{
-    margin-left: 20%;
-    margin-right: 20%;
-    margin-bottom: 5%;
-
-    .required{
-        color: red;
-        height: 24px;
-    }
-    .fillHalf{
-        width: 50%;
-    }
-    .inputField{
-        input{
-            width: 100%;
-            height: 30px;
+        p {
+            color: white;
             font-size: 20px;
-            margin-bottom: 2.5%;
+            margin: 3%;
+        }
+
+        h2 {
+            color: white;
+            font-size: 35px;
+            margin-left: 5%;
+            margin-right: 5%;
+            margin-top: 5%;
+            margin-bottom: 0%;
+        }
+
+        .imageDesktopWidth {
+            width: 25%;
+            height: 40%;
+        }
+
+        .imageMobileWidth {
+            width: 400px
+        }
+
+        .pinkBackground {
+            background-color: #CB6CE6;
+            border-radius: 3px;
+            padding: 10px;
+        }
+
+        .pinkBackgroundDesktopWidth {
+            width: 60%;
+        }
+
+        .pinkBackgroundMobileWidth {
+            width: 90%;
         }
     }
-    .largeInputField{
-        textarea{
-            width: 100%;
-            height: 120px;
-            font-size: 20px;
-            margin-bottom: 2.5%;
+    
+    .fosterForm {
+        width: 80%;
+    
+        .required {
+            color: red;
+            height: 24px;
         }
-        textarea:focus{
+
+        .fillHalf {
+            width: 50%;
+        }
+
+        .inputField {
+            input {
+                width: 100%;
+                height: 30px;
+                font-size: 20px;
+            }
+        }
+
+        .largeInputField {
+            textarea {
+                width: 100%;
+                height: 120px;
+                font-size: 20px;
+            }
+
+            textarea:focus {
+                background: #f7f7f7;
+                border: 1px solid #c4c4c4;
+                border-radius: 0;
+                box-shadow: none;
+                color: #787878;
+                transition: all .5s;
+            }
+        }
+
+        input:focus {
             background: #f7f7f7;
             border: 1px solid #c4c4c4;
             border-radius: 0;
@@ -104,30 +101,20 @@
             color: #787878;
             transition: all .5s;
         }
-    }
-    input:focus{
-        background: #f7f7f7;
-        border: 1px solid #c4c4c4;
-        border-radius: 0;
-        box-shadow: none;
-        color: #787878;
-        transition: all .5s;
-    }
-    h2{
-        font-size: 25px;
-        color: #483174;
-        margin-bottom: 0%;
-    }
-    p{
-        margin-bottom: 2.5%;
-    }
-    label{
-        font-size: 20px;
-        color: #666;
-    }
-    .submitBtn {
-        margin-top: 5%;
-        color: white;
-        background-color: #483174;
+
+        h2 {
+            font-size: 25px;
+            color: #483174;
+        }
+
+        label {
+            font-size: 20px;
+            color: #666;
+        }
+
+        .submitBtn {
+            color: white;
+            background-color: #483174;
+        }
     }
 }

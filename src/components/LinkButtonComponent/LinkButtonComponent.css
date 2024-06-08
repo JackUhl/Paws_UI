@@ -1,0 +1,26 @@
+.linkButton {
+    .buttonContainer {
+        transition: .2s;
+        padding-top: min(1vw, 10px);
+        padding-bottom: min(1vw, 10px);
+        padding-left: min(2vw, 20px);
+        padding-right: min(2vw, 20px);
+        background-color: #483174;
+        border-radius: 8px;
+        gap: 15px;
+    }
+    
+    .buttonContainer:hover {
+        opacity: 75%;
+    }
+    
+    .buttonText {
+        color: white;
+        font-size: min(3vw, 20px);
+        margin: 0;
+    }
+    
+    .buttonImage {
+        height: 30px;
+    }
+}

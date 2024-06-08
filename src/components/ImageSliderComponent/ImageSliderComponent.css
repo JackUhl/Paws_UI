@@ -1,150 +1,153 @@
-img.imageSliderImg{
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    filter: brightness(50%);
-    opacity: 0;
-}
-
-.imageSliderImg.first {
-    opacity: 1;
-}
-.imageSliderImg.active {
-    opacity: 1;
-    animation: fadeIn 1s;
-}
-.imageSliderImg.inactive{
-    opacity: 0;
-    animation: fadeOut 1s;
-}
-
 @keyframes fadeIn {
     0% { opacity: 0; }
     100% { opacity: 1; }
 }
 
 @keyframes fadeOut {
-    100% { opacity: 0; }
     0% { opacity: 1; }
+    100% { opacity: 0; }
 }
 
-div.imageSliderContainer{
-    position: relative;
-    display: flex;
-    overflow: hidden;
-    width: 100%;
-    height: 35vw;
-}
-
-/* Arrow shape */
-.arrow {
-    border: solid white;
-    border-width: 0 3px 3px 0;
-    display: inline-block;
-    padding: 10px;
-}
-.right {
-    transform: rotate(-45deg);
-    -webkit-transform: rotate(-45deg);
-}
-.left {
-    transform: rotate(135deg);
-    -webkit-transform: rotate(135deg);
-}
-
-/* Arrow container animation logic and fade in/out */
-.arrowSpanLeft, .arrowSpanRight {
-    position: absolute;
-    top: 50%;
-}
-
-.arrowSpanLeft:hover, .arrowSpanRight:hover {
-    cursor: pointer;
-}
-
-.arrowSpanLeft.fade-in{
-    opacity: 1;
-    transition: opacity 1s;
-    animation: fadeInLeft 0.5s forwards;
-}
-.arrowSpanRight.fade-in {
-    opacity: 1;
-    animation: fadeInRight 0.5s forwards;
-}
-.arrowSpanLeft.fade-out {
-    animation: fadeOutLeft 0.5s forwards;
-}
-
-.arrowSpanRight.fade-out {
-    animation: fadeOutRight 0.5s forwards;
-}
-
-/* Arrow tranform animations */
-
-@keyframes fadeInLeft {
-    from {
-        left: -3%;
+@keyframes arrowFadeInLeft {
+    0% { 
+        opacity: 0; 
+        left: -70%;
     }
-    to {
-        left: 2%;
+    100% { 
+        opacity: 1; 
+        left: 0%;
     }
 }
 
-@keyframes fadeInRight {
-    from {
-        right: -3%;
+@keyframes arrowFadeOutLeft {
+    0% { 
+        opacity: 1; 
+        left: 0%;
     }
-    to {
-        right: 2%;
-    }
-}
-
-@keyframes fadeOutLeft {
-    from {
-        left: 2%;
-    }
-    to {
-        left: -3%;
+    100% { 
+        opacity: 0; 
+        left: -70%;
     }
 }
 
-@keyframes fadeOutRight {
-    from {
-        right: 2%;
+@keyframes arrowFadeInRight {
+    0% { 
+        opacity: 0; 
+        right: -70%;
     }
-    to {
-        right: -3%;
+    100% { 
+        opacity: 1; 
+        right: 0%;
     }
 }
 
-div.slideTextContainer{
-    position: relative;
-    display: flex;
-    width: 80%;
-    left:10%;
-    color: white;
+@keyframes arrowFadeOutRight {
+    0% { 
+        opacity: 1; 
+        right: 0%;
+    }
+    100% { 
+        opacity: 0; 
+        right: -70%;
+    }
 }
 
-#imageSlider h1 {
-    position: absolute;
-    font-size: 5vw; /* Adjust the percentage value as needed */
-    width: 100%; /* Ensure full width */
-    top: 10%; /* Position at the top */
-    -webkit-text-stroke-width: 10%;
-    -webkit-text-stroke-color: black;
-}
+.imageSlider {
+    img {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        filter: brightness(50%);
+        opacity: 0;
+    }
+    
+    .first {
+        opacity: 1;
+    }
+    .active {
+        opacity: 1;
+        animation: fadeIn 1s;
+    }
+    .inactive{
+        opacity: 0;
+        animation: fadeOut 1s;
+    }
 
-#imageSlider h2 {
-    position: absolute;
-    font-size: 3vw; /* Adjust the percentage value as needed */
-    width: 100%; /* Ensure full width */
-    top: 35%; /* Position at the bottom */
-    -webkit-text-stroke-width: 10%;
-    -webkit-text-stroke-color: black;
-}
+    .relativeContainer{
+        position: relative;
+        display: flex;
+        width: 100%;
+        height: min(30vw, 400px);
+    }
 
-.routeBtnContainer{
-    top: 40%;
-    padding-top: 25%;
+    .absoluteContainer {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+    }
+    
+    .arrow {
+        border: solid white;
+        border-width: 0 3px 3px 0;
+        display: block;
+        padding: 1vw;
+        cursor: pointer;
+        position: relative;
+    }
+    .right {
+        transform: rotate(-45deg);
+    }
+    .left {
+        transform: rotate(135deg);
+    }
+
+    .showArrow {
+        opacity: 1;
+    }
+
+    .arrowFadeInLeft {
+        opacity: 1;
+        animation: arrowFadeInLeft .5s;
+    }
+
+    .arrowFadeOutLeft {
+        opacity: 0;
+        animation: arrowFadeOutLeft .5s;
+    }
+
+    .arrowFadeInRight {
+        opacity: 1;
+        animation: arrowFadeInRight .5s;
+    }
+
+    .arrowFadeOutRight {
+        opacity: 0;
+        animation: arrowFadeOutRight .5s;
+    }
+    
+    h1 {
+        margin: 0;
+        font-size: 5vw;
+        color: white;
+    }
+    
+    h2 {
+        margin: 0;
+        font-size: 3vw;
+        color: white;
+    }
+
+    .routeButtonContainer {
+        width: max-content;
+    }
+
+    .arrowFlex {
+        width: 10%;
+    }
+
+    .imageTextFlex {
+        width: 80%;
+        row-gap: 10%;
+    }
 }
