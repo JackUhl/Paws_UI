@@ -8,7 +8,6 @@ import { IsMobileContext } from '../../contexts/IsMobileContext';
 
 export default function ImageSliderComponent(props: IImageSliderComponent) {
 
-    const [imgNum, setImgNum] = useState(props.slides.length);
     const [curImgIndex, setCurImgIndex] = useState(0);
     const [prevImgIndex, setPrevImgIndex] = useState(0);
     const [hover, setHover] = useState(false);
@@ -28,13 +27,14 @@ export default function ImageSliderComponent(props: IImageSliderComponent) {
     }, [curImgIndex]);
 
     const changeImageIndex = (newIndex : number) => {
-      let currentIndex = curImgIndex;  
+      let currentIndex = curImgIndex;
+      let numberOfImages = props.slides.length;
       
-      if (newIndex == imgNum){
+      if (newIndex == numberOfImages){
             setCurImgIndex(0);
         }
         else if (newIndex < 0){
-            setCurImgIndex(imgNum - 1);
+            setCurImgIndex(numberOfImages - 1);
         }
         else {
             setCurImgIndex(newIndex);
