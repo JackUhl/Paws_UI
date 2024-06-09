@@ -1,0 +1,25 @@
+.navBar {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    z-index: 100;
+
+    .navBarBox {
+        height: 50px;
+        background-color: #CB6CE6;
+    }
+    
+    .dropDownMenu {
+        position: absolute;
+        top: 50px;
+        width: 100%;
+        background-color: #CB6CE6;
+        z-index: 100;
+    }
+    
+    .burgerIcon {
+        width: 80px;
+        height: 60px;
+        cursor: pointer;
+    }
+}

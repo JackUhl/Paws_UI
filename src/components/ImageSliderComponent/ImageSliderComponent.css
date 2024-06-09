@@ -1,0 +1,153 @@
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+@keyframes fadeOut {
+    0% { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+@keyframes arrowFadeInLeft {
+    0% { 
+        opacity: 0; 
+        left: -70%;
+    }
+    100% { 
+        opacity: 1; 
+        left: 0%;
+    }
+}
+
+@keyframes arrowFadeOutLeft {
+    0% { 
+        opacity: 1; 
+        left: 0%;
+    }
+    100% { 
+        opacity: 0; 
+        left: -70%;
+    }
+}
+
+@keyframes arrowFadeInRight {
+    0% { 
+        opacity: 0; 
+        right: -70%;
+    }
+    100% { 
+        opacity: 1; 
+        right: 0%;
+    }
+}
+
+@keyframes arrowFadeOutRight {
+    0% { 
+        opacity: 1; 
+        right: 0%;
+    }
+    100% { 
+        opacity: 0; 
+        right: -70%;
+    }
+}
+
+.imageSlider {
+    img {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        filter: brightness(50%);
+        opacity: 0;
+    }
+    
+    .first {
+        opacity: 1;
+    }
+    .active {
+        opacity: 1;
+        animation: fadeIn 1s;
+    }
+    .inactive{
+        opacity: 0;
+        animation: fadeOut 1s;
+    }
+
+    .relativeContainer{
+        position: relative;
+        display: flex;
+        width: 100%;
+        height: min(30vw, 400px);
+    }
+
+    .absoluteContainer {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+    }
+    
+    .arrow {
+        border: solid white;
+        border-width: 0 3px 3px 0;
+        display: block;
+        padding: 1vw;
+        cursor: pointer;
+        position: relative;
+    }
+    .right {
+        transform: rotate(-45deg);
+    }
+    .left {
+        transform: rotate(135deg);
+    }
+
+    .showArrow {
+        opacity: 1;
+    }
+
+    .arrowFadeInLeft {
+        opacity: 1;
+        animation: arrowFadeInLeft .5s;
+    }
+
+    .arrowFadeOutLeft {
+        opacity: 0;
+        animation: arrowFadeOutLeft .5s;
+    }
+
+    .arrowFadeInRight {
+        opacity: 1;
+        animation: arrowFadeInRight .5s;
+    }
+
+    .arrowFadeOutRight {
+        opacity: 0;
+        animation: arrowFadeOutRight .5s;
+    }
+    
+    h1 {
+        margin: 0;
+        font-size: 5vw;
+        color: white;
+    }
+    
+    h2 {
+        margin: 0;
+        font-size: 3vw;
+        color: white;
+    }
+
+    .routeButtonContainer {
+        width: max-content;
+    }
+
+    .arrowFlex {
+        width: 10%;
+    }
+
+    .imageTextFlex {
+        width: 80%;
+        row-gap: 10%;
+    }
+}
