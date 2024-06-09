@@ -1,7 +1,7 @@
 import { useContext, useState } from 'react';
 import TitleBanner from '../../components/TitleBannerComponent/TitleBannerComponent'
 import './Foster.css'
-import { FosterForm, defaultFosterForm } from '../../models/objects/FosterForm';
+import { defaultFosterForm } from '../../models/objects/FosterForm';
 import { IsMobileContext } from '../../contexts/IsMobileContext';
 
 export default function Foster() {
