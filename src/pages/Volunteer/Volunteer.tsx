@@ -66,8 +66,8 @@ export default function Volunteer() {
                         <p> Join a community passionate about animal welfare! It's a meaningful opportunity to contribute to a cause that relies on our collective kindness and support.</p>
                     </div>
                 </div>
-                <div className={isMobile ? 'hidden' : '' + ' seperator'}/>
-                <div className={(isMobile ? 'formMobileWidth' : 'formDesktopWidth') +' form flexColumn rowGap'}>
+                <div className={(isMobile ? 'hidden' : '') + ' seperator'}/>
+                <div className={(isMobile ? 'formMobileWidth' : 'formDesktopWidth') + ' form flexColumn rowGap'}>
                     <h2 className='justifySelf'>Contact Information</h2>
                     <div className='flexRow justifyBetween'>
                         <div className='shortInputContainer'>

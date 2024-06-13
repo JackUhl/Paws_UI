@@ -14,7 +14,7 @@
 }
 
 .mainContainer {
-  max-width: 1000px;
+  width: min(80%, 1500px);
   margin-left: auto;
   margin-right: auto;
   padding: 10px;
@@ -33,6 +33,10 @@
   row-gap: 30px;
   margin-top: 50px;
   margin-bottom: 50px;
+}
+
+.hidden {
+  display: none !important;
 }
 
 .flexRow {
@@ -100,5 +104,5 @@
 
 .alignSelf {
   display: flex;
-  align-items: center;
+  align-self: center;
 }
