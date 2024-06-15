@@ -116,14 +116,14 @@ export default function Foster() {
                     <div className='flexRow justifyAround alignCenter columnGap rowGap flexWrap flexWrapReverse'>
                         <img src='https://pawsomeanimalwelfare.com/wp-content/uploads/2024/02/425834462_122118173588181652_7023249176980479669_n-1.jpg' className={isMobile ? 'imageMobileWidth' : 'imageDesktopWidth'}/>
                         <div className={(isMobile ? 'pinkBackgroundMobileWidth' : 'pinkBackgroundDesktopWidth') + ' pinkBackground flexColumn'}>
-                            <h2 className='justifySelf'>Become a Foster Hero</h2>
+                            <h2 className='centerJustifySelf'>Become a Foster Hero</h2>
                             <p>Our foster volunteers are the heart and soul of our pet rescue efforts. Their willingness to open up their homes and hearts to animals in need is what allows us to save lives and find forever homes. The more people who step up to foster, the more animals we can help. It's thanks to our amazing fosters that we can make a difference in the lives of these deserving animals. Become a Foster Hero Today!</p>
                         </div>
                     </div>
                 </div>
                 <div className='fosterForm flexColumn rowGap justifyCenter'>
-                    <h2 className='justifySelf'>Foster Application</h2>
-                    <div className='flexRow justifySelf'>
+                    <h2 className='centerJustifySelf'>Foster Application</h2>
+                    <div className='flexRow centerJustifySelf'>
                         <p>Fields marked with a <span className='required'> * </span> are required</p>
                     </div>
                     <div className='flexRow columnGap'>
@@ -174,7 +174,7 @@ export default function Foster() {
                             <input className='reference2PhoneInput' type='text' value={fosterForm.reference2.phoneNumber} onChange={handleReference2PhoneChange}></input>
                         </div>
                     </div>
-                    <div className='justifySelf'>
+                    <div className='centerJustifySelf'>
                         <button className='submitBtn' onClick={validateAndSendInfo}>Submit</button>
                     </div>
                 </div>
