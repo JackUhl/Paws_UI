@@ -9,8 +9,8 @@ export default function FooterComponent() {
 
     return (
         <div className='footer bottomOfScreen'>
-            <div className='footerWidth centerJustifySelf'>
-                <div className='footerContainer flexRow justifyAround alignStart flexWrap rowGap'>
+            <div className='outerFooterContainer centerJustifySelf'>
+                <div className='innerFooterContainer flexRow justifyAround alignStart flexWrap rowGap'>
                     <div className={(isMobile ? 'footerTextContainerMobile' : 'footerTextContainerDesktop') + ' flexColumn'}>
                         <h2 className='footerTitle'>Contact</h2>
                         <p><b>Address:</b> 8190A Beechmont #249, Cincinnati, OH 45255</p>
