@@ -1,4 +1,4 @@
-.footer {    
+.footer { 
     .footerWidth {
         width: 100%;
         background-color: #CB6CE6;
@@ -37,5 +37,6 @@
     .hyperLink {
         font-weight: 400;
         color: #213547;
+        width: max-content;
     }
 }

@@ -21,12 +21,12 @@ export default function Donate() {
             ></TitleBanner>
             <div className='mainContainer'>
                 <div className='contentBox flexColumn'>
-                    <h2 className={isMobile ? 'justifySelf' : ''}>Make an Impact Today!</h2>
+                    <h2 className={isMobile ? 'centerJustifySelf' : ''}>Make an Impact Today!</h2>
                     <p>Looking for a way to make a pawsitive impact? Support PAWS, the Pawsome Animal Welfare Society, and help us continue our mission! With your generous donations and unwavering support, we can create a warm and nurturing environment where all pets feel safe and loved.</p>
                     <p>Your contributions are the backbone of our mission. With the majority of donations allocated towards essential pet supplies and vet bills, every dollar you donate directly impacts the well-being and care of our rescue pets, ensuring they receive the support they need to thrive.</p>
                 </div>
                 <div className='contentBox flexColumn'>
-                    <h2 className={isMobile ? 'justifySelf' : ''}>How Your Donations Help</h2>
+                    <h2 className={isMobile ? 'centerJustifySelf' : ''}>How Your Donations Help</h2>
                     <div className='flexRow alignStart justifyAround flexWrap rowGap'>
                         <div className={(isMobile ? 'exampleMobileWidth' : 'exampleDesktopWidth') + ' flexColumn rowGap'}>
                             <img src={yalina} />
@@ -43,7 +43,7 @@ export default function Donate() {
                     </div>
                 </div>
                 <div className='contentBox flexColumn'>
-                    <h2 className={isMobile ? 'justifySelf' : ''}>Donate</h2>
+                    <h2 className={isMobile ? 'centerJustifySelf' : ''}>Donate</h2>
                     <p>Any and all donations are appreciated! If you'd like to donate by mail, you can send your donation to our PO box at: 8901-A Beechmont #249, Cincinnati, OH 45255</p>
                     <div className='flexRow alignCenter justifyCenter rowGap columnGap flexWrap'>
                         <LinkButtonComponent

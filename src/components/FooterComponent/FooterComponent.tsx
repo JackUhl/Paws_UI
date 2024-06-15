@@ -8,8 +8,8 @@ export default function FooterComponent() {
     const isMobile = useContext<boolean>(IsMobileContext);
 
     return (
-        <div className='footer'>
-            <div className='footerWidth justifySelf'>
+        <div className='footer bottomOfScreen'>
+            <div className='footerWidth centerJustifySelf'>
                 <div className='footerContainer flexRow justifyAround alignStart flexWrap rowGap'>
                     <div className={(isMobile ? 'footerTextContainerMobile' : 'footerTextContainerDesktop') + ' flexColumn'}>
                         <h2 className='footerTitle'>Contact</h2>
@@ -17,7 +17,7 @@ export default function FooterComponent() {
                         <p><b>Email:</b> <a href={"mailto:" + GeneralEmail} className='hyperLink'>{GeneralEmail}</a></p>
                         <p><b>Phone:</b> (513) 604-9789</p>
                     </div>
-                    <img src={miniLogo} className={(isMobile ? 'hidden' : '') + ' footerLogo alignSelf'} />
+                    <img src={miniLogo} className={(isMobile ? 'hidden' : '') + ' footerLogo centerAlignSelf'} />
                     <div className={(isMobile ? 'footerTextContainerMobile' : 'footerTextContainerDesktop') + ' flexColumn'}>
                         <h2 className='footerTitle'>Additional Resources</h2>
                         <a href={PetFinderPage} target='_blank' className='hyperLink'>Petfinder Page</a>

@@ -73,7 +73,7 @@ export default function ImageSliderComponent(props: IImageSliderComponent) {
           />
         ))}
         <div className='absoluteContainer flexRow'>
-          <div className='arrowFlex justifySelf alignCenter'>
+          <div className='arrowFlex centerJustifySelf alignCenter'>
             <div className={`arrow left ${isMobile ? 'showArrow' : hover ? 'arrowFadeInLeft' : 'arrowFadeOutLeft'}`}
               onClick={() => {changeImageIndex(curImgIndex-1)}}
             />
@@ -90,7 +90,7 @@ export default function ImageSliderComponent(props: IImageSliderComponent) {
               />
             </div>
           </div>
-          <div className='arrowFlex justifySelf alignCenter'>
+          <div className='arrowFlex centerJustifySelf alignCenter'>
             <div className={`arrow right ${isMobile ? 'showArrow' : hover ? 'arrowFadeInRight' : 'arrowFadeOutRight'}`}
               onClick={() => {changeImageIndex(curImgIndex+1)}}
             />
