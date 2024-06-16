@@ -48,7 +48,13 @@
     }
     
     .fosterForm {
-        width: 80%;
+        .fosterFormDesktopWidth {
+            width: 80%;
+        }
+
+        .fosterFormMobileWidth {
+            width: 100%;
+        }
 
         .inputField {
             width: 100%;

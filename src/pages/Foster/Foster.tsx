@@ -121,7 +121,7 @@ export default function Foster() {
                         </div>
                     </div>
                 </div>
-                <div className='fosterForm flexColumn rowGap justifyCenter'>
+                <div className={(isMobile ? 'fosterFormMobileWidth' : 'fosterFormDesktopWidth') + ' fosterForm flexColumn rowGap justifyCenter'}>
                     <h2 className='centerJustifySelf'>Foster Application</h2>
                     <div className='flexRow centerJustifySelf'>
                         <p>Fields marked with a <span className='required'> * </span> are required</p>
