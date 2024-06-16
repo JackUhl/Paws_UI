@@ -11,8 +11,8 @@ export default function Layout() {
     const isMobile = useContext(IsMobileContext)
 
     return (
-        <div className='layout flexColumn'>
-            <Link to={HomeNav.route} className={isMobile ? "logoMobile" : "logoDesktop"}><img src={pawsLogo} className="logo" alt="PAWS logo" /></Link>
+        <div className='layout flexColumn textSize'>
+            <div className={(isMobile ? 'justifyCenter' : 'justifyStart') + ' flexRow'}><Link to={HomeNav.route}><img src={pawsLogo} className="logo" alt="PAWS logo" /></Link></div>
             <NavBarComponent
                 navBarItems = {NavItems}
             />

@@ -11,20 +11,14 @@
     }
 
     .whyYouShouldMobileWidth {
-        width: 90%;
-    }
-
-    .pinkBackground {
-        background-color: #CB6CE6;
-        border-radius: 3px;
-        padding: 10px;
+        width: 100%;
     }
 
     .seperator {
         border-left:1px solid #e2e2e2;
     }
 
-    .form{
+    .volunteerForm{
         input:focus{
             background-color: #f7f7f7;
             border: 1px solid #c4c4c4;
@@ -40,7 +34,7 @@
     }
 
     .formMobileWidth {
-        width: 90%;
+        width: 100%;
     }
 
     input[type='text'], input[type='tel'] {
@@ -49,20 +43,9 @@
     }
 
     input[type='checkbox'] {
-        width: 30px;
-        height: 30px;
-    }
-
-    .shortInputContainer {
-        width: 45%;
-    }
-
-    .longInputContainer {
-        width: 100%;
-    }
-
-    .checkboxPairWidth {
-        width: 150px;
+        width: 36px;
+        height: 36px;
+        margin: 5px 5px 5px 0;
     }
 
     .submitButton {

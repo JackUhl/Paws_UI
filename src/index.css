@@ -89,10 +89,43 @@ button:focus-visible {
   }
 }
 
+.textSize {
+  font-size: max(1.5vw, 16px);
+}
+
+@media screen and (min-width: 1500px) {
+  .textSize {
+     font-size: 25px;
+  }
+}
+
 .contentBox {
   row-gap: 30px;
   margin-top: 50px;
   margin-bottom: 50px;
+}
+
+.pinkBackground {
+  background-color: #CB6CE6;
+  border-radius: 3px;
+  padding: 10px;
+  color: white;
+}
+
+.shortInputContainer {
+  width: 45%;
+}
+
+.longInputContainer {
+  width: 100%;
+}
+
+.required {
+  color: red;
+}
+
+.bottomOfScreen {
+  margin-top: auto;
 }
 
 .hidden {
@@ -165,8 +198,4 @@ button:focus-visible {
 .centerAlignSelf {
   display: flex;
   align-self: center;
-}
-
-.bottomOfScreen {
-  margin-top: auto;
 }

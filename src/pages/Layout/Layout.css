@@ -2,12 +2,7 @@
   min-height: 100vh;
   
   .logo {
-    height: 6em;
+    height: 10vw;
     padding: 1em;
-  }
-  
-  .logoDesktop {
-    display: flex;
-    justify-content: start;
   }
 }

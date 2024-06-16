@@ -11,13 +11,13 @@ export default function FooterComponent() {
         <div className='footer bottomOfScreen'>
             <div className='outerFooterContainer centerJustifySelf'>
                 <div className='innerFooterContainer flexRow justifyAround alignStart flexWrap rowGap'>
+                    <img src={miniLogo} className={(isMobile ? 'hidden' : '') + ' footerLogo centerAlignSelf'} />
                     <div className={(isMobile ? 'footerTextContainerMobile' : 'footerTextContainerDesktop') + ' flexColumn'}>
                         <h2 className='footerTitle'>Contact</h2>
-                        <p><b>Address:</b> 8190A Beechmont #249, Cincinnati, OH 45255</p>
-                        <p><b>Email:</b> <a href={"mailto:" + GeneralEmail} className='hyperLink'>{GeneralEmail}</a></p>
-                        <p><b>Phone:</b> (513) 604-9789</p>
+                        <p><b>Address:</b> <br /> 8190A Beechmont #249, Cincinnati, OH 45255</p>
+                        <p><b>Email:</b> <br /> <a href={"mailto:" + GeneralEmail} className='hyperLink'>{GeneralEmail}</a></p>
+                        <p><b>Phone:</b> <br /> (513) 604-9789</p>
                     </div>
-                    <img src={miniLogo} className={(isMobile ? 'hidden' : '') + ' footerLogo centerAlignSelf'} />
                     <div className={(isMobile ? 'footerTextContainerMobile' : 'footerTextContainerDesktop') + ' flexColumn'}>
                         <h2 className='footerTitle'>Additional Resources</h2>
                         <a href={PetFinderPage} target='_blank' className='hyperLink'>Petfinder Page</a>
