@@ -112,10 +112,21 @@ button:focus-visible {
   color: white;
 }
 
+.shortInputContainer {
+  width: 45%;
+}
+
+.longInputContainer {
+  width: 100%;
+}
+
+.required {
+  color: red;
+}
+
 .bottomOfScreen {
   margin-top: auto;
 }
-
 
 .hidden {
   display: none !important;

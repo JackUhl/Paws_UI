@@ -18,7 +18,7 @@
         border-left:1px solid #e2e2e2;
     }
 
-    .form{
+    .volunteerForm{
         input:focus{
             background-color: #f7f7f7;
             border: 1px solid #c4c4c4;
@@ -43,20 +43,9 @@
     }
 
     input[type='checkbox'] {
-        width: 10%;
-        height: 10%;
-    }
-
-    .shortInputContainer {
-        width: 45%;
-    }
-
-    .longInputContainer {
-        width: 100%;
-    }
-
-    .checkboxPairWidth {
-        width: 40%;
+        width: 36px;
+        height: 36px;
+        margin: 5px 5px 5px 0;
     }
 
     .submitButton {
