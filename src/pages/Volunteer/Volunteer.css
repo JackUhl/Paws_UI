@@ -11,13 +11,7 @@
     }
 
     .whyYouShouldMobileWidth {
-        width: 90%;
-    }
-
-    .pinkBackground {
-        background-color: #CB6CE6;
-        border-radius: 3px;
-        padding: 10px;
+        width: 100%;
     }
 
     .seperator {
@@ -40,7 +34,7 @@
     }
 
     .formMobileWidth {
-        width: 90%;
+        width: 100%;
     }
 
     input[type='text'], input[type='tel'] {
@@ -49,8 +43,8 @@
     }
 
     input[type='checkbox'] {
-        width: 30px;
-        height: 30px;
+        width: 10%;
+        height: 10%;
     }
 
     .shortInputContainer {
@@ -62,7 +56,7 @@
     }
 
     .checkboxPairWidth {
-        width: 150px;
+        width: 40%;
     }
 
     .submitButton {

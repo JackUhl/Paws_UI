@@ -69,12 +69,12 @@ export default function Volunteer() {
                 <div className={(isMobile ? 'hidden' : '') + ' seperator'}/>
                 <div className={(isMobile ? 'formMobileWidth' : 'formDesktopWidth') + ' form flexColumn rowGap'}>
                     <h2 className='centerJustifySelf'>Contact Information</h2>
-                    <div className='flexRow justifyBetween'>
-                        <div className='shortInputContainer'>
+                    <div className='flexRow justifyBetween flexWrap rowGap'>
+                        <div className={isMobile ? 'longInputContainer' : 'shortInputContainer'}>
                             <label> First Name </label><br/>
                             <input className='textInput' type='text' value={firstName} onChange={handleFirstNameChange}></input>
                         </div>
-                        <div className='shortInputContainer'>
+                        <div className={isMobile ? 'longInputContainer' : 'shortInputContainer'}>
                             <label> Last Name </label><br/>
                             <input className='textInput' type='text' value={lastName} onChange={handleLastNameChange}></input>
                         </div>
@@ -90,7 +90,7 @@ export default function Volunteer() {
                     <div className='centerJustifySelf'>
                         <h2>What can you help with?</h2>
                     </div>
-                    <div className='flexRow justifyAround'>
+                    <div className='flexRow justifyBetween'>
                         <div className='checkboxPairWidth'>
                             <div className='flexRow alignCenter'>
                                 <input type='checkbox' checked={transport} onChange={handleTransportChange}></input>
@@ -98,7 +98,7 @@ export default function Volunteer() {
                             </div>
                             <div className='flexRow alignCenter'>
                                 <input type='checkbox' checked={eventSetUp} onChange={handleEventSetUpChange}></input>
-                                <label>Event Set Up</label>
+                                <label>Event Setup</label>
                             </div>
                             <div className='flexRow alignCenter'>
                                 <input type='checkbox' checked={fundraising} onChange={handleFundraisingChange}></input>
