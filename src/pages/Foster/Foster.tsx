@@ -43,7 +43,7 @@ export default function Foster() {
             <TitleBanner
                 title='Foster'
             ></TitleBanner>
-            <div className='mainContainer flexRow justifyCenter rowGap flexWrap'>
+            <div className='mainContainer flexRow justifyCenter rowGap flexWrap fosterForm'>
                 <div className='fosterHeros'>
                     <div className='flexRow justifyAround alignCenter columnGap rowGap flexWrap flexWrapReverse'>
                         <img src='https://pawsomeanimalwelfare.com/wp-content/uploads/2024/02/425834462_122118173588181652_7023249176980479669_n-1.jpg' className={isMobile ? 'imageMobileWidth' : 'imageDesktopWidth'}/>

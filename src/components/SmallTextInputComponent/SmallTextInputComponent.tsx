@@ -40,6 +40,18 @@ export default function SmallTextInputComponent(props: ISmallTextInputComponent)
         props.onChange(e, props.variableName)
     }
 
+    const onBlurValidation = (e: BaseSyntheticEvent) => {
+        if (props.phoneInput){
+            if (e.target.value.length != 12){
+                setErrorMsg("Not a valid phone number");
+                return;
+            }
+        }
+
+        //No errors found
+        setErrorMsg('')
+    }
+
     return (
         <div className={(isMobile || !props.shortInput ? 'longInputContainer' : 'shortInputContainer') + ' smallInputContainer'}>
             <label> 
@@ -53,6 +65,7 @@ export default function SmallTextInputComponent(props: ISmallTextInputComponent)
                 type='text' 
                 value={props.inputValue} 
                 onChange={(e) => {validateInput(e)}}
+                onBlur={(e) => {onBlurValidation(e)}}
                 >
             </input>
         </div>
