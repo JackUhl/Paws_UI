@@ -1,8 +1,9 @@
-import { useContext, useState } from 'react';
+import { BaseSyntheticEvent, useContext, useState } from 'react';
 import TitleBanner from '../../components/TitleBannerComponent/TitleBannerComponent'
 import './Foster.css'
-import { defaultFosterForm } from '../../models/objects/FosterForm';
+import { defaultFosterForm, FosterForm, FosterFormFieldNames, Reference } from '../../models/objects/FosterForm';
 import { IsMobileContext } from '../../contexts/IsMobileContext';
+import SmallTextInputComponent from '../../components/SmallTextInputComponent/SmallTextInputComponent';
 
 export default function Foster() {
 
@@ -10,96 +11,27 @@ export default function Foster() {
 
     const isMobile = useContext<boolean>(IsMobileContext)
 
-    const handleFirstNameChange = (event:React.FormEvent<HTMLInputElement>) => {
-        const newValue = event.currentTarget.value;
-        setFosterForm(prevForm => ({
-            ...prevForm,
-            firstName: newValue
-        }));
-    }
+    const onChange = (event: BaseSyntheticEvent, variable: string) => {
+        const value = event.target.value;
+        const keys = variable.split('.');
 
-    const handleLastNameChange = (event:React.FormEvent<HTMLInputElement>) => {
-        const newValue = event.currentTarget.value;
-        setFosterForm(prevForm => ({
-            ...prevForm,
-            lastName: newValue
-        }));
-    }
-
-    const handlePhoneNumberChange = (event:React.FormEvent<HTMLInputElement>) => {
-        const newValue = event.currentTarget.value;
-        setFosterForm(prevForm => ({
-            ...prevForm,
-            phoneNumber: newValue
-        }));
-    }
-
-    const handleEmailChange = (event:React.FormEvent<HTMLInputElement>) => {
-        const newValue = event.currentTarget.value;
-        setFosterForm(prevForm => ({
-            ...prevForm,
-            email: newValue
-        }));
-    }
-
-    const handleWhyYouWantChange = (event:React.FormEvent<HTMLTextAreaElement>) => {
-        const newValue = event.currentTarget.value;
-        setFosterForm(prevForm => ({
-            ...prevForm,
-            whyDoYouWantTo: newValue
-        }));
-    }
-
-    const handlePetsYouHaveChange = (event:React.FormEvent<HTMLTextAreaElement>) => {
-        const newValue = event.currentTarget.value;
-        setFosterForm(prevForm => ({
-            ...prevForm,
-            whatPetsYouHave: newValue
-        }));
-    }
-
-    const handleReference1NameChange = (event:React.FormEvent<HTMLInputElement>) => {
-        const newValue = event.currentTarget.value;
-        setFosterForm(prevForm => ({
-            ...prevForm,
-            reference1: {
-                ...prevForm.reference1,
-                name: newValue
+        setFosterForm(prevForm => {
+            if (keys.length === 1) {
+                return {
+                    ...prevForm,
+                    [variable]: value
+                };
+            } else {
+                const [childClassName, childClassVariable] = keys;
+                return {
+                    ...prevForm,
+                    [childClassName]: {
+                        ...(prevForm[childClassName as keyof FosterForm] as Reference),
+                        [childClassVariable]: value
+                    }
+                };
             }
-        }));
-    }
-
-    const handleReference1PhoneChange = (event:React.FormEvent<HTMLInputElement>) => {
-        const newValue = event.currentTarget.value;
-        setFosterForm(prevForm => ({
-            ...prevForm,
-            reference1: {
-                ...prevForm.reference1,
-                phoneNumber: newValue
-            }
-        }));
-    }
-
-    const handleReference2NameChange = (event:React.FormEvent<HTMLInputElement>) => {
-        const newValue = event.currentTarget.value;
-        setFosterForm(prevForm => ({
-            ...prevForm,
-            reference1: {
-                ...prevForm.reference2,
-                name: newValue
-            }
-        }));
-    }
-
-    const handleReference2PhoneChange = (event:React.FormEvent<HTMLInputElement>) => {
-        const newValue = event.currentTarget.value;
-        setFosterForm(prevForm => ({
-            ...prevForm,
-            reference1: {
-                ...prevForm.reference2,
-                phoneNumber: newValue
-            }
-        }));
+        });
     }
 
     const validateAndSendInfo = () => {
@@ -127,52 +59,132 @@ export default function Foster() {
                         <p>Fields marked with a <span className='required'> * </span> are required</p>
                     </div>
                     <div className='flexRow justifyBetween flexWrap rowGap'>
-                        <div className={isMobile ? 'longInputContainer' : 'shortInputContainer'}>
-                            <label> First Name <span className='required'> * </span></label><br/>
-                            <input className='inputField' type='text' value={fosterForm.firstName} onChange={handleFirstNameChange}></input>
-                        </div>
-                        <div className={isMobile ? 'longInputContainer' : 'shortInputContainer'}>
-                            <label> Last Name <span className='required'> * </span></label><br/>
-                            <input className='inputField' type='text' value={fosterForm.lastName} onChange={handleLastNameChange}></input>
-                        </div>
+                        <SmallTextInputComponent
+                            shortInput = {true}
+                            emailInput = {false}
+                            phoneInput = {false}
+                            alphabetOnly = {true}
+
+                            labelName = 'First Name'
+                            isRequired = {true}
+                            maxInput = {20}
+
+                            inputValue={fosterForm.firstName}
+                            variableName={FosterFormFieldNames.firstName}
+                            onChange={onChange}
+                        />
+                        <SmallTextInputComponent
+                            shortInput = {true}
+                            emailInput = {false}
+                            phoneInput = {false}
+                            alphabetOnly = {true}
+
+                            labelName = 'Last Name'
+                            isRequired = {true}
+                            maxInput = {20}
+
+                            inputValue = {fosterForm.lastName}
+                            variableName = {FosterFormFieldNames.lastName}
+                            onChange={onChange}
+                        />
                     </div>
                     <div className='flexRow justifyBetween flexWrap rowGap'>
-                        <div className={isMobile ? 'longInputContainer' : 'shortInputContainer'}>
-                            <label> Phone Number <span className='required'> * </span></label><br/>
-                            <input className='inputField' type='text' value={fosterForm.phoneNumber} onChange={handlePhoneNumberChange}></input>
-                        </div>
-                        <div className={isMobile ? 'longInputContainer' : 'shortInputContainer'}>
-                            <label> Email <span className='required'> * </span></label><br/>
-                            <input className='inputField' type='text' value={fosterForm.email} onChange={handleEmailChange}></input>
-                        </div>
+                        <SmallTextInputComponent
+                            shortInput = {true}
+                            emailInput = {false}
+                            phoneInput = {true}
+                            alphabetOnly = {false}
+
+                            labelName = 'Phone Number'
+                            isRequired = {true}
+                            maxInput = {12}
+
+                            inputValue = {fosterForm.phoneNumber}
+                            variableName = {FosterFormFieldNames.phoneNumber}
+                            onChange={onChange}
+                        />
+                        <SmallTextInputComponent
+                            shortInput = {true}
+                            emailInput = {true}
+                            phoneInput = {false}
+                            alphabetOnly = {false}
+
+                            labelName = 'Email'
+                            isRequired = {true}
+                            maxInput = {50}
+
+                            inputValue = {fosterForm.email}
+                            variableName = {FosterFormFieldNames.email}
+                            onChange={onChange}
+                        />
                     </div>
                     <div className='largeInputField '>
                         <label> Why do you want to foster?</label><br/>
-                        <textarea name="paragraph_text" value={fosterForm.whyDoYouWantTo} onChange={handleWhyYouWantChange}></textarea>
+                        <textarea name="paragraph_text" value={fosterForm.whyDoYouWantTo} onChange={(e) => {onChange(e, FosterFormFieldNames.whyDoYouWantTo)}}></textarea>
                     </div>
                     <div className='largeInputField '>
                         <label> What pets do you currently have?<span className='required'> * </span></label><br/>
-                        <textarea name="paragraph_text" value={fosterForm.whatPetsYouHave} onChange={handlePetsYouHaveChange}></textarea>
+                        <textarea name="paragraph_text" value={fosterForm.whatPetsYouHave} onChange={(e) => {onChange(e, FosterFormFieldNames.whatPetsYouHave)}}></textarea>
                     </div>
                     <div className='flexRow justifyBetween flexWrap rowGap alignEnd'>
-                        <div className={isMobile ? 'longInputContainer' : 'shortInputContainer'}>
-                            <label> Reference 1 Name <span className='required'> * </span></label>
-                            <input className='inputField' type='text' value={fosterForm.reference1.name} onChange={handleReference1NameChange}></input>
-                        </div>
-                        <div className={isMobile ? 'longInputContainer' : 'shortInputContainer'}>
-                            <label> Reference 1 Phone Number <span className='required'> * </span></label>
-                            <input className='inputField' type='text' value={fosterForm.reference1.phoneNumber} onChange={handleReference1PhoneChange}></input>
-                        </div>
+                        <SmallTextInputComponent
+                            shortInput = {true}
+                            emailInput = {false}
+                            phoneInput = {false}
+                            alphabetOnly = {true}
+
+                            labelName = 'Reference 1 Name'
+                            isRequired = {true}
+                            maxInput = {20}
+
+                            inputValue = {fosterForm.reference1.name}
+                            variableName = {FosterFormFieldNames.reference1.name}
+                            onChange={onChange}
+                        />
+                        <SmallTextInputComponent
+                            shortInput = {true}
+                            emailInput = {false}
+                            phoneInput = {true}
+                            alphabetOnly = {false}
+
+                            labelName = 'Reference 1 Phone Number'
+                            isRequired = {true}
+                            maxInput = {12}
+
+                            inputValue = {fosterForm.reference1.phoneNumber}
+                            variableName = {FosterFormFieldNames.reference1.phoneNumber}
+                            onChange={onChange}
+                        />
                     </div>
                     <div className='flexRow justifyBetween flexWrap rowGap alignEnd'>
-                        <div className={isMobile ? 'longInputContainer' : 'shortInputContainer'}>
-                            <label> Reference 2 Name <span className='required'> * </span></label>
-                            <input className='inputField' type='text' value={fosterForm.reference2.name} onChange={handleReference2NameChange}></input>
-                        </div>
-                        <div className={isMobile ? 'longInputContainer' : 'shortInputContainer'}>
-                            <label> Reference 2 Phone Number <span className='required'> * </span></label>
-                            <input className='inputField' type='text' value={fosterForm.reference2.phoneNumber} onChange={handleReference2PhoneChange}></input>
-                        </div>
+                    <SmallTextInputComponent
+                            shortInput = {true}
+                            emailInput = {false}
+                            phoneInput = {false}
+                            alphabetOnly = {true}
+
+                            labelName = 'Reference 2 Name'
+                            isRequired = {true}
+                            maxInput = {20}
+
+                            inputValue = {fosterForm.reference2.name}
+                            variableName = {FosterFormFieldNames.reference2.name}
+                            onChange={onChange}
+                        />
+                        <SmallTextInputComponent
+                            shortInput = {true}
+                            emailInput = {false}
+                            phoneInput = {true}
+                            alphabetOnly = {false}
+
+                            labelName = 'Reference 2 Phone Number'
+                            isRequired = {true}
+                            maxInput = {12}
+
+                            inputValue = {fosterForm.reference2.phoneNumber}
+                            variableName = {FosterFormFieldNames.reference2.phoneNumber}
+                            onChange={onChange}
+                        />
                     </div>
                     <div className='centerJustifySelf'>
                         <button className='submitBtn' onClick={validateAndSendInfo}>Submit</button>
