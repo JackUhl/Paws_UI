@@ -1,10 +1,9 @@
 import './SmallTextInputComponent.css'
-import { BaseSyntheticEvent, useContext, useState } from 'react'
+import { BaseSyntheticEvent, forwardRef, useContext, useImperativeHandle, useState } from 'react'
 import { IsMobileContext } from '../../contexts/IsMobileContext';
 import { ISmallTextInputComponent } from './ISmallTextInputComponent';
-import { validate } from 'uuid';
 
-export default function SmallTextInputComponent(props: ISmallTextInputComponent) {
+const SmallTextInputComponent = forwardRef((props: ISmallTextInputComponent, ref: any) => {
 
     const [errorMsg, setErrorMsg] = useState('');
 
@@ -32,25 +31,46 @@ export default function SmallTextInputComponent(props: ISmallTextInputComponent)
         }
 
         e.target.value = e.target.value
-            .replace(/<[^>]*>/g, '')         // Remove HTML tags
-            .replace(/[<>*"=\\[\]]/g, '') // Remove characters with special meaning in HTML, JavaScript, and URLs, including bar parentheses
-            .replace(/[();:"]/g, '');     // Remove semicolons, colons, double quotes, and parentheses
+            .replace(/<[^>]*>/g, '')            // Remove HTML tags
+            .replace(/[<>*"=\\[\]]/g, '')       // Remove characters with special meaning in HTML, JavaScript, and URLs, including bar parentheses
+            .replace(/[();:"]/g, '');           // Remove semicolons, colons, double quotes, and parentheses
 
         setErrorMsg('')
         props.onChange(e, props.variableName)
     }
 
-    const onBlurValidation = (e: BaseSyntheticEvent) => {
+    const onBlurValidation = () => {
+        console.log('Made it here')
         if (props.phoneInput){
-            if (e.target.value.length != 12){
+            if (props.inputValue.length != 12){
                 setErrorMsg("Not a valid phone number");
+                props.setValidity(props.variableName, false);
+                return;
+            }
+        }
+        else if(props.emailInput){
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if(!emailRegex.test(props.inputValue)){
+                setErrorMsg("Not a valid Email");
+                props.setValidity(props.variableName, false);
                 return;
             }
         }
 
+        if(props.isRequired && props.inputValue == ''){
+            setErrorMsg("Required field");
+            props.setValidity(props.variableName, false);
+            return;
+        }
+
         //No errors found
         setErrorMsg('')
+        props.setValidity(props.variableName, true);
     }
+
+    useImperativeHandle(ref, () => ({
+        onBlurValidation
+    }))
 
     return (
         <div className={(isMobile || !props.shortInput ? 'longInputContainer' : 'shortInputContainer') + ' smallInputContainer'}>
@@ -65,9 +85,11 @@ export default function SmallTextInputComponent(props: ISmallTextInputComponent)
                 type='text' 
                 value={props.inputValue} 
                 onChange={(e) => {validateInput(e)}}
-                onBlur={(e) => {onBlurValidation(e)}}
+                onBlur={() => {onBlurValidation()}}
                 >
             </input>
         </div>
     )
-}
+})
+
+export default SmallTextInputComponent;

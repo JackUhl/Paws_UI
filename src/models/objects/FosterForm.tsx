@@ -1,3 +1,4 @@
+// The foster form itself
 export interface FosterForm{
     firstName: string,
     lastName: string,
@@ -14,6 +15,59 @@ export interface Reference{
     phoneNumber: string
 }
 
+//Bools that mimic the main class to track validity of the form
+export interface FosterFormValidity{
+    firstName: boolean,
+    lastName: boolean,
+    phoneNumber: boolean,
+    email: boolean,
+    whyDoYouWantTo: boolean,
+    whatPetsYouHave: boolean,
+    reference1:ReferenceValidity,
+    reference2:ReferenceValidity
+}
+
+export interface ReferenceValidity{
+    name: boolean,
+    phoneNumber: boolean
+}
+
+//Default forms
+export var defaultFosterForm:FosterForm = {
+    firstName:'',
+    lastName: '',
+    phoneNumber: '',
+    email: '',
+    whyDoYouWantTo:'',
+    whatPetsYouHave:'',
+    reference1: {
+        name:'',
+        phoneNumber:''
+    },
+    reference2:{
+        name:'',
+        phoneNumber:''
+    }
+}
+
+export var defaultFosterFormValidity:FosterFormValidity = {
+    firstName: false,
+    lastName: false,
+    phoneNumber: false,
+    email: false,
+    whyDoYouWantTo: true,
+    whatPetsYouHave: false,
+    reference1: {
+        name: false,
+        phoneNumber: false
+    },
+    reference2:{
+        name: false,
+        phoneNumber: false
+    }
+}
+
+//Names of the fields for use in generic sets
 export const FosterFormFieldNames = {
     firstName: 'firstName',
     lastName: 'lastName',
@@ -29,22 +83,5 @@ export const FosterFormFieldNames = {
     reference2: {
         name: 'reference2.name',
         phoneNumber: 'reference2.phoneNumber'
-    }
-}
-
-export var defaultFosterForm:FosterForm = {
-    firstName:'',
-    lastName: '',
-    phoneNumber: '',
-    email: '',
-    whyDoYouWantTo:'',
-    whatPetsYouHave:'',
-    reference1: {
-        name:'',
-        phoneNumber:''
-    },
-    reference2:{
-        name:'',
-        phoneNumber:''
     }
 }

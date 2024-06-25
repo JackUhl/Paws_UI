@@ -1,14 +1,17 @@
-import { BaseSyntheticEvent, useContext, useState } from 'react';
+import { BaseSyntheticEvent, useContext, useRef, useState } from 'react';
 import TitleBanner from '../../components/TitleBannerComponent/TitleBannerComponent'
 import './Foster.css'
-import { defaultFosterForm, FosterForm, FosterFormFieldNames, Reference } from '../../models/objects/FosterForm';
+import { defaultFosterForm, defaultFosterFormValidity, FosterForm, FosterFormFieldNames, FosterFormValidity, Reference, ReferenceValidity } from '../../models/objects/FosterForm';
 import { IsMobileContext } from '../../contexts/IsMobileContext';
 import SmallTextInputComponent from '../../components/SmallTextInputComponent/SmallTextInputComponent';
 
 export default function Foster() {
 
     const [fosterForm, setFosterForm] = useState(defaultFosterForm);
+    const [validationState, setValidationState] = useState(defaultFosterFormValidity);
 
+    const validationRef = useRef<HTMLElement>();
+    
     const isMobile = useContext<boolean>(IsMobileContext)
 
     const onChange = (event: BaseSyntheticEvent, variable: string) => {
@@ -34,8 +37,40 @@ export default function Foster() {
         });
     }
 
+    const setValidity = (variable: string, validity:boolean) =>{
+        const keys = variable.split('.');
+
+        setValidationState(prevForm => {
+            if (keys.length === 1) {
+                return {
+                    ...prevForm,
+                    [variable]: validity
+                };
+            } else {
+                const [childClassName, childClassVariable] = keys;
+                return {
+                    ...prevForm,
+                    [childClassName]: {
+                        ...(prevForm[childClassName as keyof FosterFormValidity] as ReferenceValidity),
+                        [childClassVariable]: validity
+                    }
+                };
+            }
+        });
+    }
+
     const validateAndSendInfo = () => {
-        //TODO when connected to a service
+        
+        validationRef.current?.blur;
+
+        //TODO when BFF is set up
+        const allValid = Object.values(validationState).every(v => v);
+        if (allValid) {
+            // Submit the form
+            console.log("Form submitted:", fosterForm);
+        } else {
+            console.log("Form contains errors.");
+        }
     }
 
     return (
@@ -72,6 +107,8 @@ export default function Foster() {
                             inputValue={fosterForm.firstName}
                             variableName={FosterFormFieldNames.firstName}
                             onChange={onChange}
+                            setValidity={setValidity}
+                            ref={validationRef}
                         />
                         <SmallTextInputComponent
                             shortInput = {true}
@@ -86,6 +123,8 @@ export default function Foster() {
                             inputValue = {fosterForm.lastName}
                             variableName = {FosterFormFieldNames.lastName}
                             onChange={onChange}
+                            setValidity={setValidity}
+                            ref={validationRef}
                         />
                     </div>
                     <div className='flexRow justifyBetween flexWrap rowGap'>
@@ -102,6 +141,8 @@ export default function Foster() {
                             inputValue = {fosterForm.phoneNumber}
                             variableName = {FosterFormFieldNames.phoneNumber}
                             onChange={onChange}
+                            setValidity={setValidity}
+                            ref={validationRef}
                         />
                         <SmallTextInputComponent
                             shortInput = {true}
@@ -116,6 +157,8 @@ export default function Foster() {
                             inputValue = {fosterForm.email}
                             variableName = {FosterFormFieldNames.email}
                             onChange={onChange}
+                            setValidity={setValidity}
+                            ref={validationRef}
                         />
                     </div>
                     <div className='largeInputField '>
@@ -140,6 +183,8 @@ export default function Foster() {
                             inputValue = {fosterForm.reference1.name}
                             variableName = {FosterFormFieldNames.reference1.name}
                             onChange={onChange}
+                            setValidity={setValidity}
+                            ref={validationRef}
                         />
                         <SmallTextInputComponent
                             shortInput = {true}
@@ -154,6 +199,8 @@ export default function Foster() {
                             inputValue = {fosterForm.reference1.phoneNumber}
                             variableName = {FosterFormFieldNames.reference1.phoneNumber}
                             onChange={onChange}
+                            setValidity={setValidity}
+                            ref={validationRef}
                         />
                     </div>
                     <div className='flexRow justifyBetween flexWrap rowGap alignEnd'>
@@ -170,6 +217,8 @@ export default function Foster() {
                             inputValue = {fosterForm.reference2.name}
                             variableName = {FosterFormFieldNames.reference2.name}
                             onChange={onChange}
+                            setValidity={setValidity}
+                            ref={validationRef}
                         />
                         <SmallTextInputComponent
                             shortInput = {true}
@@ -184,6 +233,8 @@ export default function Foster() {
                             inputValue = {fosterForm.reference2.phoneNumber}
                             variableName = {FosterFormFieldNames.reference2.phoneNumber}
                             onChange={onChange}
+                            setValidity={setValidity}
+                            ref={validationRef}
                         />
                     </div>
                     <div className='centerJustifySelf'>

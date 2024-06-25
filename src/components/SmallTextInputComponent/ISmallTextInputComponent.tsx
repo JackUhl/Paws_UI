@@ -13,4 +13,5 @@ export interface ISmallTextInputComponent {
     inputValue: string;
     variableName: string;
     onChange(e: BaseSyntheticEvent, varable:string): void;
+    setValidity(variable:string, vaild:boolean): void;
 }
