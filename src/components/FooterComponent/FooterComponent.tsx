@@ -2,7 +2,7 @@ import './FooterComponent.css'
 import miniLogo from '../../assets/pawsMiniLogo.png'
 import { useContext } from 'react'
 import { IsMobileContext } from '../../contexts/IsMobileContext';
-import { GeneralEmail, PetFinderPage, AdoptAPetPage} from '../../models/constants/UrlConstants';
+import { GeneralEmail, PetFinderPage, AdoptAPetPage} from '../../models/constants/ExternalUrlConstants';
 
 export default function FooterComponent() {
     const isMobile = useContext<boolean>(IsMobileContext);

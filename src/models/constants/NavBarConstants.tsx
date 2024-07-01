@@ -1,28 +1,29 @@
 import { NavBarItem } from "../objects/NavBarItem";
+import { HomeRoute, AdoptablePetsRoute, FosterRoute, VolunteerRoute, DonateRoute } from "./InternalUrlConstants";
 
 export const HomeNav: NavBarItem = {
     title: "Home",
-    route: "/"
+    route: HomeRoute
 }
 
 export const AdoptablePetsNav: NavBarItem = {
     title: "Adoptable Pets",
-    route: "/AdoptablePets"
+    route: AdoptablePetsRoute
 }
 
 export const FosterNav: NavBarItem = {
     title: "Foster",
-    route: "/Foster"
+    route: FosterRoute
 }
 
 export const VolunteerNav: NavBarItem = {
     title: "Volunteer",
-    route: "/Volunteer"
+    route: VolunteerRoute
 }
 
 export const DonateNav: NavBarItem = {
     title: "Donate",
-    route: "/Donate"
+    route: DonateRoute
 }
 
 export const NavItems: NavBarItem[] = [

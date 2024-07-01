@@ -7,7 +7,7 @@ import amazonIcon from '../../assets/amazonLogoIcon.svg'
 import yalina from '../../assets/yalina.jpeg'
 import winston from '../../assets/winston.jpg'
 import dogToys from '../../assets/dogToys.jpg'
-import { PaypalUrl, VenmoUrl, AmazonWishlistUrl } from '../../models/constants/UrlConstants'
+import { PaypalUrl, VenmoUrl, AmazonWishlistUrl } from '../../models/constants/ExternalUrlConstants'
 import { useContext } from 'react'
 import { IsMobileContext } from '../../contexts/IsMobileContext'
 

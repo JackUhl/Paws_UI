@@ -1,0 +1,40 @@
+.petCard {
+    height: 100%;
+    border: 1px solid #434343;
+    border-radius: 2%;
+    background-size: cover;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+    .petImage {
+        width: 100%;
+        min-height: 100px;
+        max-height: 160px;
+        object-fit: cover;
+        border-top-left-radius: 2%;
+        border-top-right-radius: 2%;
+    }
+
+    .petText {
+        padding-left: 5%;
+        padding-right: 5%;
+        padding-bottom: 5%;
+    }
+
+    .readMore {
+        color: #483174;
+        font-weight: 700;
+    }
+
+    .routeLink:hover {
+        text-decoration: underline;
+        cursor: pointer;
+    }
+}
+
+.petCardWidthDesktop {
+    width: 20%;
+}
+
+.petCardWidthMobile {
+    width: 100%;
+}

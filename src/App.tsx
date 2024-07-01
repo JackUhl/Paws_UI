@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { AdoptablePetsNav, DonateNav, FosterNav, HomeNav, VolunteerNav } from "./models/constants/NavBarConstants";
+import { HomeRoute, AdoptablePetsRoute, AdoptablePetsIdParam, FosterRoute, VolunteerRoute, DonateRoute, NotFoundRoute } from "./models/constants/InternalUrlConstants";
 import Layout from './pages/Layout/Layout';
 import Home from './pages/Home/Home';
 import AdoptablePets from "./pages/AdoptablePets/AdoptablePets";
@@ -9,6 +9,7 @@ import Foster from "./pages/Foster/Foster";
 import Donate from "./pages/Donate/Donate";
 import NotFound from "./pages/NotFound/NotFound";
 import { IsMobileContext } from "./contexts/IsMobileContext";
+import PetDetails from "./pages/PetDetails/PetDetails";
 
 export default function App() {
   const [isMobile, setIsMobile] = useState<boolean>(false);
@@ -27,13 +28,14 @@ export default function App() {
       <IsMobileContext.Provider value={isMobile}>
         <BrowserRouter>
           <Routes>
-            <Route path={HomeNav.route} element={<Layout />}>
+            <Route path={HomeRoute} element={<Layout />}>
               <Route index element={<Home />} />
-              <Route path={AdoptablePetsNav.route} element={<AdoptablePets />} />
-              <Route path={FosterNav.route} element={<Foster />} />
-              <Route path={VolunteerNav.route} element={<Volunteer />} />
-              <Route path={DonateNav.route} element={<Donate />} />
-              <Route path="*" element={<NotFound />} />
+              <Route path={AdoptablePetsRoute} element={<AdoptablePets />} />
+              <Route path={AdoptablePetsRoute + AdoptablePetsIdParam} element={<PetDetails/>} /> 
+              <Route path={FosterRoute} element={<Foster />} />
+              <Route path={VolunteerRoute} element={<Volunteer />} />
+              <Route path={DonateRoute} element={<Donate />} />
+              <Route path={NotFoundRoute} element={<NotFound />} />
             </Route>
           </Routes>
         </BrowserRouter>
