@@ -5,7 +5,7 @@ import { animal } from "../../models/DTOs/PetInfo";
 import { NotFoundRoute } from "../../models/constants/InternalUrlConstants";
 import { IPetDetails } from "./IPetDetails";
 
-export default function PetDetails(props: IPetDetails) {
+export default function PetDetails() {
     const params = useParams();
     const navigate = useNavigate();
     const location = useLocation();
