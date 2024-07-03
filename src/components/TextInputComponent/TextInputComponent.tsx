@@ -1,9 +1,9 @@
-import './SmallTextInputComponent.css'
+import './TextInputComponent.css'
 import { BaseSyntheticEvent, forwardRef, useContext, useImperativeHandle, useState } from 'react'
 import { IsMobileContext } from '../../contexts/IsMobileContext';
-import { ISmallTextInputComponent } from './ISmallTextInputComponent';
+import { ISmallTextInputComponent } from './ITextInputComponent';
 
-const SmallTextInputComponent = forwardRef((props: ISmallTextInputComponent, ref: any) => {
+const TextInputComponent = forwardRef((props: ISmallTextInputComponent, ref: any) => {
 
     const [errorMsg, setErrorMsg] = useState('');
 
@@ -40,7 +40,6 @@ const SmallTextInputComponent = forwardRef((props: ISmallTextInputComponent, ref
     }
 
     const onBlurValidation = () => {
-        console.log('Made it here')
         if (props.phoneInput){
             if (props.inputValue.length != 12){
                 setErrorMsg("Not a valid phone number");
@@ -92,4 +91,4 @@ const SmallTextInputComponent = forwardRef((props: ISmallTextInputComponent, ref
     )
 })
 
-export default SmallTextInputComponent;
+export default TextInputComponent;

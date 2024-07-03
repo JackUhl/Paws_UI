@@ -3,65 +3,40 @@ import TitleBanner from '../../components/TitleBannerComponent/TitleBannerCompon
 import './Foster.css'
 import { defaultFosterForm, defaultFosterFormValidity, FosterForm, FosterFormFieldNames, FosterFormValidity, Reference, ReferenceValidity } from '../../models/objects/FosterForm';
 import { IsMobileContext } from '../../contexts/IsMobileContext';
-import SmallTextInputComponent from '../../components/SmallTextInputComponent/SmallTextInputComponent';
+import TextInputComponent from '../../components/TextInputComponent/TextInputComponent';
+import { FormSetterService } from '../../services/FormSetterService';
 
 export default function Foster() {
 
     const [fosterForm, setFosterForm] = useState(defaultFosterForm);
     const [validationState, setValidationState] = useState(defaultFosterFormValidity);
 
-    const validationRef = useRef<HTMLElement>();
+    const generateRefs = (count: number) => {
+        const refs = [];
+        for (let i = 0; i < count; i++) {
+          refs.push(useRef<any>(null));
+        }
+        return refs;
+    };
+      
+    const validationRef = generateRefs(10);
     
     const isMobile = useContext<boolean>(IsMobileContext)
 
     const onChange = (event: BaseSyntheticEvent, variable: string) => {
         const value = event.target.value;
-        const keys = variable.split('.');
-
-        setFosterForm(prevForm => {
-            if (keys.length === 1) {
-                return {
-                    ...prevForm,
-                    [variable]: value
-                };
-            } else {
-                const [childClassName, childClassVariable] = keys;
-                return {
-                    ...prevForm,
-                    [childClassName]: {
-                        ...(prevForm[childClassName as keyof FosterForm] as Reference),
-                        [childClassVariable]: value
-                    }
-                };
-            }
-        });
+        setFosterForm(FormSetterService.setForm(variable, value, fosterForm));
     }
 
     const setValidity = (variable: string, validity:boolean) =>{
-        const keys = variable.split('.');
-
-        setValidationState(prevForm => {
-            if (keys.length === 1) {
-                return {
-                    ...prevForm,
-                    [variable]: validity
-                };
-            } else {
-                const [childClassName, childClassVariable] = keys;
-                return {
-                    ...prevForm,
-                    [childClassName]: {
-                        ...(prevForm[childClassName as keyof FosterFormValidity] as ReferenceValidity),
-                        [childClassVariable]: validity
-                    }
-                };
-            }
-        });
+        setValidationState(FormSetterService.setForm(variable, validity, validationState));
     }
 
     const validateAndSendInfo = () => {
         
-        validationRef.current?.blur;
+        validationRef.forEach(ref => {
+            ref.current?.onBlurValidation();
+        });
 
         //TODO when BFF is set up
         const allValid = Object.values(validationState).every(v => v);
@@ -94,7 +69,7 @@ export default function Foster() {
                         <p>Fields marked with a <span className='required'> * </span> are required</p>
                     </div>
                     <div className='flexRow justifyBetween flexWrap rowGap'>
-                        <SmallTextInputComponent
+                        <TextInputComponent
                             shortInput = {true}
                             emailInput = {false}
                             phoneInput = {false}
@@ -108,9 +83,9 @@ export default function Foster() {
                             variableName={FosterFormFieldNames.firstName}
                             onChange={onChange}
                             setValidity={setValidity}
-                            ref={validationRef}
+                            ref={validationRef[0]}
                         />
-                        <SmallTextInputComponent
+                        <TextInputComponent
                             shortInput = {true}
                             emailInput = {false}
                             phoneInput = {false}
@@ -124,11 +99,11 @@ export default function Foster() {
                             variableName = {FosterFormFieldNames.lastName}
                             onChange={onChange}
                             setValidity={setValidity}
-                            ref={validationRef}
+                            ref={validationRef[1]}
                         />
                     </div>
                     <div className='flexRow justifyBetween flexWrap rowGap'>
-                        <SmallTextInputComponent
+                        <TextInputComponent
                             shortInput = {true}
                             emailInput = {false}
                             phoneInput = {true}
@@ -142,9 +117,9 @@ export default function Foster() {
                             variableName = {FosterFormFieldNames.phoneNumber}
                             onChange={onChange}
                             setValidity={setValidity}
-                            ref={validationRef}
+                            ref={validationRef[2]}
                         />
-                        <SmallTextInputComponent
+                        <TextInputComponent
                             shortInput = {true}
                             emailInput = {true}
                             phoneInput = {false}
@@ -158,7 +133,7 @@ export default function Foster() {
                             variableName = {FosterFormFieldNames.email}
                             onChange={onChange}
                             setValidity={setValidity}
-                            ref={validationRef}
+                            ref={validationRef[3]}
                         />
                     </div>
                     <div className='largeInputField '>
@@ -170,7 +145,7 @@ export default function Foster() {
                         <textarea name="paragraph_text" value={fosterForm.whatPetsYouHave} onChange={(e) => {onChange(e, FosterFormFieldNames.whatPetsYouHave)}}></textarea>
                     </div>
                     <div className='flexRow justifyBetween flexWrap rowGap alignEnd'>
-                        <SmallTextInputComponent
+                        <TextInputComponent
                             shortInput = {true}
                             emailInput = {false}
                             phoneInput = {false}
@@ -184,9 +159,9 @@ export default function Foster() {
                             variableName = {FosterFormFieldNames.reference1.name}
                             onChange={onChange}
                             setValidity={setValidity}
-                            ref={validationRef}
+                            ref={validationRef[4]}
                         />
-                        <SmallTextInputComponent
+                        <TextInputComponent
                             shortInput = {true}
                             emailInput = {false}
                             phoneInput = {true}
@@ -200,11 +175,11 @@ export default function Foster() {
                             variableName = {FosterFormFieldNames.reference1.phoneNumber}
                             onChange={onChange}
                             setValidity={setValidity}
-                            ref={validationRef}
+                            ref={validationRef[5]}
                         />
                     </div>
                     <div className='flexRow justifyBetween flexWrap rowGap alignEnd'>
-                    <SmallTextInputComponent
+                        <TextInputComponent
                             shortInput = {true}
                             emailInput = {false}
                             phoneInput = {false}
@@ -218,9 +193,9 @@ export default function Foster() {
                             variableName = {FosterFormFieldNames.reference2.name}
                             onChange={onChange}
                             setValidity={setValidity}
-                            ref={validationRef}
+                            ref={validationRef[6]}
                         />
-                        <SmallTextInputComponent
+                        <TextInputComponent
                             shortInput = {true}
                             emailInput = {false}
                             phoneInput = {true}
@@ -234,7 +209,7 @@ export default function Foster() {
                             variableName = {FosterFormFieldNames.reference2.phoneNumber}
                             onChange={onChange}
                             setValidity={setValidity}
-                            ref={validationRef}
+                            ref={validationRef[7]}
                         />
                     </div>
                     <div className='centerJustifySelf'>
