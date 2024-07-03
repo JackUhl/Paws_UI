@@ -1,7 +1,7 @@
 import { BaseSyntheticEvent, useContext, useRef, useState } from 'react';
 import TitleBanner from '../../components/TitleBannerComponent/TitleBannerComponent'
 import './Foster.css'
-import { defaultFosterForm, defaultFosterFormValidity, FosterForm, FosterFormFieldNames, FosterFormValidity, Reference, ReferenceValidity } from '../../models/objects/FosterForm';
+import { defaultFosterForm, defaultFosterFormValidity, FosterForm, FosterFormFieldNames, FosterFormValidity } from '../../models/objects/FosterForm';
 import { IsMobileContext } from '../../contexts/IsMobileContext';
 import TextInputComponent from '../../components/TextInputComponent/TextInputComponent';
 import { FormSetterService } from '../../services/FormSetterService';
