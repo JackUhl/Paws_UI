@@ -143,27 +143,27 @@ export default function Volunteer() {
                             <span className='err'>{canHelpWithErrorMsg}</span>
                         </label>
                         <div className='flexRow alignCenter'>
-                            <input type='checkbox' checked={volunteerForm.canHelpTransport} onChange={(e) => onChangeBool(volunteerForm.canHelpTransport, VolunteerFormNames.canHelpTransport)}></input>
+                            <input type='checkbox' checked={volunteerForm.canHelpTransport} onChange={() => onChangeBool(volunteerForm.canHelpTransport, VolunteerFormNames.canHelpTransport)}></input>
                             <label>Transport</label>
                         </div>
                         <div className='flexRow alignCenter'>
-                            <input type='checkbox' checked={volunteerForm.canHelpEventSetup} onChange={(e) => onChangeBool(volunteerForm.canHelpEventSetup, VolunteerFormNames.canHelpEventSetup)}></input>
+                            <input type='checkbox' checked={volunteerForm.canHelpEventSetup} onChange={() => onChangeBool(volunteerForm.canHelpEventSetup, VolunteerFormNames.canHelpEventSetup)}></input>
                             <label>Event Setup</label>
                         </div>
                         <div className='flexRow alignCenter'>
-                            <input type='checkbox' checked={volunteerForm.canHelpFundraising} onChange={(e) => onChangeBool(volunteerForm.canHelpFundraising, VolunteerFormNames.canHelpFundraising)}></input>
+                            <input type='checkbox' checked={volunteerForm.canHelpFundraising} onChange={() => onChangeBool(volunteerForm.canHelpFundraising, VolunteerFormNames.canHelpFundraising)}></input>
                             <label>Fundraising</label>
                         </div>
                         <div className='flexRow alignCenter'>
-                            <input type='checkbox' checked={volunteerForm.canHelpPhotography} onChange={(e) => onChangeBool(volunteerForm.canHelpPhotography, VolunteerFormNames.canHelpPhotography)}></input>
+                            <input type='checkbox' checked={volunteerForm.canHelpPhotography} onChange={() => onChangeBool(volunteerForm.canHelpPhotography, VolunteerFormNames.canHelpPhotography)}></input>
                             <label>Photography</label>
                         </div>
                         <div className='flexRow alignCenter'>
-                            <input type='checkbox' checked={volunteerForm.canHelpGrooming} onChange={(e) => onChangeBool(volunteerForm.canHelpGrooming, VolunteerFormNames.canHelpGrooming)}></input>
+                            <input type='checkbox' checked={volunteerForm.canHelpGrooming} onChange={() => onChangeBool(volunteerForm.canHelpGrooming, VolunteerFormNames.canHelpGrooming)}></input>
                             <label>Grooming</label>
                         </div>
                         <div className='flexRow alignCenter'>
-                            <input type='checkbox' checked={volunteerForm.canHelpTraining} onChange={(e) => onChangeBool(volunteerForm.canHelpTraining, VolunteerFormNames.canHelpTraining)}></input>
+                            <input type='checkbox' checked={volunteerForm.canHelpTraining} onChange={() => onChangeBool(volunteerForm.canHelpTraining, VolunteerFormNames.canHelpTraining)}></input>
                             <label>Training</label>
                         </div>
                     </div>
