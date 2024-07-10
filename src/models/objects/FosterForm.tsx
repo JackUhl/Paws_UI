@@ -15,23 +15,6 @@ export interface Reference{
     phoneNumber: string
 }
 
-//Bools that mimic the main class to track validity of the form
-export interface FosterFormValidity{
-    firstName: boolean,
-    lastName: boolean,
-    phoneNumber: boolean,
-    email: boolean,
-    whyDoYouWantTo: boolean,
-    whatPetsYouHave: boolean,
-    reference1:ReferenceValidity,
-    reference2:ReferenceValidity
-}
-
-export interface ReferenceValidity{
-    name: boolean,
-    phoneNumber: boolean
-}
-
 //Default forms
 export var defaultFosterForm:FosterForm = {
     firstName:'',
@@ -50,7 +33,7 @@ export var defaultFosterForm:FosterForm = {
     }
 }
 
-export var defaultFosterFormValidity:FosterFormValidity = {
+export var defaultFosterFormValidity = {
     firstName: false,
     lastName: false,
     phoneNumber: false,

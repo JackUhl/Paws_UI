@@ -90,10 +90,6 @@
             transition: all .5s;
         }
 
-        h2 {
-            color: #483174;
-        }
-
         .submitBtn {
             color: white;
             background-color: #483174;

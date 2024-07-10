@@ -1,25 +1,17 @@
 import { BaseSyntheticEvent, useContext, useRef, useState } from 'react';
 import TitleBanner from '../../components/TitleBannerComponent/TitleBannerComponent'
 import './Foster.css'
-import { defaultFosterForm, defaultFosterFormValidity, FosterForm, FosterFormFieldNames, FosterFormValidity } from '../../models/objects/FosterForm';
+import { defaultFosterForm, defaultFosterFormValidity, FosterFormFieldNames } from '../../models/objects/FosterForm';
 import { IsMobileContext } from '../../contexts/IsMobileContext';
 import TextInputComponent from '../../components/TextInputComponent/TextInputComponent';
 import { FormSetterService } from '../../services/FormSetterService';
+import { InputTypes } from '../../models/constants/InputTypesEnum';
 
 export default function Foster() {
 
     const [fosterForm, setFosterForm] = useState(defaultFosterForm);
     const [validationState, setValidationState] = useState(defaultFosterFormValidity);
-
-    const generateRefs = (count: number) => {
-        const refs = [];
-        for (let i = 0; i < count; i++) {
-          refs.push(useRef<any>(null));
-        }
-        return refs;
-    };
-      
-    const validationRef = generateRefs(10);
+    const [hasSubmit, setHasSubmit] = useState(false);
     
     const isMobile = useContext<boolean>(IsMobileContext)
 
@@ -33,13 +25,11 @@ export default function Foster() {
     }
 
     const validateAndSendInfo = () => {
-        
-        validationRef.forEach(ref => {
-            ref.current?.onBlurValidation();
-        });
+
+        setHasSubmit(true);
 
         //TODO when BFF is set up
-        const allValid = Object.values(validationState).every(v => v);
+        const allValid = Object.values(FormSetterService.getAllBooleanValues(validationState)).every(v => v);
         if (allValid) {
             // Submit the form
             console.log("Form submitted:", fosterForm);
@@ -71,9 +61,7 @@ export default function Foster() {
                     <div className='flexRow justifyBetween flexWrap rowGap'>
                         <TextInputComponent
                             shortInput = {true}
-                            emailInput = {false}
-                            phoneInput = {false}
-                            alphabetOnly = {true}
+                            inputType={InputTypes.name}
 
                             labelName = 'First Name'
                             isRequired = {true}
@@ -83,13 +71,11 @@ export default function Foster() {
                             variableName={FosterFormFieldNames.firstName}
                             onChange={onChange}
                             setValidity={setValidity}
-                            ref={validationRef[0]}
+                            hasSubmit={hasSubmit}
                         />
                         <TextInputComponent
                             shortInput = {true}
-                            emailInput = {false}
-                            phoneInput = {false}
-                            alphabetOnly = {true}
+                            inputType={InputTypes.name}
 
                             labelName = 'Last Name'
                             isRequired = {true}
@@ -99,15 +85,13 @@ export default function Foster() {
                             variableName = {FosterFormFieldNames.lastName}
                             onChange={onChange}
                             setValidity={setValidity}
-                            ref={validationRef[1]}
+                            hasSubmit={hasSubmit}
                         />
                     </div>
                     <div className='flexRow justifyBetween flexWrap rowGap'>
                         <TextInputComponent
                             shortInput = {true}
-                            emailInput = {false}
-                            phoneInput = {true}
-                            alphabetOnly = {false}
+                            inputType={InputTypes.phone}
 
                             labelName = 'Phone Number'
                             isRequired = {true}
@@ -117,13 +101,11 @@ export default function Foster() {
                             variableName = {FosterFormFieldNames.phoneNumber}
                             onChange={onChange}
                             setValidity={setValidity}
-                            ref={validationRef[2]}
+                            hasSubmit={hasSubmit}
                         />
                         <TextInputComponent
                             shortInput = {true}
-                            emailInput = {true}
-                            phoneInput = {false}
-                            alphabetOnly = {false}
+                            inputType={InputTypes.email}
 
                             labelName = 'Email'
                             isRequired = {true}
@@ -133,23 +115,41 @@ export default function Foster() {
                             variableName = {FosterFormFieldNames.email}
                             onChange={onChange}
                             setValidity={setValidity}
-                            ref={validationRef[3]}
+                            hasSubmit={hasSubmit}
                         />
                     </div>
-                    <div className='largeInputField '>
-                        <label> Why do you want to foster?</label><br/>
-                        <textarea name="paragraph_text" value={fosterForm.whyDoYouWantTo} onChange={(e) => {onChange(e, FosterFormFieldNames.whyDoYouWantTo)}}></textarea>
-                    </div>
-                    <div className='largeInputField '>
-                        <label> What pets do you currently have?<span className='required'> * </span></label><br/>
-                        <textarea name="paragraph_text" value={fosterForm.whatPetsYouHave} onChange={(e) => {onChange(e, FosterFormFieldNames.whatPetsYouHave)}}></textarea>
-                    </div>
+                    <TextInputComponent
+                        shortInput = {false}
+                        inputType={InputTypes.textArea}
+
+                        labelName = 'Why do you want to foster?'
+                        isRequired = {false}
+                        maxInput = {500}
+
+                        inputValue = {fosterForm.whyDoYouWantTo}
+                        variableName = {FosterFormFieldNames.whyDoYouWantTo}
+                        onChange={onChange}
+                        setValidity={setValidity}
+                        hasSubmit={hasSubmit}
+                    />
+                    <TextInputComponent
+                        shortInput = {false}
+                        inputType={InputTypes.textArea}
+
+                        labelName = 'What pets do you currently have?'
+                        isRequired = {true}
+                        maxInput = {500}
+
+                        inputValue = {fosterForm.whatPetsYouHave}
+                        variableName = {FosterFormFieldNames.whatPetsYouHave}
+                        onChange={onChange}
+                        setValidity={setValidity}
+                        hasSubmit={hasSubmit}
+                    />
                     <div className='flexRow justifyBetween flexWrap rowGap alignEnd'>
                         <TextInputComponent
                             shortInput = {true}
-                            emailInput = {false}
-                            phoneInput = {false}
-                            alphabetOnly = {true}
+                            inputType={InputTypes.name}
 
                             labelName = 'Reference 1 Name'
                             isRequired = {true}
@@ -159,13 +159,11 @@ export default function Foster() {
                             variableName = {FosterFormFieldNames.reference1.name}
                             onChange={onChange}
                             setValidity={setValidity}
-                            ref={validationRef[4]}
+                            hasSubmit={hasSubmit}
                         />
                         <TextInputComponent
                             shortInput = {true}
-                            emailInput = {false}
-                            phoneInput = {true}
-                            alphabetOnly = {false}
+                            inputType={InputTypes.phone}
 
                             labelName = 'Reference 1 Phone Number'
                             isRequired = {true}
@@ -175,15 +173,13 @@ export default function Foster() {
                             variableName = {FosterFormFieldNames.reference1.phoneNumber}
                             onChange={onChange}
                             setValidity={setValidity}
-                            ref={validationRef[5]}
+                            hasSubmit={hasSubmit}
                         />
                     </div>
                     <div className='flexRow justifyBetween flexWrap rowGap alignEnd'>
                         <TextInputComponent
                             shortInput = {true}
-                            emailInput = {false}
-                            phoneInput = {false}
-                            alphabetOnly = {true}
+                            inputType={InputTypes.name}
 
                             labelName = 'Reference 2 Name'
                             isRequired = {true}
@@ -193,13 +189,11 @@ export default function Foster() {
                             variableName = {FosterFormFieldNames.reference2.name}
                             onChange={onChange}
                             setValidity={setValidity}
-                            ref={validationRef[6]}
+                            hasSubmit={hasSubmit}
                         />
                         <TextInputComponent
                             shortInput = {true}
-                            emailInput = {false}
-                            phoneInput = {true}
-                            alphabetOnly = {false}
+                            inputType={InputTypes.phone}
 
                             labelName = 'Reference 2 Phone Number'
                             isRequired = {true}
@@ -209,7 +203,7 @@ export default function Foster() {
                             variableName = {FosterFormFieldNames.reference2.phoneNumber}
                             onChange={onChange}
                             setValidity={setValidity}
-                            ref={validationRef[7]}
+                            hasSubmit={hasSubmit}
                         />
                     </div>
                     <div className='centerJustifySelf'>

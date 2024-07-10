@@ -1,55 +1,61 @@
-import { useContext, useState } from 'react';
+import { BaseSyntheticEvent, useContext, useState } from 'react';
 import TitleBanner from '../../components/TitleBannerComponent/TitleBannerComponent'
 import './Volunteer.css'
 import { IsMobileContext } from '../../contexts/IsMobileContext';
+import { VolunteerFormNames, defaultVolunteerForm, defaultVolunteerFormValidity } from '../../models/objects/VolunteerForm';
+import { FormSetterService } from '../../services/FormSetterService';
+import TextInputComponent from '../../components/TextInputComponent/TextInputComponent';
+import { InputTypes } from '../../models/constants/InputTypesEnum';
 
 export default function Volunteer() {
-
-    const [firstName, setFirstName] = useState('');
-    const [lastName, setLastName] = useState('');
-    const [email, setEmail] = useState('');
-    const [phone, setPhone] = useState('');
-    const [transport, setTransport] = useState(false);
-    const [eventSetUp, setEventSetUp] = useState(false);
-    const [fundraising, setFundraising] = useState(false);
-    const [photography, setPhotography] = useState(false);
-    const [grooming, setGrooming] = useState(false);
-    const [training, setTraining] = useState(false);
+    const [volunteerForm, setVolunteerForm] = useState(defaultVolunteerForm);
+    const [validationState, setValidationState] = useState(defaultVolunteerFormValidity);
+    const [hasSubmit, setHasSubmit] = useState(false);
+    const [canHelpWithErrorMsg, setCanHelpErrMsg] = useState('');
 
     const isMobile = useContext<boolean>(IsMobileContext)
 
-    const handleFirstNameChange = (event:React.FormEvent<HTMLInputElement>) => {
-        setFirstName(event.currentTarget.value);
+    const onChange = (event: BaseSyntheticEvent, variableName: string) => {
+        const value = event.target.value;
+        setVolunteerForm(FormSetterService.setForm(variableName, value, volunteerForm));
     }
-    const handleLastNameChange = (event:React.FormEvent<HTMLInputElement>) => {
-        setLastName(event.currentTarget.value);
+
+    const onChangeBool = (variable: boolean, variableName: string) => {
+        const value = !variable;
+        setVolunteerForm(FormSetterService.setForm(variableName, value, volunteerForm));
+        console.log(volunteerForm, variableName, value);
+
     }
-    const handleEmailChange = (event:React.FormEvent<HTMLInputElement>) => {
-        setEmail(event.currentTarget.value);
+
+    const setValidity = (variable: string, validity:boolean) =>{
+        setValidationState(FormSetterService.setForm(variable, validity, validationState));
     }
-    const handlePhoneChange = (event:React.FormEvent<HTMLInputElement>) => {
-        setPhone(event.currentTarget.value);
-    }
-    const handleTransportChange = () => {
-        setTransport(!transport);
-    }
-    const handleEventSetUpChange = () => {
-        setEventSetUp(!eventSetUp);
-    }
-    const handleFundraisingChange = () => {
-        setFundraising(!fundraising);
-    }
-    const handlePhotographyChange = () => {
-        setPhotography(!photography);
-    }
-    const handleGroomingChange = () => {
-        setGrooming(!grooming);
-    }
-    const handleTrainingChange = () => {
-        setTraining(!training);
-    }
+
     const validateAndSendInfo = () => {
         //TODO when setting up the email API
+        setHasSubmit(true);
+
+        setValidationState(FormSetterService.setForm(
+            'canHelpValidity',
+            volunteerForm.canHelpEventSetup || volunteerForm.canHelpFundraising || volunteerForm.canHelpGrooming || volunteerForm.canHelpPhotography || volunteerForm.canHelpTraining || volunteerForm.canHelpTransport,
+            validationState
+        ));
+
+        if (!validationState.canHelpValidity){
+            setCanHelpErrMsg("Must have at least one field selected");
+        }
+        else{
+            setCanHelpErrMsg("");
+        }
+
+        const allValid = Object.values(validationState).every(v => v);
+        console.log(allValid, validationState)
+        if (allValid) {
+            // Submit the form
+            console.log("Form submitted:", volunteerForm);
+        } else {
+            console.log("Form contains errors.");
+        }
     }
     return (
         <div className='volunteer'>
@@ -73,47 +79,91 @@ export default function Volunteer() {
                         <p>Fields marked with a <span className='required'> * </span> are required</p>
                     </div>
                     <div className='flexRow justifyBetween flexWrap rowGap'>
-                        <div className={isMobile ? 'longInputContainer' : 'shortInputContainer'}>
-                            <label> First Name <span className='required'> * </span></label><br/>
-                            <input className='textInput' type='text' value={firstName} onChange={handleFirstNameChange}></input>
-                        </div>
-                        <div className={isMobile ? 'longInputContainer' : 'shortInputContainer'}>
-                            <label> Last Name <span className='required'> * </span></label><br/>
-                            <input className='textInput' type='text' value={lastName} onChange={handleLastNameChange}></input>
-                        </div>
+                        <TextInputComponent
+                            shortInput = {true}
+                            inputType={InputTypes.name}
+
+                            labelName = 'First Name'
+                            isRequired = {true}
+                            maxInput = {20}
+
+                            inputValue={volunteerForm.firstName}
+                            variableName={VolunteerFormNames.firstName}
+                            onChange={onChange}
+                            setValidity={setValidity}
+                            hasSubmit={hasSubmit}
+                        />
+                        <TextInputComponent
+                            shortInput = {true}
+                            inputType={InputTypes.name}
+
+                            labelName = 'Last Name'
+                            isRequired = {true}
+                            maxInput = {20}
+
+                            inputValue = {volunteerForm.lastName}
+                            variableName = {VolunteerFormNames.lastName}
+                            onChange={onChange}
+                            setValidity={setValidity}
+                            hasSubmit={hasSubmit}
+                        />
                     </div>
-                    <div className='longInputContainer'>
-                        <label> Email <span className='required'> * </span></label><br/>
-                        <input className='textInput' type='text' value={email} onChange={handleEmailChange}></input>
-                    </div>
-                    <div className='longInputContainer'>
-                        <label> Phone Number <span className='required'> * </span></label><br/>
-                        <input className='textInput' type='tel' value={phone} onChange={handlePhoneChange}></input>
-                    </div>
+                    <TextInputComponent
+                        shortInput = {false}
+                        inputType={InputTypes.email}
+
+                        labelName = 'Email'
+                        isRequired = {true}
+                        maxInput = {50}
+
+                        inputValue={volunteerForm.email}
+                        variableName={VolunteerFormNames.email}
+                        onChange={onChange}
+                        setValidity={setValidity}
+                        hasSubmit={hasSubmit}
+                    />
+                    <TextInputComponent
+                        shortInput = {false}
+                        inputType={InputTypes.phone}
+
+                        labelName = 'Phone Number'
+                        isRequired = {true}
+                        maxInput = {12}
+
+                        inputValue = {volunteerForm.phoneNumber}
+                        variableName = {VolunteerFormNames.phoneNumber}
+                        onChange={onChange}
+                        setValidity={setValidity}
+                        hasSubmit={hasSubmit}
+                    />
                     <div className='flexColumn'>
-                        <label>What can you help with? <span className='required'> * </span></label>
+                        <label>
+                            <span>What can you help with? </span>
+                            <span className='required'> * </span>
+                            <span className='err'>{canHelpWithErrorMsg}</span>
+                        </label>
                         <div className='flexRow alignCenter'>
-                            <input type='checkbox' checked={transport} onChange={handleTransportChange}></input>
+                            <input type='checkbox' checked={volunteerForm.canHelpTransport} onChange={(e) => onChangeBool(volunteerForm.canHelpTransport, VolunteerFormNames.canHelpTransport)}></input>
                             <label>Transport</label>
                         </div>
                         <div className='flexRow alignCenter'>
-                            <input type='checkbox' checked={eventSetUp} onChange={handleEventSetUpChange}></input>
+                            <input type='checkbox' checked={volunteerForm.canHelpEventSetup} onChange={(e) => onChangeBool(volunteerForm.canHelpEventSetup, VolunteerFormNames.canHelpEventSetup)}></input>
                             <label>Event Setup</label>
                         </div>
                         <div className='flexRow alignCenter'>
-                            <input type='checkbox' checked={fundraising} onChange={handleFundraisingChange}></input>
+                            <input type='checkbox' checked={volunteerForm.canHelpFundraising} onChange={(e) => onChangeBool(volunteerForm.canHelpFundraising, VolunteerFormNames.canHelpFundraising)}></input>
                             <label>Fundraising</label>
                         </div>
                         <div className='flexRow alignCenter'>
-                            <input type='checkbox' checked={photography} onChange={handlePhotographyChange}></input>
+                            <input type='checkbox' checked={volunteerForm.canHelpPhotography} onChange={(e) => onChangeBool(volunteerForm.canHelpPhotography, VolunteerFormNames.canHelpPhotography)}></input>
                             <label>Photography</label>
                         </div>
                         <div className='flexRow alignCenter'>
-                            <input type='checkbox' checked={grooming} onChange={handleGroomingChange}></input>
+                            <input type='checkbox' checked={volunteerForm.canHelpGrooming} onChange={(e) => onChangeBool(volunteerForm.canHelpGrooming, VolunteerFormNames.canHelpGrooming)}></input>
                             <label>Grooming</label>
                         </div>
                         <div className='flexRow alignCenter'>
-                            <input type='checkbox' checked={training} onChange={handleTrainingChange}></input>
+                            <input type='checkbox' checked={volunteerForm.canHelpTraining} onChange={(e) => onChangeBool(volunteerForm.canHelpTraining, VolunteerFormNames.canHelpTraining)}></input>
                             <label>Training</label>
                         </div>
                     </div>

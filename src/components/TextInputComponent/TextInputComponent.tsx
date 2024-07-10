@@ -1,21 +1,34 @@
 import './TextInputComponent.css'
-import { BaseSyntheticEvent, forwardRef, useContext, useImperativeHandle, useState } from 'react'
+import { BaseSyntheticEvent, useContext, useEffect, useState } from 'react'
 import { IsMobileContext } from '../../contexts/IsMobileContext';
-import { ISmallTextInputComponent } from './ITextInputComponent';
+import { ITextInputComponent } from './ITextInputComponent';
+import { InputTypes } from '../../models/constants/InputTypesEnum';
 
-const TextInputComponent = forwardRef((props: ISmallTextInputComponent, ref: any) => {
+export default function TextInputComponent (props: ITextInputComponent) {
 
     const [errorMsg, setErrorMsg] = useState('');
 
     const isMobile = useContext<boolean>(IsMobileContext);
 
-    const validateInput = (e: BaseSyntheticEvent) => {
+    useEffect(() => {
+        if(props.hasSubmit == true)
+            onBlurValidation();
+    },[props.hasSubmit]);
+
+    const getInputClass = () => {
+        if(props.inputType == InputTypes.textArea)
+            return 'largeInputField'
+        else
+            return (isMobile || !props.shortInput ? 'longInputContainer' : 'shortInputContainer') + ' smallInputContainer';
+    }
+
+    const verifyInput = (e: BaseSyntheticEvent) => {
         if (e.target.value.length > props.maxInput){
             setErrorMsg(`Max input of length ${props.maxInput}`);
             return;
         }
 
-        if (props.phoneInput) {
+        if (props.inputType == InputTypes.phone) {
             const numericValue = e.target.value.replace(/\D/g, '');
             let formattedValue = '';
             for (let i = 0; i < numericValue.length; i++) {
@@ -26,7 +39,7 @@ const TextInputComponent = forwardRef((props: ISmallTextInputComponent, ref: any
             }
             e.target.value = formattedValue;
         }
-        else if (props.alphabetOnly) {
+        else if (props.inputType == InputTypes.name ) {
             e.target.value = e.target.value.replace(/[^a-zA-Z-.\s]/g, '');
         }
 
@@ -40,14 +53,14 @@ const TextInputComponent = forwardRef((props: ISmallTextInputComponent, ref: any
     }
 
     const onBlurValidation = () => {
-        if (props.phoneInput){
+        if (props.inputType == InputTypes.phone){
             if (props.inputValue.length != 12){
                 setErrorMsg("Not a valid phone number");
                 props.setValidity(props.variableName, false);
                 return;
             }
         }
-        else if(props.emailInput){
+        else if(props.inputType == InputTypes.email){
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             if(!emailRegex.test(props.inputValue)){
                 setErrorMsg("Not a valid Email");
@@ -67,28 +80,35 @@ const TextInputComponent = forwardRef((props: ISmallTextInputComponent, ref: any
         props.setValidity(props.variableName, true);
     }
 
-    useImperativeHandle(ref, () => ({
-        onBlurValidation
-    }))
-
     return (
-        <div className={(isMobile || !props.shortInput ? 'longInputContainer' : 'shortInputContainer') + ' smallInputContainer'}>
+        <div className={getInputClass() + ' textInputContainer'}>
             <label> 
                 {props.labelName} 
                 {props.isRequired ? <span className='required'> * </span> : '' }
-                <span className='err'> {errorMsg} </span>
             </label><br/>
             
-            <input 
-                className='inputField' 
-                type='text' 
-                value={props.inputValue} 
-                onChange={(e) => {validateInput(e)}}
-                onBlur={() => {onBlurValidation()}}
-                >
-            </input>
+            {
+                props.inputType != InputTypes.textArea ? // If this is not a text area
+
+                <input //Then its an input field
+                    className='inputField' 
+                    type='text'
+                    value={props.inputValue} 
+                    onChange={(e) => {verifyInput(e)}}
+                    onBlur={() => {onBlurValidation()}}
+                    >
+                </input>
+                :
+                <textarea //Otherwise it is a textarea
+                    className='inputField' 
+                    value={props.inputValue} 
+                    onChange={(e) => {verifyInput(e)}}
+                    onBlur={() => {onBlurValidation()}}
+                    >
+                </textarea>
+            }
+            <br/>
+            <span className='err'> {errorMsg} </span>
         </div>
     )
-})
-
-export default TextInputComponent;
+}

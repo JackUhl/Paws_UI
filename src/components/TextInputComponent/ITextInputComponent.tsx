@@ -1,10 +1,9 @@
 import { BaseSyntheticEvent } from "react";
+import { InputTypes } from "../../models/constants/InputTypesEnum";
 
-export interface ISmallTextInputComponent {
+export interface ITextInputComponent {
     shortInput: boolean;
-    emailInput: boolean;
-    phoneInput: boolean;
-    alphabetOnly: boolean;
+    inputType: InputTypes;
 
     labelName: string;
     isRequired: boolean;
@@ -14,4 +13,5 @@ export interface ISmallTextInputComponent {
     variableName: string;
     onChange(e: BaseSyntheticEvent, varable:string): void;
     setValidity(variable:string, vaild:boolean): void;
+    hasSubmit: boolean;
 }
