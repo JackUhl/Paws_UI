@@ -23,8 +23,6 @@ export default function Volunteer() {
     const onChangeBool = (variable: boolean, variableName: string) => {
         const value = !variable;
         setVolunteerForm(FormSetterService.setForm(variableName, value, volunteerForm));
-        console.log(volunteerForm, variableName, value);
-
     }
 
     const setValidity = (variable: string, validity:boolean) =>{
@@ -49,7 +47,7 @@ export default function Volunteer() {
         }
 
         const allValid = Object.values(validationState).every(v => v);
-        console.log(allValid, validationState)
+
         if (allValid) {
             // Submit the form
             console.log("Form submitted:", volunteerForm);
