@@ -155,8 +155,8 @@ export default function Foster() {
                             isRequired = {true}
                             maxInput = {20}
 
-                            inputValue = {fosterForm.reference1.name}
-                            variableName = {FosterFormFieldNames.reference1.name}
+                            inputValue = {fosterForm.reference1Name}
+                            variableName = {FosterFormFieldNames.reference1Name}
                             onChange={onChange}
                             setValidity={setValidity}
                             hasSubmit={hasSubmit}
@@ -169,8 +169,8 @@ export default function Foster() {
                             isRequired = {true}
                             maxInput = {12}
 
-                            inputValue = {fosterForm.reference1.phoneNumber}
-                            variableName = {FosterFormFieldNames.reference1.phoneNumber}
+                            inputValue = {fosterForm.reference1Phone}
+                            variableName = {FosterFormFieldNames.reference1Phone}
                             onChange={onChange}
                             setValidity={setValidity}
                             hasSubmit={hasSubmit}
@@ -185,8 +185,8 @@ export default function Foster() {
                             isRequired = {true}
                             maxInput = {20}
 
-                            inputValue = {fosterForm.reference2.name}
-                            variableName = {FosterFormFieldNames.reference2.name}
+                            inputValue = {fosterForm.reference2Name}
+                            variableName = {FosterFormFieldNames.reference2Name}
                             onChange={onChange}
                             setValidity={setValidity}
                             hasSubmit={hasSubmit}
@@ -199,8 +199,8 @@ export default function Foster() {
                             isRequired = {true}
                             maxInput = {12}
 
-                            inputValue = {fosterForm.reference2.phoneNumber}
-                            variableName = {FosterFormFieldNames.reference2.phoneNumber}
+                            inputValue = {fosterForm.reference2Phone}
+                            variableName = {FosterFormFieldNames.reference2Phone}
                             onChange={onChange}
                             setValidity={setValidity}
                             hasSubmit={hasSubmit}
