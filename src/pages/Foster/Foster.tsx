@@ -116,34 +116,34 @@ export default function Foster() {
                     <div className='flexRow justifyAround alignCenter columnGap rowGap flexWrap flexWrapReverse'>
                         <img src='https://pawsomeanimalwelfare.com/wp-content/uploads/2024/02/425834462_122118173588181652_7023249176980479669_n-1.jpg' className={isMobile ? 'imageMobileWidth' : 'imageDesktopWidth'}/>
                         <div className={(isMobile ? 'pinkBackgroundMobileWidth' : 'pinkBackgroundDesktopWidth') + ' pinkBackground flexColumn'}>
-                            <h2 className='justifySelf'>Become a Foster Hero</h2>
+                            <h2 className='centerJustifySelf'>Become a Foster Hero</h2>
                             <p>Our foster volunteers are the heart and soul of our pet rescue efforts. Their willingness to open up their homes and hearts to animals in need is what allows us to save lives and find forever homes. The more people who step up to foster, the more animals we can help. It's thanks to our amazing fosters that we can make a difference in the lives of these deserving animals. Become a Foster Hero Today!</p>
                         </div>
                     </div>
                 </div>
-                <div className='fosterForm flexColumn rowGap justifyCenter'>
-                    <h2 className='justifySelf'>Foster Application</h2>
-                    <div className='flexRow justifySelf'>
+                <div className={(isMobile ? 'fosterFormMobileWidth' : 'fosterFormDesktopWidth') + ' fosterForm flexColumn rowGap justifyCenter'}>
+                    <h2 className='centerJustifySelf'>Foster Application</h2>
+                    <div className='flexRow centerJustifySelf'>
                         <p>Fields marked with a <span className='required'> * </span> are required</p>
                     </div>
-                    <div className='flexRow columnGap'>
-                        <div className='fillHalf inputField '>
+                    <div className='flexRow justifyBetween flexWrap rowGap'>
+                        <div className={isMobile ? 'longInputContainer' : 'shortInputContainer'}>
                             <label> First Name <span className='required'> * </span></label><br/>
-                            <input className='firstNameInput' type='text' value={fosterForm.firstName} onChange={handleFirstNameChange}></input>
+                            <input className='inputField' type='text' value={fosterForm.firstName} onChange={handleFirstNameChange}></input>
                         </div>
-                        <div className='fillHalf inputField '>
+                        <div className={isMobile ? 'longInputContainer' : 'shortInputContainer'}>
                             <label> Last Name <span className='required'> * </span></label><br/>
-                            <input className='lastNameInput' type='text' value={fosterForm.lastName} onChange={handleLastNameChange}></input>
+                            <input className='inputField' type='text' value={fosterForm.lastName} onChange={handleLastNameChange}></input>
                         </div>
                     </div>
-                    <div className='flexRow columnGap'>
-                        <div className='fillHalf inputField '>
+                    <div className='flexRow justifyBetween flexWrap rowGap'>
+                        <div className={isMobile ? 'longInputContainer' : 'shortInputContainer'}>
                             <label> Phone Number <span className='required'> * </span></label><br/>
-                            <input className='phoneNumberInput' type='text' value={fosterForm.phoneNumber} onChange={handlePhoneNumberChange}></input>
+                            <input className='inputField' type='text' value={fosterForm.phoneNumber} onChange={handlePhoneNumberChange}></input>
                         </div>
-                        <div className='fillHalf inputField '>
+                        <div className={isMobile ? 'longInputContainer' : 'shortInputContainer'}>
                             <label> Email <span className='required'> * </span></label><br/>
-                            <input className='emailInput' type='text' value={fosterForm.email} onChange={handleEmailChange}></input>
+                            <input className='inputField' type='text' value={fosterForm.email} onChange={handleEmailChange}></input>
                         </div>
                     </div>
                     <div className='largeInputField '>
@@ -154,27 +154,27 @@ export default function Foster() {
                         <label> What pets do you currently have?<span className='required'> * </span></label><br/>
                         <textarea name="paragraph_text" value={fosterForm.whatPetsYouHave} onChange={handlePetsYouHaveChange}></textarea>
                     </div>
-                    <div className='flexRow columnGap alignEnd'>
-                        <div className='fillHalf inputField'>
+                    <div className='flexRow justifyBetween flexWrap rowGap alignEnd'>
+                        <div className={isMobile ? 'longInputContainer' : 'shortInputContainer'}>
                             <label> Reference 1 Name <span className='required'> * </span></label>
-                            <input className='reference1NameInput' type='text' value={fosterForm.reference1.name} onChange={handleReference1NameChange}></input>
+                            <input className='inputField' type='text' value={fosterForm.reference1.name} onChange={handleReference1NameChange}></input>
                         </div>
-                        <div className='fillHalf inputField '>
+                        <div className={isMobile ? 'longInputContainer' : 'shortInputContainer'}>
                             <label> Reference 1 Phone Number <span className='required'> * </span></label>
-                            <input className='reference1PhoneInput' type='text' value={fosterForm.reference1.phoneNumber} onChange={handleReference1PhoneChange}></input>
+                            <input className='inputField' type='text' value={fosterForm.reference1.phoneNumber} onChange={handleReference1PhoneChange}></input>
                         </div>
                     </div>
-                    <div className='flexRow columnGap alignEnd'>
-                        <div className='fillHalf inputField'>
+                    <div className='flexRow justifyBetween flexWrap rowGap alignEnd'>
+                        <div className={isMobile ? 'longInputContainer' : 'shortInputContainer'}>
                             <label> Reference 2 Name <span className='required'> * </span></label>
-                            <input className='reference2NameInput' type='text' value={fosterForm.reference2.name} onChange={handleReference2NameChange}></input>
+                            <input className='inputField' type='text' value={fosterForm.reference2.name} onChange={handleReference2NameChange}></input>
                         </div>
-                        <div className='fillHalf inputField'>
+                        <div className={isMobile ? 'longInputContainer' : 'shortInputContainer'}>
                             <label> Reference 2 Phone Number <span className='required'> * </span></label>
-                            <input className='reference2PhoneInput' type='text' value={fosterForm.reference2.phoneNumber} onChange={handleReference2PhoneChange}></input>
+                            <input className='inputField' type='text' value={fosterForm.reference2.phoneNumber} onChange={handleReference2PhoneChange}></input>
                         </div>
                     </div>
-                    <div className='justifySelf'>
+                    <div className='centerJustifySelf'>
                         <button className='submitBtn' onClick={validateAndSendInfo}>Submit</button>
                     </div>
                 </div>

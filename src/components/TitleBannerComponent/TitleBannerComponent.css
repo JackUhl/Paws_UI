@@ -6,10 +6,8 @@
         justify-content: center;
         background-color: #483174;
         align-items: center;
-    }
-
-    .titleContainer h2 {
         color: white;
+        font-size: 1.5em;
     }
 
     .bannerTransition {

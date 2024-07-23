@@ -1,0 +1,42 @@
+.footer { 
+    .outerFooterContainer {
+        width: 100%;
+        background-color: #CB6CE6;
+        padding-top: 2%;
+        padding-bottom: 2%;
+    }
+
+    .innerFooterContainer {
+        width: min(80%, 1500px);
+    }
+
+    .footerTextContainerDesktop {
+        width: 40%;
+    }
+
+    .footerTextContainerMobile {
+        width: 100%;
+    }
+
+    .footerLogo {
+        width: 10%;
+    }
+
+    h2 {
+        margin: 0;
+    }
+
+    p {
+        margin: 0;
+    }
+
+    .footerTitle {
+        text-decoration: underline;
+    }
+
+    .hyperLink {
+        font-weight: 400;
+        color: #213547;
+        width: max-content;
+    }
+}

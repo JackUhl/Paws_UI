@@ -18,6 +18,7 @@ a {
   color: #646cff;
   text-decoration: inherit;
 }
+
 a:hover {
   color: #535bf2;
 }
@@ -44,9 +45,11 @@ button {
   cursor: pointer;
   transition: border-color 0.25s;
 }
+
 button:hover {
   border-color: #646cff;
 }
+
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
@@ -63,4 +66,136 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
+}
+
+.logoMobile {
+  display: flex;
+  justify-content: center;
+}
+
+.mainContainer {
+  width: min(80%, 1500px);
+  margin-left: auto;
+  margin-right: auto;
+  padding: 10px;
+
+  p {
+    margin: 0;
+  }
+
+  h2 {
+    margin: 0;
+    color: #483174
+  }
+}
+
+.textSize {
+  font-size: max(1.5vw, 16px);
+}
+
+@media screen and (min-width: 1500px) {
+  .textSize {
+     font-size: 25px;
+  }
+}
+
+.contentBox {
+  row-gap: 30px;
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+.pinkBackground {
+  background-color: #CB6CE6;
+  border-radius: 3px;
+  padding: 10px;
+  color: white;
+}
+
+.shortInputContainer {
+  width: 45%;
+}
+
+.longInputContainer {
+  width: 100%;
+}
+
+.required {
+  color: red;
+}
+
+.bottomOfScreen {
+  margin-top: auto;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.flexRow {
+  display: flex;
+  flex-direction: row;
+}
+
+.flexColumn {
+  display: flex;
+  flex-direction: column;
+}
+
+.flexWrap {
+  flex-wrap: wrap;
+}
+
+.flexWrapReverse {
+  flex-wrap: wrap-reverse;
+}
+
+.rowGap {
+  row-gap: 30px;
+}
+
+.columnGap {
+  column-gap: 30px;
+}
+
+.alignCenter {
+  align-items: center;
+}
+
+.alignStart {
+  align-items: start;
+}
+
+.alignEnd {
+  align-items: end;
+}
+
+.justifyAround {
+  justify-content: space-around;
+}
+
+.justifyCenter {
+  justify-content: center;
+}
+
+.justifyStart {
+  justify-content: start;
+}
+
+.justifyBetween {
+  justify-content: space-between;
+}
+
+.justifyEnd {
+  justify-content: end;
+}
+
+.centerJustifySelf {
+  display: flex;
+  justify-content: center;
+}
+
+.centerAlignSelf {
+  display: flex;
+  align-self: center;
 }
