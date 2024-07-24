@@ -1,24 +1,27 @@
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import { TestPets } from "../../models/constants/TestPets";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { animal } from "../../models/DTOs/PetInfo";
 import { NotFoundRoute } from "../../models/constants/InternalUrlConstants";
-import { IPetDetails } from "./IPetDetails";
+import { ImageSlide } from "../../models/objects/ImageSlide";
+import ImageSliderComponent from "../../components/ImageSliderComponent/ImageSliderComponent";
+import './PetDetails.css'
+import { AdoptablePetsRoute } from "../../models/constants/InternalUrlConstants";
+import { IsMobileContext } from "../../contexts/IsMobileContext";
 
 export default function PetDetails() {
     const params = useParams();
     const navigate = useNavigate();
     const location = useLocation();
-    const [petInfo, setPetInfo] = useState<animal>()
+
+    const [petInfo, setPetInfo] = useState<animal>(location.state?.petInfo);
+    const [imageSliderSlides, setImageSliderSlides] = useState<ImageSlide[]>([]);
+
+    const isMobile = useContext<boolean>(IsMobileContext);
 
     useEffect(() => {
-        const PetDetailsState: IPetDetails = location.state
-
-        //If location has pet state passed, load it, otherwise try and find it by loading it.
-        if(PetDetailsState?.petInfo != null) {
-            setPetInfo(PetDetailsState.petInfo);
-        }
-        else {
+        //If petInfo hasn't been set by location, load it based on id param
+        if(petInfo == null) {
             const petId = Number.parseInt(params.id!);
             const foundPet = TestPets.animals.find(animal => animal.id == petId)
             if(foundPet == null) {
@@ -30,10 +33,37 @@ export default function PetDetails() {
         }
     }, []);
 
+    useEffect(() => {
+        if(petInfo == null) {
+            return;
+        }
+
+        let imageSliderSlides : ImageSlide[] = [];
+        petInfo.photos.map(image => {
+            let fullSized = image.full;
+            let slide : ImageSlide = {
+                src: fullSized
+            }
+            imageSliderSlides.push(slide);
+        });
+        setImageSliderSlides(imageSliderSlides);
+    }, [petInfo])
+
     return (
         <div className="petDetails">
             <div className='mainContainer'>
-                <p>{JSON.stringify(petInfo)}</p>
+                <Link to={AdoptablePetsRoute}>&#8249; Back to Adoptable Pets</Link>
+                <div className="flexRow justifyBetween flexWrap">
+                    <div className={isMobile ? "petImagesMobileWidth" : "petImagesDesktopWidth"}>
+                        <ImageSliderComponent
+                            slides={imageSliderSlides}
+                        />
+                    </div>
+                    <div className={isMobile ? "petInfoMobileWidth" : "petInfoDesktopWidth"}>
+                        <h2>{petInfo?.name}</h2>
+                        <p>{petInfo?.description}</p>
+                    </div>
+                </div>
             </div>
         </div>
     )
