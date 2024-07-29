@@ -2,33 +2,35 @@ import './ImageSliderComponent.css'
 import { useContext, useEffect, useState } from 'react';
 import { IImageSliderComponent } from './IImageSliderComponent'
 import '../LinkButtonComponent/LinkButtonComponent'
-import LinkButtonComponent from '../LinkButtonComponent/LinkButtonComponent';
 import { IsMobileContext } from '../../contexts/IsMobileContext';
+import { v4 as uuidv4 } from 'uuid';
+import { ImageSlide } from '../../models/objects/ImageSlide';
 
 
 export default function ImageSliderComponent(props: IImageSliderComponent) {
 
     const [curImgIndex, setCurImgIndex] = useState(0);
     const [prevImgIndex, setPrevImgIndex] = useState(0);
+    const [numberOfImages] = useState(props.slides.length);
     const [hover, setHover] = useState(false);
     const [timeoutId, setTimeoutId] = useState(0);
+    
     const isMobile = useContext<boolean>(IsMobileContext);
 
     useEffect(() => {
-      if(timeoutId != 0) {
-        clearTimeout(timeoutId);
+      if(numberOfImages > 1) {
+        if(timeoutId != 0) {
+          clearTimeout(timeoutId);
+        }
+        let id = setTimeout(() => {
+          changeImageIndex(curImgIndex+1);
+        }, 15000);
+        setTimeoutId(id);
       }
-
-      let id = setTimeout(() => {
-        changeImageIndex(curImgIndex+1);
-      }, 15000);
-
-      setTimeoutId(id);
     }, [curImgIndex]);
 
-    const changeImageIndex = (newIndex : number) => {
+    const changeImageIndex = (newIndex: number) => {
       let currentIndex = curImgIndex;
-      let numberOfImages = props.slides.length;
       
       if (newIndex == numberOfImages){
             setCurImgIndex(0);
@@ -43,19 +45,29 @@ export default function ImageSliderComponent(props: IImageSliderComponent) {
         setPrevImgIndex(currentIndex);
     }
 
-    const setImgClass = (index : number) => {
+    const getImgClass = (slide: ImageSlide, index: number) => {
+      let cssClasses = []
+
       if (index == prevImgIndex && index == curImgIndex) {
-        return 'first';
+        cssClasses.push('first');
       }
       else if (index == prevImgIndex) {
-        return 'inactive';
+        cssClasses.push('inactive');
       }
       else if (index == curImgIndex) {
-        return 'active';
+        cssClasses.push('active');
       }
-      else {
-        return ''
+
+      if(slide.textElements != null) {
+        cssClasses.push('imageTextFilter');
       }
+
+      let cssClassesString = cssClasses.reduce(
+        (cssClassesString, cssClass) => `${cssClass} ` + cssClassesString,
+        ""
+      );
+
+      return cssClassesString;
     }
 
   return (
@@ -65,35 +77,32 @@ export default function ImageSliderComponent(props: IImageSliderComponent) {
       className='imageSlider'
     >
       <div className='relativeContainer'>
-        {props.slides.map((filePath, index) => (
+        {props.slides.map((slide, index) => (
           <img
             key={index}
-            className={`${setImgClass(index)}`}
-            src={filePath.src}
+            className={`${getImgClass(slide, index)}`}
+            src={slide.src}
           />
         ))}
         <div className='absoluteContainer flexRow'>
           <div className='arrowFlex centerJustifySelf alignCenter'>
-            <div className={`arrow left ${isMobile ? 'showArrow' : hover ? 'arrowFadeInLeft' : 'arrowFadeOutLeft'}`}
+            {numberOfImages > 1 && <div className={`arrow left ${isMobile ? 'showArrow' : hover ? 'arrowFadeInLeft' : 'arrowFadeOutLeft'}`}
               onClick={() => {changeImageIndex(curImgIndex-1)}}
-            />
+            />}
           </div>
           <div className='imageTextFlex flexColumn justifyCenter'>
-            <h1>{props.slides[curImgIndex].headerText}</h1>
-            <h2>{props.slides[curImgIndex].subHeaderText}</h2>
-            <div className='routeButtonContainer'>
-              <LinkButtonComponent
-                linksToInternalRoute={true}
-                route={props.slides[curImgIndex].buttonRoute}
-                text={props.slides[curImgIndex].buttonText}
-                imgPath=''
-              />
-            </div>
+              {props.slides[curImgIndex]?.textElements?.map((textElement) => (
+                <div
+                  key={uuidv4()}
+                >
+                  {textElement}
+                </div>
+              ))}
           </div>
           <div className='arrowFlex centerJustifySelf alignCenter'>
-            <div className={`arrow right ${isMobile ? 'showArrow' : hover ? 'arrowFadeInRight' : 'arrowFadeOutRight'}`}
+            {numberOfImages > 1 && <div className={`arrow right ${isMobile ? 'showArrow' : hover ? 'arrowFadeInRight' : 'arrowFadeOutRight'}`}
               onClick={() => {changeImageIndex(curImgIndex+1)}}
-            />
+            />}
           </div>
         </div>
       </div>

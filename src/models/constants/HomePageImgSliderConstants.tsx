@@ -1,33 +1,66 @@
+import LinkButtonComponent from "../../components/LinkButtonComponent/LinkButtonComponent";
 import { ImageSlide } from "../objects/ImageSlide";
-import { AdoptablePetsNav, DonateNav, FosterNav, VolunteerNav } from "./NavBarConstants";
+import { AdoptablePetsRoute, DonateRoute, FosterRoute, VolunteerRoute } from "./InternalUrlConstants";
 
 export const HomePageSlides: ImageSlide[] = [
     {
         src:`/dog1.jpg`,
-        headerText:'Meet Our Furry Friends',
-        subHeaderText:'Discover the Hearts Behind Our Tails',
-        buttonText:'Adopt',
-        buttonRoute:AdoptablePetsNav.route
+        textElements: [
+            <h1>Meet Our Furry Friends</h1>,
+            <h2>Discover the Hearts Behind Our Tails</h2>,
+            <div className="routeButtonContainer">
+                <LinkButtonComponent
+                    linksToInternalRoute={true}
+                    text="Adopt"
+                    route={AdoptablePetsRoute}
+                    imgPath=""
+                />
+            </div>
+        ]
     },
     {
         src:`/dog2.jpg`,
-        headerText:'Foster Heroes Wanted',
-        subHeaderText:'Become a Foster Parent and Change Lives',
-        buttonText:'Foster',
-        buttonRoute:FosterNav.route
+        textElements: [
+            <h1>Foster Heroes Wanted</h1>,
+            <h2>Become a Foster Parent and Change Lives</h2>,
+            <div className="routeButtonContainer">
+                <LinkButtonComponent
+                    linksToInternalRoute={true}
+                    text="Foster"
+                    route={FosterRoute}
+                    imgPath=""
+                />
+            </div>
+        ]
     },
     {
         src:`/dog3.jpg`,
-        headerText:'Support Our Mission',
-        subHeaderText:'Donate Today to Make a Pawsitive Impact',
-        buttonText:'Volunteer',
-        buttonRoute:VolunteerNav.route
+        textElements: [
+            <h1>Support Our Mission</h1>,
+            <h2>Donate Today to Make a Pawsitive Impact</h2>,
+            <div className="routeButtonContainer">
+                <LinkButtonComponent
+                    linksToInternalRoute={true}
+                    text="Volunteer"
+                    route={VolunteerRoute}
+                    imgPath=""
+                />
+            </div>
+        ]
     },
     {
         src:`/dog4.jpg`,
-        headerText:'Community Outreach',
-        subHeaderText:'Join Us in Making a Difference Beyond Our Doors',
-        buttonText:'Donate',
-        buttonRoute:DonateNav.route
+        textElements: [
+            <h1>Community Outreach</h1>,
+            <h2>Join Us in Making a Difference Beyond Our Doors</h2>,
+            <div className="routeButtonContainer">
+                <LinkButtonComponent
+                    linksToInternalRoute={true}
+                    text="Donate"
+                    route={DonateRoute}
+                    imgPath=""
+                />
+            </div>
+        ]
     }
 ]
