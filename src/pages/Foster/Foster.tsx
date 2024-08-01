@@ -1,10 +1,10 @@
-import { BaseSyntheticEvent, useContext, useRef, useState } from 'react';
+import { BaseSyntheticEvent, useContext, useState } from 'react';
 import TitleBanner from '../../components/TitleBannerComponent/TitleBannerComponent'
 import './Foster.css'
 import { defaultFosterForm, defaultFosterFormValidity, FosterFormFieldNames } from '../../models/objects/FosterForm';
 import { IsMobileContext } from '../../contexts/IsMobileContext';
 import TextInputComponent from '../../components/TextInputComponent/TextInputComponent';
-import { FormSetterService } from '../../services/FormSetterService';
+import { FormSetterHelper } from '../../utilities/FormSetterHelper';
 import { InputTypes } from '../../models/constants/InputTypesEnum';
 
 export default function Foster() {
@@ -17,11 +17,17 @@ export default function Foster() {
 
     const onChange = (event: BaseSyntheticEvent, variable: string) => {
         const value = event.target.value;
-        setFosterForm(FormSetterService.setForm(variable, value, fosterForm));
+        setFosterForm(fosterForm => ({
+            ...fosterForm,
+            [variable]: value
+        }));
     }
 
     const setValidity = (variable: string, validity:boolean) =>{
-        setValidationState(FormSetterService.setForm(variable, validity, validationState));
+        setValidationState(validationState => ({
+            ...validationState,
+            [variable]: validity
+        }));
     }
 
     const validateAndSendInfo = () => {
@@ -29,7 +35,7 @@ export default function Foster() {
         setHasSubmit(true);
 
         //TODO when BFF is set up
-        const allValid = Object.values(FormSetterService.getAllBooleanValues(validationState)).every(v => v);
+        const allValid = Object.values(validationState).every(v => v);
         if (allValid) {
             // Submit the form
             console.log("Form submitted:", fosterForm);
@@ -155,8 +161,8 @@ export default function Foster() {
                             isRequired = {true}
                             maxInput = {20}
 
-                            inputValue = {fosterForm.reference1.name}
-                            variableName = {FosterFormFieldNames.reference1.name}
+                            inputValue = {fosterForm.reference1Name}
+                            variableName = {FosterFormFieldNames.reference1Name}
                             onChange={onChange}
                             setValidity={setValidity}
                             hasSubmit={hasSubmit}
@@ -169,8 +175,8 @@ export default function Foster() {
                             isRequired = {true}
                             maxInput = {12}
 
-                            inputValue = {fosterForm.reference1.phoneNumber}
-                            variableName = {FosterFormFieldNames.reference1.phoneNumber}
+                            inputValue = {fosterForm.reference1Phone}
+                            variableName = {FosterFormFieldNames.reference1Phone}
                             onChange={onChange}
                             setValidity={setValidity}
                             hasSubmit={hasSubmit}
@@ -185,8 +191,8 @@ export default function Foster() {
                             isRequired = {true}
                             maxInput = {20}
 
-                            inputValue = {fosterForm.reference2.name}
-                            variableName = {FosterFormFieldNames.reference2.name}
+                            inputValue = {fosterForm.reference2Name}
+                            variableName = {FosterFormFieldNames.reference2Name}
                             onChange={onChange}
                             setValidity={setValidity}
                             hasSubmit={hasSubmit}
@@ -199,8 +205,8 @@ export default function Foster() {
                             isRequired = {true}
                             maxInput = {12}
 
-                            inputValue = {fosterForm.reference2.phoneNumber}
-                            variableName = {FosterFormFieldNames.reference2.phoneNumber}
+                            inputValue = {fosterForm.reference2Phone}
+                            variableName = {FosterFormFieldNames.reference2Phone}
                             onChange={onChange}
                             setValidity={setValidity}
                             hasSubmit={hasSubmit}

@@ -1,4 +1,4 @@
-export class FormSetterService{
+export class FormSetterHelper{
 
     //Can parse a generic class to set a varable based on a class. naming convention
     /*

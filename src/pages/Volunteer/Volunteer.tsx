@@ -3,7 +3,7 @@ import TitleBanner from '../../components/TitleBannerComponent/TitleBannerCompon
 import './Volunteer.css'
 import { IsMobileContext } from '../../contexts/IsMobileContext';
 import { VolunteerFormNames, defaultVolunteerForm, defaultVolunteerFormValidity } from '../../models/objects/VolunteerForm';
-import { FormSetterService } from '../../services/FormSetterService';
+import { FormSetterHelper } from '../../utilities/FormSetterHelper';
 import TextInputComponent from '../../components/TextInputComponent/TextInputComponent';
 import { InputTypes } from '../../models/constants/InputTypesEnum';
 
@@ -17,23 +17,36 @@ export default function Volunteer() {
 
     const onChange = (event: BaseSyntheticEvent, variableName: string) => {
         const value = event.target.value;
-        setVolunteerForm(FormSetterService.setForm(variableName, value, volunteerForm));
+        setVolunteerForm(volunteerForm => ({
+            ...volunteerForm,
+            [variableName]: value
+        }));
     }
 
     const onChangeBool = (variable: boolean, variableName: string) => {
         const value = !variable;
-        setVolunteerForm(FormSetterService.setForm(variableName, value, volunteerForm));
+        setVolunteerForm(volunteerForm => ({
+            ...volunteerForm,
+            [variableName]: value
+        }));
+        setValidationState(validationState => ({
+            ...validationState,
+            ['canHelpValidity']: volunteerForm.canHelpEventSetup || volunteerForm.canHelpFundraising || volunteerForm.canHelpGrooming || volunteerForm.canHelpPhotography || volunteerForm.canHelpTraining || volunteerForm.canHelpTransport
+        }));
     }
 
     const setValidity = (variable: string, validity:boolean) =>{
-        setValidationState(FormSetterService.setForm(variable, validity, validationState));
+        setValidationState(validationState => ({
+            ...validationState,
+            [variable]: validity
+        }));
     }
 
     const validateAndSendInfo = () => {
         //TODO when setting up the email API
         setHasSubmit(true);
 
-        setValidationState(FormSetterService.setForm(
+        setValidationState(FormSetterHelper.setForm(
             'canHelpValidity',
             volunteerForm.canHelpEventSetup || volunteerForm.canHelpFundraising || volunteerForm.canHelpGrooming || volunteerForm.canHelpPhotography || volunteerForm.canHelpTraining || volunteerForm.canHelpTransport,
             validationState
