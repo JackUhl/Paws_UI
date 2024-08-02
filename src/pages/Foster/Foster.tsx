@@ -4,7 +4,6 @@ import './Foster.css'
 import { defaultFosterForm, defaultFosterFormValidity, FosterFormFieldNames } from '../../models/objects/FosterForm';
 import { IsMobileContext } from '../../contexts/IsMobileContext';
 import TextInputComponent from '../../components/TextInputComponent/TextInputComponent';
-import { FormSetterHelper } from '../../utilities/FormSetterHelper';
 import { InputTypes } from '../../models/constants/InputTypesEnum';
 
 export default function Foster() {

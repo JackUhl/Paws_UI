@@ -6,7 +6,7 @@ import { InputTypes } from '../../models/constants/InputTypesEnum';
 
 export default function TextInputComponent (props: ITextInputComponent) {
 
-    const [errorMsg, setErrorMsg] = useState('');
+    const [errorMessage, setErrorMessage] = useState('');
 
     const isMobile = useContext<boolean>(IsMobileContext);
 
@@ -24,7 +24,7 @@ export default function TextInputComponent (props: ITextInputComponent) {
 
     const verifyInput = (e: BaseSyntheticEvent) => {
         if (e.target.value.length > props.maxInput){
-            setErrorMsg(`Max input of length ${props.maxInput}`);
+            setErrorMessage(`Max input of length ${props.maxInput}`);
             return;
         }
 
@@ -48,14 +48,14 @@ export default function TextInputComponent (props: ITextInputComponent) {
             .replace(/[<>*"=\\[\]]/g, '')       // Remove characters with special meaning in HTML, JavaScript, and URLs, including bar parentheses
             .replace(/[();:"]/g, '');           // Remove semicolons, colons, double quotes, and parentheses
 
-        setErrorMsg('')
+        setErrorMessage('')
         props.onChange(e, props.variableName)
     }
 
     const onBlurValidation = () => {
         if (props.inputType == InputTypes.phone){
             if (props.inputValue.length != 12){
-                setErrorMsg("Not a valid phone number");
+                setErrorMessage("Not a valid phone number");
                 props.setValidity(props.variableName, false);
                 return;
             }
@@ -63,20 +63,20 @@ export default function TextInputComponent (props: ITextInputComponent) {
         else if(props.inputType == InputTypes.email){
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             if(!emailRegex.test(props.inputValue)){
-                setErrorMsg("Not a valid Email");
+                setErrorMessage("Not a valid Email");
                 props.setValidity(props.variableName, false);
                 return;
             }
         }
 
         if(props.isRequired && props.inputValue == ''){
-            setErrorMsg("Required field");
+            setErrorMessage("Required field");
             props.setValidity(props.variableName, false);
             return;
         }
 
         //No errors found
-        setErrorMsg('')
+        setErrorMessage('')
         props.setValidity(props.variableName, true);
     }
 
@@ -108,7 +108,7 @@ export default function TextInputComponent (props: ITextInputComponent) {
                 </textarea>
             }
             <br/>
-            <span className='err'> {errorMsg} </span>
+            <span className='err'> {errorMessage} </span>
         </div>
     )
 }
