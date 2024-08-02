@@ -1,0 +1,10 @@
+.textInputContainer{
+    br{
+        display: block;
+        content: "";
+        margin-top: 0;
+    }
+    textarea{
+        resize: none;
+    }
+}

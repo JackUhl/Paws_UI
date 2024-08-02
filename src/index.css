@@ -85,8 +85,14 @@ button:focus-visible {
 
   h2 {
     margin: 0;
-    color: #483174
+    color: light-dark(#483174, #CB6CE6)
   }
+}
+
+.err{
+  color:red;
+  font-size: 10px;
+  white-space:nowrap;
 }
 
 .textSize {
@@ -198,4 +204,8 @@ button:focus-visible {
 .centerAlignSelf {
   display: flex;
   align-self: center;
+}
+
+.footer {
+  margin-top: 5vh;
 }
