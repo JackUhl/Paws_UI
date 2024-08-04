@@ -1,6 +1,6 @@
-import { PetInfo } from "../DTOs/PetInfo";
+import { AnimalsInfo } from "../DTOs/AnimalsInfo"
 
-export const TestPets: PetInfo = {
+export const TestPets: AnimalsInfo = {
     "animals": [
         {
             "id": 120,
