@@ -1,4 +1,4 @@
-import { animal } from "../../models/DTOs/AnimalsInfo"; 
+import { animal } from "../../models/DTOs/PetfinderResponse"; 
 
 export interface IPetDetails {
     petInfo?: animal;
