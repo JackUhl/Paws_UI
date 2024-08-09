@@ -1,22 +1,28 @@
 import { useEffect, useState } from 'react'
 import './AdoptablePets.css'
-import { PetInfo } from '../../models/DTOs/PetInfo';
-import { TestPets } from '../../models/constants/TestPets';
+import { PetfinderResponse } from '../../models/DTOs/PetfinderResponse';
 import PetCardComponent from '../../components/PetCardComponent/PetCardComponent';
 import { v4 as uuidv4 } from 'uuid';
+import { AdoptablePetsService } from '../../services/AdoptablePetsService/AdoptablePetsService';
 
 export default function AdoptablePets() {
-    const [pets, setPets] = useState<PetInfo>()
+    const [adoptablePets, setAdoptablePets] = useState<PetfinderResponse>()
 
     useEffect(() => {
-        setPets(TestPets);
+        AdoptablePetsService.GetAdoptablePets()
+            .then(response => {
+                setAdoptablePets(response.data)
+            })
+            .catch (error => {
+                console.log(error)
+            })
     }, []);
 
     return (
         <div className='adoptablePets'>
             <div className='mainContainer'>
                 <div className='flexRow flexWrap'>
-                    {pets?.animals.map(pet => (
+                    {adoptablePets?.animals.map(pet => (
                         <PetCardComponent 
                             petInfo={pet}
                             key={uuidv4()}

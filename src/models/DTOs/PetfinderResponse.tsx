@@ -1,4 +1,4 @@
-export interface PetInfo {
+export interface PetfinderResponse {
     animals: animal[];
     pagination: pagination;
 }
