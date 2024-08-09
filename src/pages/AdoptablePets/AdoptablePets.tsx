@@ -3,7 +3,7 @@ import './AdoptablePets.css'
 import { PetfinderResponse } from '../../models/DTOs/PetfinderResponse';
 import PetCardComponent from '../../components/PetCardComponent/PetCardComponent';
 import { v4 as uuidv4 } from 'uuid';
-import { AdoptablePetsService } from '../../services/AdoptablePetsService';
+import { AdoptablePetsService } from '../../services/AdoptablePetsService/AdoptablePetsService';
 
 export default function AdoptablePets() {
     const [adoptablePets, setAdoptablePets] = useState<PetfinderResponse>()
