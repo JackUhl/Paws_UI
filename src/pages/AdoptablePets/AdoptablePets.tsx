@@ -21,7 +21,7 @@ export default function AdoptablePets() {
     return (
         <div className='adoptablePets'>
             <div className='mainContainer'>
-                <div className='flexRow flexWrap'>
+                <div className='flexRow flexWrap rowGap adoptablePetsColumnGap'>
                     {adoptablePets?.animals.map(pet => (
                         <PetCardComponent 
                             petInfo={pet}
