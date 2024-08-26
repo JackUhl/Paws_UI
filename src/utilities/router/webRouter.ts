@@ -19,11 +19,13 @@ export const router = createBrowserRouter([
         },
         {
             path: AdoptablePetsRoute,
-            Component: AdoptablePets
-        },
-        {
-            path: AdoptablePetsIdRoute(":id"),
-            Component: PetDetails
+            Component: AdoptablePets,
+            children: [
+                {
+                    path: AdoptablePetsIdRoute(":id"),
+                    Component: AdoptablePets
+                }
+            ]
         },
         {
             path: FosterRoute,

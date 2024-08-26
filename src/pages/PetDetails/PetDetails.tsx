@@ -8,61 +8,32 @@ import ImageSliderComponent from "../../components/ImageSliderComponent/ImageSli
 import './PetDetails.css'
 import { AdoptablePetsRoute } from "../../models/constants/InternalUrlConstants";
 import { IsMobileContext } from "../../contexts/IsMobileContext";
+import { IPetDetails } from "./IPetDetails";
 
-export default function PetDetails() {
-    const params = useParams();
-    const navigate = useNavigate();
-    const location = useLocation();
-
-    const [petInfo, setPetInfo] = useState<animal>(location.state?.petInfo);
-    const [imageSliderSlides, setImageSliderSlides] = useState<ImageSlide[]>([]);
-
+export default function PetDetails(props: IPetDetails) {
     const isMobile = useContext<boolean>(IsMobileContext);
 
-    useEffect(() => {
-        //If petInfo hasn't been set by location, load it based on id param
-        if(petInfo == null) {
-            const petId = Number.parseInt(params.id!);
-            const foundPet = TestPets.animals.find(animal => animal.id == petId)
-            if(foundPet == null) {
-                navigate(NotFoundRoute);
-            }
-            else {
-                setPetInfo(foundPet);
-            }
+    let imageSliderSlides : ImageSlide[] = [];
+    props.petInfo!.photos.map(image => {
+        let fullSized = image.full;
+        let slide : ImageSlide = {
+            src: fullSized
         }
-    }, []);
-
-    useEffect(() => {
-        if(petInfo == null) {
-            return;
-        }
-
-        let imageSliderSlides : ImageSlide[] = [];
-        petInfo.photos.map(image => {
-            let fullSized = image.full;
-            let slide : ImageSlide = {
-                src: fullSized
-            }
-            imageSliderSlides.push(slide);
-        });
-        setImageSliderSlides(imageSliderSlides);
-    }, [petInfo])
+        imageSliderSlides.push(slide);
+    });
 
     return (
         <div className="petDetails">
-            <div className='mainContainer'>
-                <Link to={AdoptablePetsRoute}>&#8249; Back to Adoptable Pets</Link>
-                <div className="flexRow justifyBetween flexWrap">
-                    <div className={isMobile ? "petImagesMobileWidth" : "petImagesDesktopWidth"}>
-                        <ImageSliderComponent
-                            slides={imageSliderSlides}
-                        />
-                    </div>
-                    <div className={isMobile ? "petInfoMobileWidth" : "petInfoDesktopWidth"}>
-                        <h2>{petInfo?.name}</h2>
-                        <p>{petInfo?.description}</p>
-                    </div>
+            <Link to={AdoptablePetsRoute}>&#8249; Back to Adoptable Pets</Link>
+            <div className="flexRow justifyBetween flexWrap">
+                <div className={isMobile ? "petImagesMobileWidth" : "petImagesDesktopWidth"}>
+                    <ImageSliderComponent
+                        slides={imageSliderSlides}
+                    />
+                </div>
+                <div className={isMobile ? "petInfoMobileWidth" : "petInfoDesktopWidth"}>
+                    <h2>{props.petInfo?.name}</h2>
+                    <p>{props.petInfo?.description}</p>
                 </div>
             </div>
         </div>

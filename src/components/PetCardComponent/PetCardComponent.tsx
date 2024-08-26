@@ -12,13 +12,7 @@ export default function PetCardComponent(props: IPetCard) {
     const maxDescriptionLength = 75;
 
     const handleOnClick = () => {
-        navigate(AdoptablePetsIdRoute(props.petInfo.id.toString()),
-            { 
-                state: {
-                    petInfo: props.petInfo
-                }
-            }
-        )
+        navigate(AdoptablePetsIdRoute(props.petInfo.id.toString()));
     }
 
     return (
