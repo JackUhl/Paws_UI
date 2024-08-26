@@ -10,7 +10,7 @@ import PetDetails from '../PetDetails/PetDetails';
 
 export default function AdoptablePets() {
     const [adoptablePets, setAdoptablePets] = useState<PetfinderResponse>();
-    const [selectedPet, setSelectedPet] = useState<animal>();
+    const [selectedAdoptablePet, setSelectedAdoptablePet] = useState<animal>();
     const navigate = useNavigate();
     const params = useParams();
 
@@ -21,7 +21,7 @@ export default function AdoptablePets() {
             .then(response => {
                 setAdoptablePets(response.data);
             })
-            .catch (error => {
+            .catch(error => {
                 console.log(error);
             })
         }
@@ -29,33 +29,33 @@ export default function AdoptablePets() {
 
     useEffect(() => {
         if(params.id != null && adoptablePets != null) {
-            const petId = Number.parseInt(params.id!);
-            const foundPet = adoptablePets.animals.find(animal => animal.id == petId)
-            if(foundPet == null) {
+            const id = Number.parseInt(params.id!);
+            const foundAdoptablePet = adoptablePets.animals.find(animal => animal.id == id)
+            if(foundAdoptablePet == null) {
                 navigate(NotFoundRoute);
             }
             else {
-                setSelectedPet(foundPet);
+                setSelectedAdoptablePet(foundAdoptablePet);
             }
         }
         else {
-            setSelectedPet(undefined);
+            setSelectedAdoptablePet(undefined);
         }
     }, [params.id, adoptablePets])
 
     return (
         <div className='adoptablePets'>
             <div className='mainContainer'>
-                {selectedPet != null &&
+                {selectedAdoptablePet != null &&
                     <PetDetails 
-                        petInfo={selectedPet}
+                        adoptablePetInfo={selectedAdoptablePet}
                     />
                 }
-                {selectedPet == null &&
+                {selectedAdoptablePet == null &&
                     <div className='flexRow flexWrap rowGap adoptablePetsColumnGap'>
-                    {adoptablePets?.animals.map(pet => (
+                    {adoptablePets?.animals.map(adoptablePet => (
                         <PetCardComponent 
-                            petInfo={pet}
+                            adoptablePetInfo={adoptablePet}
                             key={uuidv4()}
                         />
                     ))}

@@ -12,7 +12,7 @@ export default function PetCardComponent(props: IPetCard) {
     const maxDescriptionLength = 75;
 
     const handleOnClick = () => {
-        navigate(AdoptablePetsIdRoute(props.petInfo.id.toString()));
+        navigate(AdoptablePetsIdRoute(props.adoptablePetInfo.id.toString()));
     }
 
     return (
@@ -20,11 +20,11 @@ export default function PetCardComponent(props: IPetCard) {
             className={(isMobile ? "petCardWidthMobile" : "petCardWidthDesktop") + " petCard"}
             onClick={handleOnClick}
         >
-            <img src={props.petInfo.photos[0].medium} className="petImage"/>
+            <img src={props.adoptablePetInfo.photos[0].medium} className="petImage"/>
             <div className="petText">
-                <h2 className="petName">{props.petInfo.name}</h2>
-                <p>{props.petInfo.description.substring(0, maxDescriptionLength)}{props.petInfo.description.length > maxDescriptionLength && (<span>...</span>)}</p>
-                {props.petInfo.description.length > maxDescriptionLength && (<span className="readMore routeLink">Read More</span>)}
+                <h2 className="petName">{props.adoptablePetInfo.name}</h2>
+                <p>{props.adoptablePetInfo.description.substring(0, maxDescriptionLength)}{props.adoptablePetInfo.description.length > maxDescriptionLength && (<span>...</span>)}</p>
+                {props.adoptablePetInfo.description.length > maxDescriptionLength && (<span className="readMore routeLink">Read More</span>)}
             </div>
         </div>
     )
