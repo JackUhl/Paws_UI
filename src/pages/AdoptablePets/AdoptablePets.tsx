@@ -55,8 +55,8 @@ export default function AdoptablePets() {
                     <div className='flexRow flexWrap rowGap adoptablePetsColumnGap'>
                     {adoptablePets?.animals.map(adoptablePet => (
                         <PetCardComponent 
-                            adoptablePetInfo={adoptablePet}
                             key={uuidv4()}
+                            adoptablePetInfo={adoptablePet}
                         />
                     ))}
                     </div>
