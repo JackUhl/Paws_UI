@@ -28,8 +28,9 @@ export default function PetCardComponent(props: IPetCard) {
         >
             <img src={props.petInfo.photos[0].medium} className="petImage"/>
             <div className="petText">
-                    <h2 className="petName">{props.petInfo.name}</h2>
-                <p>{props.petInfo.description.substring(0, maxDescriptionLength)} {props.petInfo.description.length > maxDescriptionLength && (<span className="readMore routeLink">Read More...</span>)}</p>
+                <h2 className="petName">{props.petInfo.name}</h2>
+                <p>{props.petInfo.description.substring(0, maxDescriptionLength)}{props.petInfo.description.length > maxDescriptionLength && (<span>...</span>)}</p>
+                {props.petInfo.description.length > maxDescriptionLength && (<span className="readMore routeLink">Read More</span>)}
             </div>
         </div>
     )
