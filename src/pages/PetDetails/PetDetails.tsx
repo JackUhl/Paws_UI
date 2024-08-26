@@ -1,8 +1,5 @@
-import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
-import { TestPets } from "../../models/constants/TestPets";
-import { useContext, useEffect, useState } from "react";
-import { animal } from "../../models/DTOs/PetfinderResponse";
-import { NotFoundRoute } from "../../models/constants/InternalUrlConstants";
+import { Link} from "react-router-dom";
+import { useContext} from "react";
 import { ImageSlide } from "../../models/objects/ImageSlide";
 import ImageSliderComponent from "../../components/ImageSliderComponent/ImageSliderComponent";
 import './PetDetails.css'

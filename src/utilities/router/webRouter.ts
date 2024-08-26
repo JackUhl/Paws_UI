@@ -6,7 +6,6 @@ import AdoptablePets from "../../pages/AdoptablePets/AdoptablePets";
 import Foster from "../../pages/Foster/Foster";
 import Volunteer from "../../pages/Volunteer/Volunteer";
 import Donate from "../../pages/Donate/Donate";
-import PetDetails from "../../pages/PetDetails/PetDetails";
 
 export const router = createBrowserRouter([
     {
