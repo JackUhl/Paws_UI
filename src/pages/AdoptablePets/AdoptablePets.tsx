@@ -7,6 +7,7 @@ import { AdoptablePetsService } from '../../services/AdoptablePetsService/Adopta
 import { useNavigate, useParams } from 'react-router-dom';
 import { NotFoundRoute } from "../../models/constants/InternalUrlConstants";
 import PetDetails from '../PetDetails/PetDetails';
+import NotFound from '../NotFound/NotFound';
 
 export default function AdoptablePets() {
     const [adoptablePets, setAdoptablePets] = useState<PetfinderResponse>();
@@ -32,7 +33,7 @@ export default function AdoptablePets() {
             const id = Number.parseInt(params.id!);
             const foundAdoptablePet = adoptablePets.animals.find(animal => animal.id == id)
             if(foundAdoptablePet == null) {
-                navigate(NotFoundRoute);
+                navigate("/" + NotFoundRoute);
             }
             else {
                 setSelectedAdoptablePet(foundAdoptablePet);

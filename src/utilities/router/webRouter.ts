@@ -1,11 +1,12 @@
 import { createBrowserRouter } from "react-router-dom";
-import { AdoptablePetsIdRoute, AdoptablePetsRoute, DonateRoute, FosterRoute, HomeRoute, VolunteerRoute } from "../../models/constants/InternalUrlConstants";
+import { AdoptablePetsIdRoute, AdoptablePetsRoute, DonateRoute, FosterRoute, HomeRoute, NotFoundRoute, VolunteerRoute } from "../../models/constants/InternalUrlConstants";
 import Layout from "../../pages/Layout/Layout";
 import Home from "../../pages/Home/Home";
 import AdoptablePets from "../../pages/AdoptablePets/AdoptablePets";
 import Foster from "../../pages/Foster/Foster";
 import Volunteer from "../../pages/Volunteer/Volunteer";
 import Donate from "../../pages/Donate/Donate";
+import NotFound from "../../pages/NotFound/NotFound";
 
 export const router = createBrowserRouter([
     {
@@ -38,6 +39,10 @@ export const router = createBrowserRouter([
             path: DonateRoute,
             Component: Donate
         },
+        {
+            path: NotFoundRoute,
+            Component: NotFound
+        }
       ]
     },
   ]);
