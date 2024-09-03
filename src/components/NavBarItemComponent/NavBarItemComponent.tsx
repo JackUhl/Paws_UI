@@ -12,9 +12,17 @@ export default function NavBarItemComponent(props: INavBarItemComponent) {
         return sitePathName == itemPathName;
     }
 
+    const handleNavBarItemClicked = () => {
+        window.scrollTo(0,0);
+        props.setMobileMenuExpanded(false);
+    }
+
     return (
         <>
-            <div className="navBarItemContainer">
+            <div 
+                className="navBarItemContainer"
+                onClick={handleNavBarItemClicked}
+            >
                 <Link to={props.item.route} className={"navBarItemText " + (navItemSelected() ? "navBarItemTextSelected" : "navBarItemTextNormal")}>{props.item.title}</Link>
             </div>
         </>

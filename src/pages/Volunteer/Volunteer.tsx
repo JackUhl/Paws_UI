@@ -3,7 +3,7 @@ import TitleBanner from '../../components/TitleBannerComponent/TitleBannerCompon
 import './Volunteer.css'
 import { IsMobileContext } from '../../contexts/IsMobileContext';
 import { VolunteerFormNames, defaultVolunteerForm, defaultVolunteerFormValidity } from '../../models/objects/VolunteerForm';
-import { FormSetterHelper } from '../../utilities/FormSetterHelper';
+import { FormSetterHelper } from '../../utilities/helpers/FormSetterHelper';
 import TextInputComponent from '../../components/TextInputComponent/TextInputComponent';
 import { InputTypes } from '../../models/constants/InputTypesEnum';
 

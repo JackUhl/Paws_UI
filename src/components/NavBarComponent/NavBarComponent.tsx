@@ -18,23 +18,18 @@ export default function NavBarComponent(props: INavBarComponent) {
     setMobileMenuExpanded(!mobileMenuExpanded);
   }
 
-  const handleNavBarItemClicked = () => {
-    window.scrollTo(0,0);
-    setMobileMenuExpanded(false);
-  }
-
   return (
     <div className='navBar'>
       <div className='navBarBox flexRow alignCenter'>
         {isMobile && <img src={burgerIcon} className='burgerIcon' alt='burger icon' onClick={handleHamburgerClick}></img>}
         <div className={isMobile ? 'dropDownMenu flexColumn' : 'navBarBox flexRow alignCenter'}>
           {(isMobile && mobileMenuExpanded || !isMobile) && props.navBarItems.map(navBarItem => (
-            <div 
-              onClick={handleNavBarItemClicked} 
+            <div
               key={uuidv4()}
             >
               <NavBarItemComponent
                 item={navBarItem}
+                setMobileMenuExpanded={setMobileMenuExpanded}
               />
             </div>
           ))}

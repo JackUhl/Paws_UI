@@ -1,3 +1,5 @@
 .adoptablePets {
-    
+    .adoptablePetsColumnGap {
+        column-gap: 3%;
+    }
 }
