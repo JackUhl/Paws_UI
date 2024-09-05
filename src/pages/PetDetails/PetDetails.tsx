@@ -25,11 +25,12 @@ export default function PetDetails(props: IPetDetails) {
         imageSliderSlides.push(slide);
     });
 
-    const genitalStatus = props.adoptablePetInfo.attributes.spayed_neutered ? "(Fixed)" : "(Not Fixed)";
+    const fullBreed = `${props.adoptablePetInfo.age} ${props.adoptablePetInfo.breeds.primary + (props.adoptablePetInfo.breeds.mixed ? ` Mix` : "")}`;
+    const genderStatus = `${props.adoptablePetInfo.gender} ${props.adoptablePetInfo.attributes.spayed_neutered ? " (Fixed)" : " (Not Fixed)"}`;
 
     return (
         <div className="petDetails">
-            <div className="backToAdoptablePetsButton">
+            <div className="bottomSpacing">
                 <Link to={AdoptablePetsRoute}>&#8249; Back to Adoptable Pets</Link>
             </div>
             <div className="flexRow justifyBetween flexWrap">
@@ -40,8 +41,10 @@ export default function PetDetails(props: IPetDetails) {
                     />
                 </div>
                 <div className={isMobile ? "petInfoMobileWidth" : "petInfoDesktopWidth"}>
-                    <h2>{props.adoptablePetInfo.name}</h2>
-                    <p>{props.adoptablePetInfo.breeds.primary} | {props.adoptablePetInfo.gender} {genitalStatus} | {props.adoptablePetInfo.age}</p>
+                    <div className="bottomSpacing">
+                        <h2>{props.adoptablePetInfo.name}</h2>
+                        <p>{fullBreed} | {genderStatus}</p>
+                    </div>
                     <p>{props.adoptablePetInfo.description}</p>
                     <LinkButtonComponent
                         linksToInternalRoute={false}
