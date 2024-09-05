@@ -22,4 +22,12 @@
     .icon {
         height: 15px;
     }
+
+    .columnWidth {
+        width: 200px
+    }
+
+    .tableItem {
+        border: 1px solid #483174;
+    }
 }

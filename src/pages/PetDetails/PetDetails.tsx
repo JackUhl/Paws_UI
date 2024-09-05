@@ -66,33 +66,18 @@ export default function PetDetails(props: IPetDetails) {
                     </div>
 
                     <div className="bottomSpacing">
-                        <p>More about {props.adoptablePetInfo.name}</p>
-                        <table>
-                            <tr>
-                                <td>Good with children</td>
-                                <td>{getPropertyImage(props.adoptablePetInfo.environment.children)}</td>
-                            </tr>
-                            <tr>
-                                <td>Good with dogs</td>
-                                <td>{getPropertyImage(props.adoptablePetInfo.environment.dogs)}</td>
-                            </tr>
-                            <tr>
-                                <td>Good with cats</td>
-                                <td>{getPropertyImage(props.adoptablePetInfo.environment.cats)}</td>
-                            </tr>
-                            <tr>
-                                <td>House trained</td>
-                                <td>{getPropertyImage(props.adoptablePetInfo.attributes.house_trained)}</td>
-                            </tr>
-                            <tr>
-                                <td>Special needs</td>
-                                <td>{getPropertyImage(props.adoptablePetInfo.attributes.special_needs)}</td>
-                            </tr>
-                            <tr>
-                                <td>Shots current</td>
-                                <td>{getPropertyImage(props.adoptablePetInfo.attributes.special_needs)}</td>
-                            </tr>
-                        </table>
+                        <div className="flexRow flexWrap columnGap">
+                            <div className="flexColumn columnWidth">
+                                <div className="flexRow justifyBetween alignCenter">Good with children {getPropertyImage(props.adoptablePetInfo.environment.children)}</div>
+                                <div className="flexRow justifyBetween alignCenter">Good with dogs {getPropertyImage(props.adoptablePetInfo.environment.dogs)}</div>
+                                <div className="flexRow justifyBetween alignCenter">Good with cats {getPropertyImage(props.adoptablePetInfo.environment.cats)}</div>
+                            </div>
+                            <div className="flexColumn columnWidth">
+                                <div className="flexRow justifyBetween alignCenter">House trained {getPropertyImage(props.adoptablePetInfo.attributes.house_trained)}</div>
+                                <div className="flexRow justifyBetween alignCenter">Special needs {getPropertyImage(props.adoptablePetInfo.attributes.special_needs)}</div>
+                                <div className="flexRow justifyBetween alignCenter">Shots current {getPropertyImage(props.adoptablePetInfo.attributes.shots_current)}</div>
+                            </div>
+                        </div>
                     </div>
 
                     <p>{props.adoptablePetInfo.description}</p>
