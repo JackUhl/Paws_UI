@@ -60,6 +60,10 @@
         object-fit: cover;
         opacity: 0;
     }
+
+    .roundedImages {
+        border-radius: 2%;
+    }
     
     .first {
         opacity: 1;

@@ -6,6 +6,8 @@ import './PetDetails.css'
 import { AdoptablePetsRoute } from "../../models/constants/InternalUrlConstants";
 import { IsMobileContext } from "../../contexts/IsMobileContext";
 import { IPetDetails } from "./IPetDetails";
+import LinkButtonComponent from "../../components/LinkButtonComponent/LinkButtonComponent";
+import petfinderIcon from "../../assets/petfinderIcon.png"
 
 export default function PetDetails(props: IPetDetails) {
     const isMobile = useContext<boolean>(IsMobileContext);
@@ -23,6 +25,8 @@ export default function PetDetails(props: IPetDetails) {
         imageSliderSlides.push(slide);
     });
 
+    const genitalStatus = props.adoptablePetInfo.attributes.spayed_neutered ? "(Fixed)" : "(Not Fixed)";
+
     return (
         <div className="petDetails">
             <div className="backToAdoptablePetsButton">
@@ -32,11 +36,19 @@ export default function PetDetails(props: IPetDetails) {
                 <div className={isMobile ? "petImagesMobileWidth" : "petImagesDesktopWidth"}>
                     <ImageSliderComponent
                         slides={imageSliderSlides}
+                        roundedImages={true}
                     />
                 </div>
                 <div className={isMobile ? "petInfoMobileWidth" : "petInfoDesktopWidth"}>
-                    <h2>{props.adoptablePetInfo?.name}</h2>
-                    <p>{props.adoptablePetInfo?.description}</p>
+                    <h2>{props.adoptablePetInfo.name}</h2>
+                    <p>{props.adoptablePetInfo.breeds.primary} | {props.adoptablePetInfo.gender} {genitalStatus} | {props.adoptablePetInfo.age}</p>
+                    <p>{props.adoptablePetInfo.description}</p>
+                    <LinkButtonComponent
+                        linksToInternalRoute={false}
+                        route={props.adoptablePetInfo.url}
+                        text="Petfinder Page"
+                        imgPath={petfinderIcon}
+                    />
                 </div>
             </div>
         </div>
