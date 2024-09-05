@@ -7,22 +7,27 @@ import { AdoptablePetsService } from '../../services/AdoptablePetsService/Adopta
 import { useNavigate, useParams } from 'react-router-dom';
 import { NotFoundRoute } from "../../models/constants/InternalUrlConstants";
 import PetDetails from '../PetDetails/PetDetails';
+import { CircleSpinner } from 'react-spinners-kit';
 
 export default function AdoptablePets() {
     const [adoptablePets, setAdoptablePets] = useState<PetfinderResponse>();
     const [selectedAdoptablePet, setSelectedAdoptablePet] = useState<animal>();
+    const [isLoading, setIsLoading] = useState<boolean>(false);
     const navigate = useNavigate();
     const params = useParams();
 
     useEffect(() => {
         //On page load, fetch all adoptable pets and set the state
         if(adoptablePets == null) {
+            setIsLoading(true);
             AdoptablePetsService.GetAdoptablePets()
             .then(response => {
                 setAdoptablePets(response.data);
+                setIsLoading(false);
             })
             .catch(error => {
                 console.log(error);
+                setIsLoading(false);
             })
         }
     }, []);
@@ -51,14 +56,19 @@ export default function AdoptablePets() {
                         adoptablePetInfo={selectedAdoptablePet}
                     />
                 }
+                {selectedAdoptablePet == null && isLoading &&
+                    <div className='flexRow justifyCenter alignCenter loadingContainer'>
+                        <CircleSpinner color="#CB6CE6"/>
+                    </div>
+                }
                 {selectedAdoptablePet == null &&
                     <div className='flexRow flexWrap rowGap adoptablePetsColumnGap'>
-                    {adoptablePets?.animals.map(adoptablePet => (
-                        <PetCardComponent 
-                            key={uuidv4()}
-                            adoptablePetInfo={adoptablePet}
-                        />
-                    ))}
+                        {adoptablePets?.animals.map(adoptablePet => (
+                            <PetCardComponent 
+                                key={uuidv4()}
+                                adoptablePetInfo={adoptablePet}
+                            />
+                        ))}
                     </div>
                 }
             </div>

@@ -9,7 +9,7 @@ export default function PetCardComponent(props: IPetCard) {
     const isMobile = useContext(IsMobileContext);
     const navigate = useNavigate();
 
-    const maxDescriptionLength = 75;
+    const maxDescriptionLength = 50;
 
     const handleOnClick = () => {
         navigate(AdoptablePetsIdRoute(props.adoptablePetInfo.id.toString()));
@@ -24,7 +24,7 @@ export default function PetCardComponent(props: IPetCard) {
             <div className="petText">
                 <h2 className="petName">{props.adoptablePetInfo.name}</h2>
                 <p>{props.adoptablePetInfo.description.substring(0, maxDescriptionLength)}{props.adoptablePetInfo.description.length > maxDescriptionLength && (<span>...</span>)}</p>
-                {props.adoptablePetInfo.description.length > maxDescriptionLength && (<span className="readMore routeLink">Read More</span>)}
+                <span className="readMore routeLink">Read More</span>
             </div>
         </div>
     )

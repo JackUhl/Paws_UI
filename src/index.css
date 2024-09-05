@@ -68,11 +68,6 @@ button:focus-visible {
   }
 }
 
-.logoMobile {
-  display: flex;
-  justify-content: center;
-}
-
 .mainContainer {
   width: min(80%, 1500px);
   margin-left: auto;

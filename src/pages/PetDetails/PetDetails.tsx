@@ -12,7 +12,7 @@ export default function PetDetails(props: IPetDetails) {
 
     useEffect(() => {
         window.scrollTo(0,0);
-    })
+    }, [])
 
     let imageSliderSlides : ImageSlide[] = [];
     props.adoptablePetInfo.photos.map(image => {
@@ -25,7 +25,9 @@ export default function PetDetails(props: IPetDetails) {
 
     return (
         <div className="petDetails">
-            <Link to={AdoptablePetsRoute}>&#8249; Back to Adoptable Pets</Link>
+            <div className="backToAdoptablePetsButton">
+                <Link to={AdoptablePetsRoute}>&#8249; Back to Adoptable Pets</Link>
+            </div>
             <div className="flexRow justifyBetween flexWrap">
                 <div className={isMobile ? "petImagesMobileWidth" : "petImagesDesktopWidth"}>
                     <ImageSliderComponent
