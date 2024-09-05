@@ -2,4 +2,8 @@
     .adoptablePetsColumnGap {
         column-gap: 3%;
     }
+
+    .loadingContainer {
+        height: 300px
+    }
 }
