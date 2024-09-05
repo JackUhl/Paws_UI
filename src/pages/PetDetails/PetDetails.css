@@ -18,4 +18,8 @@
     .bottomSpacing {
         padding-bottom: 10px;
     }
+
+    .icon {
+        height: 15px;
+    }
 }
