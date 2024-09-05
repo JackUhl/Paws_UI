@@ -62,6 +62,10 @@ export default function ImageSliderComponent(props: IImageSliderComponent) {
         cssClasses.push('imageTextFilter');
       }
 
+      if(props.roundedImages) {
+        cssClasses.push('roundedImages')
+      }
+
       let cssClassesString = cssClasses.reduce(
         (cssClassesString, cssClass) => `${cssClass} ` + cssClassesString,
         ""

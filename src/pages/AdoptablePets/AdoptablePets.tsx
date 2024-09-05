@@ -58,7 +58,7 @@ export default function AdoptablePets() {
                 }
                 {selectedAdoptablePet == null && isLoading &&
                     <div className='flexRow justifyCenter alignCenter loadingContainer'>
-                        <CircleSpinner color="#CB6CE6"/>
+                        <CircleSpinner color="#483174"/>
                     </div>
                 }
                 {selectedAdoptablePet == null &&

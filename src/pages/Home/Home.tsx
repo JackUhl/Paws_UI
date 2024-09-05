@@ -14,6 +14,7 @@ export default function Home() {
         <div className='home'>
             <ImageSliderComponent 
                 slides={HomePageSlides}
+                roundedImages={false}
             />
             <div className='mainContainer'>
                 <div className='contentBox flexRow alignCenter justifyAround flexWrap'>
