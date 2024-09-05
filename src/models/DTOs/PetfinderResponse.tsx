@@ -47,6 +47,12 @@ export interface animal {
             full: string
         }
     ],
+    primary_photo_cropped: {
+        small: string,
+        medium: string,
+        large: string,
+        full: string
+    }
     videos: [
         {
             embed: string

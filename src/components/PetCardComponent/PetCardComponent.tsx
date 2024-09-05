@@ -20,7 +20,7 @@ export default function PetCardComponent(props: IPetCard) {
             className={(isMobile ? "petCardWidthMobile" : "petCardWidthDesktop") + " petCard"}
             onClick={handleOnClick}
         >
-            <img src={props.adoptablePetInfo.photos[0].medium} className="petImage"/>
+            <img src={props.adoptablePetInfo.primary_photo_cropped.full} className="petImage"/>
             <div className="petText">
                 <h2 className="petName">{props.adoptablePetInfo.name}</h2>
                 <p>{props.adoptablePetInfo.description.substring(0, maxDescriptionLength)}{props.adoptablePetInfo.description.length > maxDescriptionLength && (<span>...</span>)}</p>
