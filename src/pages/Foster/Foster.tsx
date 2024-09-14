@@ -63,68 +63,72 @@ export default function Foster() {
                     <div className='flexRow centerJustifySelf'>
                         <p>Fields marked with a <span className='required'> * </span> are required</p>
                     </div>
-                    <div className='flexRow justifyBetween flexWrap rowGap'>
-                        <TextInputComponent
-                            shortInput = {true}
-                            inputType={InputTypes.name}
+                    <div className='flexRow flexWrap rowGap columnGap'>
+                        <div className={isMobile ? "formFlexItemMobile" : "formFlexItemDesktop"}>
+                            <TextInputComponent
+                                inputType={InputTypes.name}
 
-                            labelName = 'First Name'
-                            isRequired = {true}
-                            maxInput = {20}
+                                labelName = 'First Name'
+                                isRequired = {true}
+                                maxInput = {20}
 
-                            inputValue={fosterForm.firstName}
-                            variableName={FosterFormFieldNames.firstName}
-                            onChange={onChange}
-                            setValidity={setValidity}
-                            hasSubmit={hasSubmit}
-                        />
-                        <TextInputComponent
-                            shortInput = {true}
-                            inputType={InputTypes.name}
+                                inputValue={fosterForm.firstName}
+                                variableName={FosterFormFieldNames.firstName}
+                                onChange={onChange}
+                                setValidity={setValidity}
+                                hasSubmit={hasSubmit}
+                            />
+                        </div>
+                        
+                        <div className={isMobile ? "formFlexItemMobile" : "formFlexItemDesktop"}>
+                            <TextInputComponent
+                                inputType={InputTypes.name}
 
-                            labelName = 'Last Name'
-                            isRequired = {true}
-                            maxInput = {20}
+                                labelName = 'Last Name'
+                                isRequired = {true}
+                                maxInput = {20}
 
-                            inputValue = {fosterForm.lastName}
-                            variableName = {FosterFormFieldNames.lastName}
-                            onChange={onChange}
-                            setValidity={setValidity}
-                            hasSubmit={hasSubmit}
-                        />
+                                inputValue = {fosterForm.lastName}
+                                variableName = {FosterFormFieldNames.lastName}
+                                onChange={onChange}
+                                setValidity={setValidity}
+                                hasSubmit={hasSubmit}
+                            />
+                        </div>
                     </div>
-                    <div className='flexRow justifyBetween flexWrap rowGap'>
-                        <TextInputComponent
-                            shortInput = {true}
-                            inputType={InputTypes.phone}
+                    <div className='flexRow flexWrap rowGap columnGap'>
+                        <div className={isMobile ? "formFlexItemMobile" : "formFlexItemDesktop"}>
+                            <TextInputComponent
+                                inputType={InputTypes.phone}
 
-                            labelName = 'Phone Number'
-                            isRequired = {true}
-                            maxInput = {12}
+                                labelName = 'Phone Number'
+                                isRequired = {true}
+                                maxInput = {12}
 
-                            inputValue = {fosterForm.phoneNumber}
-                            variableName = {FosterFormFieldNames.phoneNumber}
-                            onChange={onChange}
-                            setValidity={setValidity}
-                            hasSubmit={hasSubmit}
-                        />
-                        <TextInputComponent
-                            shortInput = {true}
-                            inputType={InputTypes.email}
+                                inputValue = {fosterForm.phoneNumber}
+                                variableName = {FosterFormFieldNames.phoneNumber}
+                                onChange={onChange}
+                                setValidity={setValidity}
+                                hasSubmit={hasSubmit}
+                            />
+                        </div>
+                        <div className={isMobile ? "formFlexItemMobile" : "formFlexItemDesktop"}>
+                            <TextInputComponent
+                                inputType={InputTypes.email}
 
-                            labelName = 'Email'
-                            isRequired = {true}
-                            maxInput = {50}
+                                labelName = 'Email'
+                                isRequired = {true}
+                                maxInput = {50}
 
-                            inputValue = {fosterForm.email}
-                            variableName = {FosterFormFieldNames.email}
-                            onChange={onChange}
-                            setValidity={setValidity}
-                            hasSubmit={hasSubmit}
-                        />
+                                inputValue = {fosterForm.email}
+                                variableName = {FosterFormFieldNames.email}
+                                onChange={onChange}
+                                setValidity={setValidity}
+                                hasSubmit={hasSubmit}
+                            />
+                        </div>
                     </div>
                     <TextInputComponent
-                        shortInput = {false}
                         inputType={InputTypes.textArea}
 
                         labelName = 'Why do you want to foster?'
@@ -138,7 +142,6 @@ export default function Foster() {
                         hasSubmit={hasSubmit}
                     />
                     <TextInputComponent
-                        shortInput = {false}
                         inputType={InputTypes.textArea}
 
                         labelName = 'What pets do you currently have?'
@@ -151,65 +154,69 @@ export default function Foster() {
                         setValidity={setValidity}
                         hasSubmit={hasSubmit}
                     />
-                    <div className='flexRow justifyBetween flexWrap rowGap alignEnd'>
-                        <TextInputComponent
-                            shortInput = {true}
-                            inputType={InputTypes.name}
+                    <div className='flexRow flexWrap rowGap columnGap alignEnd'>
+                        <div className={isMobile ? "formFlexItemMobile" : "formFlexItemDesktop"}>
+                            <TextInputComponent
+                                inputType={InputTypes.name}
 
-                            labelName = 'Reference 1 Name'
-                            isRequired = {true}
-                            maxInput = {20}
+                                labelName = 'Reference 1 Name'
+                                isRequired = {true}
+                                maxInput = {20}
 
-                            inputValue = {fosterForm.reference1Name}
-                            variableName = {FosterFormFieldNames.reference1Name}
-                            onChange={onChange}
-                            setValidity={setValidity}
-                            hasSubmit={hasSubmit}
-                        />
-                        <TextInputComponent
-                            shortInput = {true}
-                            inputType={InputTypes.phone}
+                                inputValue = {fosterForm.reference1Name}
+                                variableName = {FosterFormFieldNames.reference1Name}
+                                onChange={onChange}
+                                setValidity={setValidity}
+                                hasSubmit={hasSubmit}
+                            />
+                        </div>
+                        <div className={isMobile ? "formFlexItemMobile" : "formFlexItemDesktop"}>
+                            <TextInputComponent
+                                inputType={InputTypes.phone}
 
-                            labelName = 'Reference 1 Phone Number'
-                            isRequired = {true}
-                            maxInput = {12}
+                                labelName = 'Reference 1 Phone Number'
+                                isRequired = {true}
+                                maxInput = {12}
 
-                            inputValue = {fosterForm.reference1Phone}
-                            variableName = {FosterFormFieldNames.reference1Phone}
-                            onChange={onChange}
-                            setValidity={setValidity}
-                            hasSubmit={hasSubmit}
-                        />
+                                inputValue = {fosterForm.reference1Phone}
+                                variableName = {FosterFormFieldNames.reference1Phone}
+                                onChange={onChange}
+                                setValidity={setValidity}
+                                hasSubmit={hasSubmit}
+                            />
+                        </div>
                     </div>
-                    <div className='flexRow justifyBetween flexWrap rowGap alignEnd'>
-                        <TextInputComponent
-                            shortInput = {true}
-                            inputType={InputTypes.name}
+                    <div className='flexRow flexWrap rowGap columnGap alignEnd'>
+                        <div className={isMobile ? "formFlexItemMobile" : "formFlexItemDesktop"}>
+                            <TextInputComponent
+                                inputType={InputTypes.name}
 
-                            labelName = 'Reference 2 Name'
-                            isRequired = {true}
-                            maxInput = {20}
+                                labelName = 'Reference 2 Name'
+                                isRequired = {true}
+                                maxInput = {20}
 
-                            inputValue = {fosterForm.reference2Name}
-                            variableName = {FosterFormFieldNames.reference2Name}
-                            onChange={onChange}
-                            setValidity={setValidity}
-                            hasSubmit={hasSubmit}
-                        />
-                        <TextInputComponent
-                            shortInput = {true}
-                            inputType={InputTypes.phone}
+                                inputValue = {fosterForm.reference2Name}
+                                variableName = {FosterFormFieldNames.reference2Name}
+                                onChange={onChange}
+                                setValidity={setValidity}
+                                hasSubmit={hasSubmit}
+                            />
+                        </div>
+                        <div className={isMobile ? "formFlexItemMobile" : "formFlexItemDesktop"}>
+                            <TextInputComponent
+                                inputType={InputTypes.phone}
 
-                            labelName = 'Reference 2 Phone Number'
-                            isRequired = {true}
-                            maxInput = {12}
+                                labelName = 'Reference 2 Phone Number'
+                                isRequired = {true}
+                                maxInput = {12}
 
-                            inputValue = {fosterForm.reference2Phone}
-                            variableName = {FosterFormFieldNames.reference2Phone}
-                            onChange={onChange}
-                            setValidity={setValidity}
-                            hasSubmit={hasSubmit}
-                        />
+                                inputValue = {fosterForm.reference2Phone}
+                                variableName = {FosterFormFieldNames.reference2Phone}
+                                onChange={onChange}
+                                setValidity={setValidity}
+                                hasSubmit={hasSubmit}
+                            />
+                        </div>
                     </div>
                     <div className='centerJustifySelf'>
                         <button className='submitBtn' onClick={validateAndSendInfo}>Submit</button>

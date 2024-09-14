@@ -2,7 +2,6 @@ import { BaseSyntheticEvent } from "react";
 import { InputTypes } from "../../models/constants/InputTypesEnum";
 
 export interface ITextInputComponent {
-    shortInput: boolean;
     inputType: InputTypes;
 
     labelName: string;

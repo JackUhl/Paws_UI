@@ -113,14 +113,6 @@ button:focus-visible {
   color: white;
 }
 
-.shortInputContainer {
-  width: 45%;
-}
-
-.longInputContainer {
-  width: 100%;
-}
-
 .required {
   color: red;
 }
@@ -199,6 +191,14 @@ button:focus-visible {
 .centerAlignSelf {
   display: flex;
   align-self: center;
+}
+
+.formFlexItemDesktop {
+  flex: 1;
+}
+
+.formFlexItemMobile {
+  width: 100%;
 }
 
 .footer {

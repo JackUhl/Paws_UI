@@ -1,14 +1,11 @@
 import './TextInputComponent.css'
-import { BaseSyntheticEvent, useContext, useEffect, useState } from 'react'
-import { IsMobileContext } from '../../contexts/IsMobileContext';
+import { BaseSyntheticEvent, useEffect, useState } from 'react'
 import { ITextInputComponent } from './ITextInputComponent';
 import { InputTypes } from '../../models/constants/InputTypesEnum';
 
 export default function TextInputComponent (props: ITextInputComponent) {
 
     const [errorMessage, setErrorMessage] = useState('');
-
-    const isMobile = useContext<boolean>(IsMobileContext);
 
     useEffect(() => {
         if(props.hasSubmit == true)
@@ -19,7 +16,7 @@ export default function TextInputComponent (props: ITextInputComponent) {
         if(props.inputType == InputTypes.textArea)
             return 'largeInputField'
         else
-            return (isMobile || !props.shortInput ? 'longInputContainer' : 'shortInputContainer') + ' smallInputContainer';
+            return 'smallInputContainer';
     }
 
     const verifyInput = (e: BaseSyntheticEvent) => {

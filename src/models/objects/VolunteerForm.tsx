@@ -11,28 +11,7 @@ export interface VolunteerForm{
     canHelpTraining: boolean
 }
 
-export const VolunteerFormNames = {
-    firstName: 'firstName',
-    lastName: 'lastName',
-    email: 'email',
-    phoneNumber: 'phoneNumber',
-    canHelpTransport: 'canHelpTransport',
-    canHelpEventSetup: 'canHelpEventSetup',
-    canHelpFundraising: 'canHelpFundraising',
-    canHelpPhotography: 'canHelpPhotography',
-    canHelpGrooming: 'canHelpGrooming',
-    canHelpTraining: 'canHelpTraining' 
-}
-
-export var defaultVolunteerFormValidity = {
-    firstName: false,
-    lastName: false,
-    email: false,
-    phoneNumber: false,
-    canHelpValidity: false,
-}
-
-export var defaultVolunteerForm:VolunteerForm = {
+export var defaultVolunteerForm: VolunteerForm = {
     firstName: '',
     lastName: '',
     email: '',
@@ -43,4 +22,25 @@ export var defaultVolunteerForm:VolunteerForm = {
     canHelpPhotography: false,
     canHelpGrooming: false,
     canHelpTraining: false 
+}
+
+export var defaultVolunteerFormValidity = {
+    firstName: false,
+    lastName: false,
+    email: false,
+    phoneNumber: false,
+    canHelpValidity: false,
+}
+
+export const VolunteerFormFieldNames = {
+    firstName: 'firstName',
+    lastName: 'lastName',
+    email: 'email',
+    phoneNumber: 'phoneNumber',
+    canHelpTransport: 'canHelpTransport',
+    canHelpEventSetup: 'canHelpEventSetup',
+    canHelpFundraising: 'canHelpFundraising',
+    canHelpPhotography: 'canHelpPhotography',
+    canHelpGrooming: 'canHelpGrooming',
+    canHelpTraining: 'canHelpTraining' 
 }
