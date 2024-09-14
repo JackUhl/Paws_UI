@@ -12,14 +12,8 @@
     }
 
     .fosterHeros {
-        background:
-            linear-gradient( rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.2) ),
-            url('https://pawsomeanimalwelfare.com/wp-content/uploads/2023/09/dog-grooming_32.jpg');
-        background-size: cover !important;
-        background-repeat: no-repeat !important;
-
-        padding-top: 5%;
-        padding-bottom: 5%;
+        padding-top: 30px;
+        padding-bottom: 30px;
 
         p {
             margin: 3%;
