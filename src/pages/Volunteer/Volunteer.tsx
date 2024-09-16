@@ -85,10 +85,12 @@ export default function Volunteer() {
                     </div>
                 </div>
                 <div className={(isMobile ? 'hidden' : '') + ' seperator'}/>
-                <div className={(isMobile ? 'formMobileWidth' : 'formDesktopWidth') + ' volunteerForm flexColumn rowGap'}>
-                    <h2 className='centerJustifySelf'>Contact Information</h2>
-                    <div className='flexRow centerJustifySelf'>
-                        <p>Fields marked with a <span className='required'> * </span> are required</p>
+                <div className={(isMobile ? 'formWidthMobile' : 'volunteerFormWidthDesktop') + ' flexColumn rowGap'}>
+                    <div>
+                        <h2 className='centerJustifySelf'>Contact Information</h2>
+                        <div className='flexRow centerJustifySelf'>
+                            <p>Fields marked with a <span className='required'> * </span> are required</p>
+                        </div>
                     </div>
                     <div className='flexRow flexWrap rowGap columnGap'>
                         <div className={isMobile ? "formFlexItemMobile" : "formFlexItemDesktop"}>
@@ -181,7 +183,7 @@ export default function Volunteer() {
                         </div>
                     </div>
                     <div className='centerJustifySelf'>
-                        <button className='submitButton' onClick={validateAndSendInfo}>Submit</button>
+                        <button className='submitBtn' onClick={validateAndSendInfo}>Submit</button>
                     </div>
                 </div>
             </div>

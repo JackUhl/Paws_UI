@@ -84,24 +84,24 @@ export default function PetDetails(props: IPetDetails) {
     }
 
     return (
-        <div className="petDetails">
-            <div className="bottomSpacing">
+        <div className="petDetails flexColumn rowGap">
+            <div>
                 <Link to={AdoptablePetsRoute}>&#8249; Back to Adoptable Pets</Link>
             </div>
-            <div className="flexRow justifyBetween alignCenter flexWrap bottomSpacing">
+            <div className="flexRow justifyBetween alignCenter flexWrap rowGap">
                 <div className={isMobile ? "petImagesMobileWidth" : "petImagesDesktopWidth"}>
                     <ImageSliderComponent
                         slides={imageSliderSlides}
                         roundedImages={true}
                     />
                 </div>
-                <div className={isMobile ? "petInfoMobileWidth" : "petInfoDesktopWidth"}>
-                    <div className="bottomSpacing">
+                <div className={(isMobile ? "petInfoMobileWidth" : "petInfoDesktopWidth") + " flexColumn rowGap"}>
+                    <div>
                         <h2>{props.adoptablePetInfo.name}</h2>
                         <p>{fullBreed} | {genderStatus}</p>
                     </div>
 
-                    <div className="bottomSpacing">
+                    <div>
                         <div className="flexRow flexWrap columnGap">
                             <div className="flexColumn columnWidth">
                                 <div className="flexRow justifyBetween alignCenter">Good with children {getPropertyImage(props.adoptablePetInfo.environment.children)}</div>
@@ -126,334 +126,336 @@ export default function PetDetails(props: IPetDetails) {
                     />
                 </div>
             </div>
-            <div className='flexColumn rowGap'>
-                <div>
-                    <h2>Interested in Adoption?</h2>
-                    <p>Fields marked with a <span className='required'> * </span> are required</p>
-                </div>
-                
-                <div className="flexRow flexWrap rowGap columnGap">
-                    <div className={isMobile ? "formFlexItemMobile" : "formFlexItemDesktop"}>
-                        <TextInputComponent
-                            inputType={InputTypes.name}
-
-                            labelName = "First Name"
-                            isRequired = {true}
-                            maxInput = {20}
-
-                            inputValue = {adoptionForm.firstName}
-                            variableName = {AdoptionFormFieldNames.firstName}
-                            onChange={onChange}
-                            setValidity={setValidity}
-                            hasSubmit={hasSubmit}
-                        />
-                    </div>
-
-                    <div className={isMobile ? "formFlexItemMobile" : "formFlexItemDesktop"}>
-                        <TextInputComponent
-                            inputType={InputTypes.name}
-
-                            labelName = "Last Name"
-                            isRequired = {true}
-                            maxInput = {20}
-
-                            inputValue = {adoptionForm.lastName}
-                            variableName = {AdoptionFormFieldNames.lastName}
-                            onChange={onChange}
-                            setValidity={setValidity}
-                            hasSubmit={hasSubmit}
-                        />
-                    </div>
-                </div>
-
-                <TextInputComponent
-                    inputType={InputTypes.email}
-
-                    labelName = 'Email'
-                    isRequired = {false}
-                    maxInput = {50}
-
-                    inputValue={adoptionForm.email}
-                    variableName={AdoptionFormFieldNames.email}
-                    onChange={onChange}
-                    setValidity={setValidity}
-                    hasSubmit={hasSubmit}
-                />
-
-                <TextInputComponent
-                    inputType={InputTypes.phone}
-
-                    labelName = 'Phone Number'
-                    isRequired = {true}
-                    maxInput = {12}
-
-                    inputValue = {adoptionForm.phoneNumber}
-                    variableName = {AdoptionFormFieldNames.phoneNumber}
-                    onChange={onChange}
-                    setValidity={setValidity}
-                    hasSubmit={hasSubmit}
-                />
-
-                <TextInputComponent
-                    inputType={InputTypes.address}
-
-                    labelName = 'Address Line 1'
-                    isRequired = {false}
-                    maxInput = {20}
-
-                    inputValue = {adoptionForm.address1}
-                    variableName = {AdoptionFormFieldNames.address1}
-                    onChange={onChange}
-                    setValidity={setValidity}
-                    hasSubmit={hasSubmit}
-                />
-
-                <TextInputComponent
-                    inputType={InputTypes.address}
-
-                    labelName = 'Address Line 2'
-                    isRequired = {false}
-                    maxInput = {20}
-
-                    inputValue = {adoptionForm.address2}
-                    variableName = {AdoptionFormFieldNames.address2}
-                    onChange={onChange}
-                    setValidity={setValidity}
-                    hasSubmit={hasSubmit}
-                />
-
-                <div className="flexRow flexWrap rowGap columnGap">
-                    <div className={isMobile ? "formFlexItemMobile" : "formFlexItemDesktop"}>
-                        <TextInputComponent
-                            inputType={InputTypes.city}
-
-                            labelName = 'City'
-                            isRequired = {false}
-                            maxInput = {20}
-
-                            inputValue = {adoptionForm.city}
-                            variableName = {AdoptionFormFieldNames.city}
-                            onChange={onChange}
-                            setValidity={setValidity}
-                            hasSubmit={hasSubmit}
-                        />
+            <div className="flexRow justifyCenter">
+                <div className={(isMobile ? 'formWidthMobile' : 'formWidthDesktop') + ' flexColumn rowGap'}>
+                    <div>
+                        <h2 className="centerJustifySelf">Interested in Adoption?</h2>
+                        <div className="centerJustifySelf">
+                            <p>Fields marked with a <span className='required'> * </span> are required</p>
+                        </div>
                     </div>
                     
+                    <div className="flexRow flexWrap rowGap columnGap">
+                        <div className={isMobile ? "formFlexItemMobile" : "formFlexItemDesktop"}>
+                            <TextInputComponent
+                                inputType={InputTypes.name}
 
-                    <div className={isMobile ? "formFlexItemMobile" : "formFlexItemDesktop"}>
-                        <TextInputComponent
-                            inputType={InputTypes.state}
+                                labelName = "First Name"
+                                isRequired = {true}
+                                maxInput = {20}
 
-                            labelName = 'State'
-                            isRequired = {false}
-                            maxInput = {20}
+                                inputValue = {adoptionForm.firstName}
+                                variableName = {AdoptionFormFieldNames.firstName}
+                                onChange={onChange}
+                                setValidity={setValidity}
+                                hasSubmit={hasSubmit}
+                            />
+                        </div>
 
-                            inputValue = {adoptionForm.state}
-                            variableName = {AdoptionFormFieldNames.state}
-                            onChange={onChange}
-                            setValidity={setValidity}
-                            hasSubmit={hasSubmit}
-                        />
-                    </div>
-                    
+                        <div className={isMobile ? "formFlexItemMobile" : "formFlexItemDesktop"}>
+                            <TextInputComponent
+                                inputType={InputTypes.name}
 
-                    <div className={isMobile ? "formFlexItemMobile" : "formFlexItemDesktop"}>
-                        <TextInputComponent
-                            inputType={InputTypes.zip}
+                                labelName = "Last Name"
+                                isRequired = {true}
+                                maxInput = {20}
 
-                            labelName = 'Zip'
-                            isRequired = {false}
-                            maxInput = {20}
-
-                            inputValue = {adoptionForm.zip}
-                            variableName = {AdoptionFormFieldNames.zip}
-                            onChange={onChange}
-                            setValidity={setValidity}
-                            hasSubmit={hasSubmit}
-                        />
-                    </div>
-                </div>
-
-                <h2>Current Pets</h2>
-
-                <TextInputComponent
-                    inputType={InputTypes.textArea}
-
-                    labelName = 'What Pets Do You Currently Have?'
-                    isRequired = {true}
-                    maxInput = {500}
-
-                    inputValue = {adoptionForm.currentPets}
-                    variableName = {AdoptionFormFieldNames.currentPets}
-                    onChange={onChange}
-                    setValidity={setValidity}
-                    hasSubmit={hasSubmit}
-                />
-
-                <TextInputComponent
-                    inputType={InputTypes.textArea}
-
-                    labelName = "What's The Name And Age Of Your Household Members"
-                    isRequired = {false}
-                    maxInput = {500}
-
-                    inputValue = {adoptionForm.householdMembers}
-                    variableName = {AdoptionFormFieldNames.householdMembers}
-                    onChange={onChange}
-                    setValidity={setValidity}
-                    hasSubmit={hasSubmit}
-                />
-
-                <TextInputComponent
-                    inputType={InputTypes.textArea}
-
-                    labelName = "If Renting, Please Provide The Landlord's Name And Contact Info"
-                    isRequired = {false}
-                    maxInput = {500}
-
-                    inputValue = {adoptionForm.landlordInfo}
-                    variableName = {AdoptionFormFieldNames.landlordInfo}
-                    onChange={onChange}
-                    setValidity={setValidity}
-                    hasSubmit={hasSubmit}
-                />
-
-                <h2>References</h2>
-
-                <div className="flexRow flexWrap rowGap columnGap">
-                    <div className={isMobile ? "formFlexItemMobile" : "formFlexItemDesktop"}>
-                        <TextInputComponent
-                            inputType={InputTypes.name}
-
-                            labelName = "Reference 1 Name"
-                            isRequired = {true}
-                            maxInput = {20}
-
-                            inputValue = {adoptionForm.reference1Name}
-                            variableName = {AdoptionFormFieldNames.reference1Name}
-                            onChange={onChange}
-                            setValidity={setValidity}
-                            hasSubmit={hasSubmit}
-                        />
+                                inputValue = {adoptionForm.lastName}
+                                variableName = {AdoptionFormFieldNames.lastName}
+                                onChange={onChange}
+                                setValidity={setValidity}
+                                hasSubmit={hasSubmit}
+                            />
+                        </div>
                     </div>
 
-                    <div className={isMobile ? "formFlexItemMobile" : "formFlexItemDesktop"}>
-                        <TextInputComponent
-                            inputType={InputTypes.phone}
+                    <TextInputComponent
+                        inputType={InputTypes.email}
 
-                            labelName = "Reference 1 Phone"
-                            isRequired = {true}
-                            maxInput = {12}
+                        labelName = 'Email'
+                        isRequired = {false}
+                        maxInput = {50}
 
-                            inputValue = {adoptionForm.reference1Phone}
-                            variableName = {AdoptionFormFieldNames.reference1Phone}
-                            onChange={onChange}
-                            setValidity={setValidity}
-                            hasSubmit={hasSubmit}
-                        />
+                        inputValue={adoptionForm.email}
+                        variableName={AdoptionFormFieldNames.email}
+                        onChange={onChange}
+                        setValidity={setValidity}
+                        hasSubmit={hasSubmit}
+                    />
+
+                    <TextInputComponent
+                        inputType={InputTypes.phone}
+
+                        labelName = 'Phone Number'
+                        isRequired = {true}
+                        maxInput = {12}
+
+                        inputValue = {adoptionForm.phoneNumber}
+                        variableName = {AdoptionFormFieldNames.phoneNumber}
+                        onChange={onChange}
+                        setValidity={setValidity}
+                        hasSubmit={hasSubmit}
+                    />
+
+                    <TextInputComponent
+                        inputType={InputTypes.address}
+
+                        labelName = 'Address Line 1'
+                        isRequired = {false}
+                        maxInput = {20}
+
+                        inputValue = {adoptionForm.address1}
+                        variableName = {AdoptionFormFieldNames.address1}
+                        onChange={onChange}
+                        setValidity={setValidity}
+                        hasSubmit={hasSubmit}
+                    />
+
+                    <TextInputComponent
+                        inputType={InputTypes.address}
+
+                        labelName = 'Address Line 2'
+                        isRequired = {false}
+                        maxInput = {20}
+
+                        inputValue = {adoptionForm.address2}
+                        variableName = {AdoptionFormFieldNames.address2}
+                        onChange={onChange}
+                        setValidity={setValidity}
+                        hasSubmit={hasSubmit}
+                    />
+
+                    <div className="flexRow flexWrap rowGap columnGap">
+                        <div className={isMobile ? "formFlexItemMobile" : "formFlexItemDesktop"}>
+                            <TextInputComponent
+                                inputType={InputTypes.city}
+
+                                labelName = 'City'
+                                isRequired = {false}
+                                maxInput = {20}
+
+                                inputValue = {adoptionForm.city}
+                                variableName = {AdoptionFormFieldNames.city}
+                                onChange={onChange}
+                                setValidity={setValidity}
+                                hasSubmit={hasSubmit}
+                            />
+                        </div>
+
+                        <div className={isMobile ? "formFlexItemMobile" : "formFlexItemDesktop"}>
+                            <TextInputComponent
+                                inputType={InputTypes.state}
+
+                                labelName = 'State'
+                                isRequired = {false}
+                                maxInput = {20}
+
+                                inputValue = {adoptionForm.state}
+                                variableName = {AdoptionFormFieldNames.state}
+                                onChange={onChange}
+                                setValidity={setValidity}
+                                hasSubmit={hasSubmit}
+                            />
+                        </div>
+
+                        <div className={isMobile ? "formFlexItemMobile" : "formFlexItemDesktop"}>
+                            <TextInputComponent
+                                inputType={InputTypes.zip}
+
+                                labelName = 'Zip'
+                                isRequired = {false}
+                                maxInput = {20}
+
+                                inputValue = {adoptionForm.zip}
+                                variableName = {AdoptionFormFieldNames.zip}
+                                onChange={onChange}
+                                setValidity={setValidity}
+                                hasSubmit={hasSubmit}
+                            />
+                        </div>
                     </div>
-                </div>
 
-                <div className="flexRow flexWrap rowGap columnGap">
-                    <div className={isMobile ? "formFlexItemMobile" : "formFlexItemDesktop"}>
-                        <TextInputComponent
-                            inputType={InputTypes.name}
+                    <h2 className="centerJustifySelf">Current Pets</h2>
 
-                            labelName = "Reference 2 Name"
-                            isRequired = {true}
-                            maxInput = {20}
+                    <TextInputComponent
+                        inputType={InputTypes.textArea}
 
-                            inputValue = {adoptionForm.reference2Name}
-                            variableName = {AdoptionFormFieldNames.reference2Name}
-                            onChange={onChange}
-                            setValidity={setValidity}
-                            hasSubmit={hasSubmit}
-                        />
+                        labelName = 'What pets do you currently have?'
+                        isRequired = {true}
+                        maxInput = {500}
+
+                        inputValue = {adoptionForm.currentPets}
+                        variableName = {AdoptionFormFieldNames.currentPets}
+                        onChange={onChange}
+                        setValidity={setValidity}
+                        hasSubmit={hasSubmit}
+                    />
+
+                    <TextInputComponent
+                        inputType={InputTypes.textArea}
+
+                        labelName = "What's the name and age of your household members"
+                        isRequired = {false}
+                        maxInput = {500}
+
+                        inputValue = {adoptionForm.householdMembers}
+                        variableName = {AdoptionFormFieldNames.householdMembers}
+                        onChange={onChange}
+                        setValidity={setValidity}
+                        hasSubmit={hasSubmit}
+                    />
+
+                    <TextInputComponent
+                        inputType={InputTypes.textArea}
+
+                        labelName = "If renting, please provide the landlord's name and contact info"
+                        isRequired = {false}
+                        maxInput = {500}
+
+                        inputValue = {adoptionForm.landlordInfo}
+                        variableName = {AdoptionFormFieldNames.landlordInfo}
+                        onChange={onChange}
+                        setValidity={setValidity}
+                        hasSubmit={hasSubmit}
+                    />
+
+                    <h2 className="centerJustifySelf">References</h2>
+
+                    <div className="flexRow flexWrap rowGap columnGap">
+                        <div className={isMobile ? "formFlexItemMobile" : "formFlexItemDesktop"}>
+                            <TextInputComponent
+                                inputType={InputTypes.name}
+
+                                labelName = "Reference 1 Name"
+                                isRequired = {true}
+                                maxInput = {20}
+
+                                inputValue = {adoptionForm.reference1Name}
+                                variableName = {AdoptionFormFieldNames.reference1Name}
+                                onChange={onChange}
+                                setValidity={setValidity}
+                                hasSubmit={hasSubmit}
+                            />
+                        </div>
+
+                        <div className={isMobile ? "formFlexItemMobile" : "formFlexItemDesktop"}>
+                            <TextInputComponent
+                                inputType={InputTypes.phone}
+
+                                labelName = "Reference 1 Phone"
+                                isRequired = {true}
+                                maxInput = {12}
+
+                                inputValue = {adoptionForm.reference1Phone}
+                                variableName = {AdoptionFormFieldNames.reference1Phone}
+                                onChange={onChange}
+                                setValidity={setValidity}
+                                hasSubmit={hasSubmit}
+                            />
+                        </div>
                     </div>
 
-                    <div className={isMobile ? "formFlexItemMobile" : "formFlexItemDesktop"}>
-                        <TextInputComponent
-                            inputType={InputTypes.phone}
+                    <div className="flexRow flexWrap rowGap columnGap">
+                        <div className={isMobile ? "formFlexItemMobile" : "formFlexItemDesktop"}>
+                            <TextInputComponent
+                                inputType={InputTypes.name}
 
-                            labelName = "Reference 2 Phone"
-                            isRequired = {true}
-                            maxInput = {12}
+                                labelName = "Reference 2 Name"
+                                isRequired = {true}
+                                maxInput = {20}
 
-                            inputValue = {adoptionForm.reference2Phone}
-                            variableName = {AdoptionFormFieldNames.reference2Phone}
-                            onChange={onChange}
-                            setValidity={setValidity}
-                            hasSubmit={hasSubmit}
-                        />
+                                inputValue = {adoptionForm.reference2Name}
+                                variableName = {AdoptionFormFieldNames.reference2Name}
+                                onChange={onChange}
+                                setValidity={setValidity}
+                                hasSubmit={hasSubmit}
+                            />
+                        </div>
+
+                        <div className={isMobile ? "formFlexItemMobile" : "formFlexItemDesktop"}>
+                            <TextInputComponent
+                                inputType={InputTypes.phone}
+
+                                labelName = "Reference 2 Phone"
+                                isRequired = {true}
+                                maxInput = {12}
+
+                                inputValue = {adoptionForm.reference2Phone}
+                                variableName = {AdoptionFormFieldNames.reference2Phone}
+                                onChange={onChange}
+                                setValidity={setValidity}
+                                hasSubmit={hasSubmit}
+                            />
+                        </div>
                     </div>
-                </div>
 
-                <div className="flexRow flexWrap rowGap columnGap">
-                    <div className={isMobile ? "formFlexItemMobile" : "formFlexItemDesktop"}>
-                        <TextInputComponent
-                            inputType={InputTypes.name}
+                    <div className="flexRow flexWrap rowGap columnGap">
+                        <div className={isMobile ? "formFlexItemMobile" : "formFlexItemDesktop"}>
+                            <TextInputComponent
+                                inputType={InputTypes.name}
 
-                            labelName = "Referene 3 Name"
-                            isRequired = {true}
-                            maxInput = {20}
+                                labelName = "Referene 3 Name"
+                                isRequired = {true}
+                                maxInput = {20}
 
-                            inputValue = {adoptionForm.reference3Name}
-                            variableName = {AdoptionFormFieldNames.reference3Name}
-                            onChange={onChange}
-                            setValidity={setValidity}
-                            hasSubmit={hasSubmit}
-                        />
+                                inputValue = {adoptionForm.reference3Name}
+                                variableName = {AdoptionFormFieldNames.reference3Name}
+                                onChange={onChange}
+                                setValidity={setValidity}
+                                hasSubmit={hasSubmit}
+                            />
+                        </div>
+
+                        <div className={isMobile ? "formFlexItemMobile" : "formFlexItemDesktop"}>
+                            <TextInputComponent
+                                inputType={InputTypes.phone}
+
+                                labelName = "Reference 3 Phone"
+                                isRequired = {true}
+                                maxInput = {12}
+
+                                inputValue = {adoptionForm.reference3Phone}
+                                variableName = {AdoptionFormFieldNames.reference3Phone}
+                                onChange={onChange}
+                                setValidity={setValidity}
+                                hasSubmit={hasSubmit}
+                            />
+                        </div>
                     </div>
 
-                    <div className={isMobile ? "formFlexItemMobile" : "formFlexItemDesktop"}>
-                        <TextInputComponent
-                            inputType={InputTypes.phone}
+                    <h2 className="centerJustifySelf">Veterinary Info</h2>
 
-                            labelName = "Reference 3 Phone"
-                            isRequired = {true}
-                            maxInput = {12}
+                    <TextInputComponent
+                        inputType={InputTypes.name}
 
-                            inputValue = {adoptionForm.reference3Phone}
-                            variableName = {AdoptionFormFieldNames.reference3Phone}
-                            onChange={onChange}
-                            setValidity={setValidity}
-                            hasSubmit={hasSubmit}
-                        />
+                        labelName = "Vet Name"
+                        isRequired = {false}
+                        maxInput = {20}
+
+                        inputValue = {adoptionForm.vetName}
+                        variableName = {AdoptionFormFieldNames.vetName}
+                        onChange={onChange}
+                        setValidity={setValidity}
+                        hasSubmit={hasSubmit}
+                    />
+
+                    <TextInputComponent
+                        inputType={InputTypes.phone}
+
+                        labelName = "Vet Phone Number"
+                        isRequired = {false}
+                        maxInput = {12}
+
+                        inputValue = {adoptionForm.vetPhone}
+                        variableName = {AdoptionFormFieldNames.vetPhone}
+                        onChange={onChange}
+                        setValidity={setValidity}
+                        hasSubmit={hasSubmit}
+                    />
+
+                    <div className="centerJustifySelf">
+                        <button className='submitBtn' onClick={validateAndSendInfo}>Submit</button>
                     </div>
-                </div>
-
-                <h2>Veterinary Info</h2>
-
-                <TextInputComponent
-                    inputType={InputTypes.name}
-
-                    labelName = "Vet Name"
-                    isRequired = {false}
-                    maxInput = {20}
-
-                    inputValue = {adoptionForm.vetName}
-                    variableName = {AdoptionFormFieldNames.vetName}
-                    onChange={onChange}
-                    setValidity={setValidity}
-                    hasSubmit={hasSubmit}
-                />
-
-                <TextInputComponent
-                    inputType={InputTypes.phone}
-
-                    labelName = "Vet Phone Number"
-                    isRequired = {false}
-                    maxInput = {12}
-
-                    inputValue = {adoptionForm.vetPhone}
-                    variableName = {AdoptionFormFieldNames.vetPhone}
-                    onChange={onChange}
-                    setValidity={setValidity}
-                    hasSubmit={hasSubmit}
-                />
-
-                <div className="centerJustifySelf">
-                    <button className='submitButton' onClick={validateAndSendInfo}>Submit</button>
                 </div>
             </div>
         </div>
