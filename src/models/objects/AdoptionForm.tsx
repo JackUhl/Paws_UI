@@ -46,7 +46,7 @@ export var defaultAdoptionForm: AdoptionForm = {
 
 export var defaultAdoptionFormValidity = {
     firstName: false,
-    lastname: false,
+    lastName: false,
     email: false,
     phoneNumber: false,
     address1: false,

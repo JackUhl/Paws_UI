@@ -42,6 +42,7 @@ export default function PetDetails(props: IPetDetails) {
         setHasSubmit(true);
 
         const allValid = Object.values(validationState).every(v => v);
+        console.log(validationState);
 
         if (allValid) {
             // Submit the form
@@ -264,7 +265,7 @@ export default function PetDetails(props: IPetDetails) {
 
                                 labelName = 'Zip'
                                 isRequired = {false}
-                                maxInput = {20}
+                                maxInput = {5}
 
                                 inputValue = {adoptionForm.zip}
                                 variableName = {AdoptionFormFieldNames.zip}

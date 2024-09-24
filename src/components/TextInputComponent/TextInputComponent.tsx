@@ -60,7 +60,15 @@ export default function TextInputComponent (props: ITextInputComponent) {
         else if(props.inputType == InputTypes.email){
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             if(!emailRegex.test(props.inputValue)){
-                setErrorMessage("Not a valid Email");
+                setErrorMessage("Not a valid email");
+                props.setValidity(props.variableName, false);
+                return;
+            }
+        }
+        else if(props.inputType == InputTypes.zip) {
+            const zipRegex = /^\d{5}$/;
+            if(!zipRegex.test(props.inputValue)){
+                setErrorMessage("Not a valid US zip code");
                 props.setValidity(props.variableName, false);
                 return;
             }
