@@ -87,7 +87,7 @@ export default function PetDetails(props: IPetDetails) {
     return (
         <div className="petDetails flexColumn rowGap">
             <div>
-                <Link to={AdoptablePetsRoute}>&#8249; Back to Adoptable Pets</Link>
+                <Link to={AdoptablePetsRoute} className="clickItem">&#8249; Back to Adoptable Pets</Link>
             </div>
             <div className="flexRow justifyBetween alignCenter flexWrap rowGap">
                 <div className={isMobile ? "petImagesMobileWidth" : "petImagesDesktopWidth"}>
@@ -117,14 +117,11 @@ export default function PetDetails(props: IPetDetails) {
                         </div>
                     </div>
 
-                    <p>{props.adoptablePetInfo.description}</p>
-                    
-                    <LinkButtonComponent
-                        linksToInternalRoute={false}
-                        route={props.adoptablePetInfo.url}
-                        text="Petfinder Page"
-                        imgPath={petfinderIcon}
-                    />
+                    <div>
+                        <p>{props.adoptablePetInfo.description} 
+                            <Link to={props.adoptablePetInfo.url} target="_blank" className="clickItem">Read More</Link>
+                        </p>
+                    </div>                    
                 </div>
             </div>
             <div className="flexRow justifyCenter">

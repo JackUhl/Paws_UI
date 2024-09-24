@@ -241,7 +241,7 @@ input:focus {
 
 .submitBtn {
   color: white;
-  background-color: #483174;
+  background-color: light-dark(#483174, #CB6CE6);
 }
 
 .footer {
