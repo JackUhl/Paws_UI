@@ -39,6 +39,9 @@ export default function TextInputComponent (props: ITextInputComponent) {
         else if (props.inputType == InputTypes.name ) {
             e.target.value = e.target.value.replace(/[^a-zA-Z-.\s]/g, '');
         }
+        else if(props.inputType == InputTypes.zip) {
+            e.target.value = e.target.value.replace(/\D/g, '');
+        }
 
         e.target.value = e.target.value
             .replace(/<[^>]*>/g, '')            // Remove HTML tags
