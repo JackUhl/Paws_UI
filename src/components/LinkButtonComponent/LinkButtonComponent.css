@@ -5,7 +5,7 @@
         padding-bottom: min(1vw, 10px);
         padding-left: min(2vw, 20px);
         padding-right: min(2vw, 20px);
-        background-color: #483174;
+        background-color: light-dark(#483174, #CB6CE6);
         border-radius: 8px;
         gap: 15px;
     }

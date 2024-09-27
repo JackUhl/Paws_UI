@@ -2,7 +2,7 @@ import { BaseSyntheticEvent, useContext, useState } from 'react';
 import TitleBanner from '../../components/TitleBannerComponent/TitleBannerComponent'
 import './Volunteer.css'
 import { IsMobileContext } from '../../contexts/IsMobileContext';
-import { VolunteerFormNames, defaultVolunteerForm, defaultVolunteerFormValidity } from '../../models/objects/VolunteerForm';
+import { VolunteerFormFieldNames, defaultVolunteerForm, defaultVolunteerFormValidity } from '../../models/objects/VolunteerForm';
 import { FormSetterHelper } from '../../utilities/helpers/FormSetterHelper';
 import TextInputComponent from '../../components/TextInputComponent/TextInputComponent';
 import { InputTypes } from '../../models/constants/InputTypesEnum';
@@ -68,6 +68,7 @@ export default function Volunteer() {
             console.log("Form contains errors.");
         }
     }
+    
     return (
         <div className='volunteer'>
             <TitleBanner
@@ -84,43 +85,47 @@ export default function Volunteer() {
                     </div>
                 </div>
                 <div className={(isMobile ? 'hidden' : '') + ' seperator'}/>
-                <div className={(isMobile ? 'formMobileWidth' : 'formDesktopWidth') + ' volunteerForm flexColumn rowGap'}>
-                    <h2 className='centerJustifySelf'>Contact Information</h2>
-                    <div className='flexRow centerJustifySelf'>
-                        <p>Fields marked with a <span className='required'> * </span> are required</p>
+                <div className={(isMobile ? 'formWidthMobile' : 'volunteerFormWidthDesktop') + ' flexColumn rowGap'}>
+                    <div>
+                        <h2 className='centerJustifySelf'>Contact Information</h2>
+                        <div className='flexRow centerJustifySelf'>
+                            <p>Fields marked with a <span className='required'> * </span> are required</p>
+                        </div>
                     </div>
-                    <div className='flexRow justifyBetween flexWrap rowGap'>
-                        <TextInputComponent
-                            shortInput = {true}
-                            inputType={InputTypes.name}
+                    <div className='flexRow flexWrap rowGap columnGap'>
+                        <div className={isMobile ? "formFlexItemMobile" : "formFlexItemDesktop"}>
+                            <TextInputComponent
+                                inputType={InputTypes.name}
 
-                            labelName = 'First Name'
-                            isRequired = {true}
-                            maxInput = {20}
+                                labelName = 'First Name'
+                                isRequired = {true}
+                                maxInput = {20}
 
-                            inputValue={volunteerForm.firstName}
-                            variableName={VolunteerFormNames.firstName}
-                            onChange={onChange}
-                            setValidity={setValidity}
-                            hasSubmit={hasSubmit}
-                        />
-                        <TextInputComponent
-                            shortInput = {true}
-                            inputType={InputTypes.name}
+                                inputValue={volunteerForm.firstName}
+                                variableName={VolunteerFormFieldNames.firstName}
+                                onChange={onChange}
+                                setValidity={setValidity}
+                                hasSubmit={hasSubmit}
+                            />
+                        </div>
 
-                            labelName = 'Last Name'
-                            isRequired = {true}
-                            maxInput = {20}
+                        <div className={isMobile ? "formFlexItemMobile" : "formFlexItemDesktop"}>
+                            <TextInputComponent
+                                inputType={InputTypes.name}
 
-                            inputValue = {volunteerForm.lastName}
-                            variableName = {VolunteerFormNames.lastName}
-                            onChange={onChange}
-                            setValidity={setValidity}
-                            hasSubmit={hasSubmit}
-                        />
+                                labelName = 'Last Name'
+                                isRequired = {true}
+                                maxInput = {20}
+
+                                inputValue = {volunteerForm.lastName}
+                                variableName = {VolunteerFormFieldNames.lastName}
+                                onChange={onChange}
+                                setValidity={setValidity}
+                                hasSubmit={hasSubmit}
+                            />
+                        </div>
                     </div>
                     <TextInputComponent
-                        shortInput = {false}
                         inputType={InputTypes.email}
 
                         labelName = 'Email'
@@ -128,13 +133,12 @@ export default function Volunteer() {
                         maxInput = {50}
 
                         inputValue={volunteerForm.email}
-                        variableName={VolunteerFormNames.email}
+                        variableName={VolunteerFormFieldNames.email}
                         onChange={onChange}
                         setValidity={setValidity}
                         hasSubmit={hasSubmit}
                     />
                     <TextInputComponent
-                        shortInput = {false}
                         inputType={InputTypes.phone}
 
                         labelName = 'Phone Number'
@@ -142,7 +146,7 @@ export default function Volunteer() {
                         maxInput = {12}
 
                         inputValue = {volunteerForm.phoneNumber}
-                        variableName = {VolunteerFormNames.phoneNumber}
+                        variableName = {VolunteerFormFieldNames.phoneNumber}
                         onChange={onChange}
                         setValidity={setValidity}
                         hasSubmit={hasSubmit}
@@ -154,32 +158,32 @@ export default function Volunteer() {
                             <span className='err'>{canHelpWithErrorMsg}</span>
                         </label>
                         <div className='flexRow alignCenter'>
-                            <input type='checkbox' checked={volunteerForm.canHelpTransport} onChange={() => onChangeBool(volunteerForm.canHelpTransport, VolunteerFormNames.canHelpTransport)}></input>
+                            <input type='checkbox' checked={volunteerForm.canHelpTransport} onChange={() => onChangeBool(volunteerForm.canHelpTransport, VolunteerFormFieldNames.canHelpTransport)}></input>
                             <label>Transport</label>
                         </div>
                         <div className='flexRow alignCenter'>
-                            <input type='checkbox' checked={volunteerForm.canHelpEventSetup} onChange={() => onChangeBool(volunteerForm.canHelpEventSetup, VolunteerFormNames.canHelpEventSetup)}></input>
+                            <input type='checkbox' checked={volunteerForm.canHelpEventSetup} onChange={() => onChangeBool(volunteerForm.canHelpEventSetup, VolunteerFormFieldNames.canHelpEventSetup)}></input>
                             <label>Event Setup</label>
                         </div>
                         <div className='flexRow alignCenter'>
-                            <input type='checkbox' checked={volunteerForm.canHelpFundraising} onChange={() => onChangeBool(volunteerForm.canHelpFundraising, VolunteerFormNames.canHelpFundraising)}></input>
+                            <input type='checkbox' checked={volunteerForm.canHelpFundraising} onChange={() => onChangeBool(volunteerForm.canHelpFundraising, VolunteerFormFieldNames.canHelpFundraising)}></input>
                             <label>Fundraising</label>
                         </div>
                         <div className='flexRow alignCenter'>
-                            <input type='checkbox' checked={volunteerForm.canHelpPhotography} onChange={() => onChangeBool(volunteerForm.canHelpPhotography, VolunteerFormNames.canHelpPhotography)}></input>
+                            <input type='checkbox' checked={volunteerForm.canHelpPhotography} onChange={() => onChangeBool(volunteerForm.canHelpPhotography, VolunteerFormFieldNames.canHelpPhotography)}></input>
                             <label>Photography</label>
                         </div>
                         <div className='flexRow alignCenter'>
-                            <input type='checkbox' checked={volunteerForm.canHelpGrooming} onChange={() => onChangeBool(volunteerForm.canHelpGrooming, VolunteerFormNames.canHelpGrooming)}></input>
+                            <input type='checkbox' checked={volunteerForm.canHelpGrooming} onChange={() => onChangeBool(volunteerForm.canHelpGrooming, VolunteerFormFieldNames.canHelpGrooming)}></input>
                             <label>Grooming</label>
                         </div>
                         <div className='flexRow alignCenter'>
-                            <input type='checkbox' checked={volunteerForm.canHelpTraining} onChange={() => onChangeBool(volunteerForm.canHelpTraining, VolunteerFormNames.canHelpTraining)}></input>
+                            <input type='checkbox' checked={volunteerForm.canHelpTraining} onChange={() => onChangeBool(volunteerForm.canHelpTraining, VolunteerFormFieldNames.canHelpTraining)}></input>
                             <label>Training</label>
                         </div>
                     </div>
                     <div className='centerJustifySelf'>
-                        <button className='submitButton' onClick={validateAndSendInfo}>Submit</button>
+                        <button className='submitBtn' onClick={validateAndSendInfo}>Submit</button>
                     </div>
                 </div>
             </div>

@@ -21,7 +21,7 @@
     }
 
     .readMore {
-        color: #483174;
+        color: light-dark(#483174, #CB6CE6);
         font-weight: 700;
     }
 }

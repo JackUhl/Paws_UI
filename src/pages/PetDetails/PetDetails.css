@@ -15,19 +15,15 @@
         width: 100%
     }
 
-    .bottomSpacing {
-        padding-bottom: 10px;
-    }
-
     .icon {
         height: 15px;
     }
 
-    .columnWidth {
-        width: 200px
+    .clickItem {
+        color: light-dark(#483174, #CB6CE6);
     }
 
-    .tableItem {
-        border: 1px solid #483174;
+    .columnWidth {
+        width: 200px
     }
 }

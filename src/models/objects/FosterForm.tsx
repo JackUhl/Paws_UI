@@ -13,7 +13,7 @@ export interface FosterForm{
 }
 
 //Default forms
-export var defaultFosterForm:FosterForm = {
+export var defaultFosterForm: FosterForm = {
     firstName:'',
     lastName: '',
     phoneNumber: '',

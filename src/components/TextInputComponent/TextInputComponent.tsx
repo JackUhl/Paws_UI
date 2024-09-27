@@ -1,14 +1,11 @@
 import './TextInputComponent.css'
-import { BaseSyntheticEvent, useContext, useEffect, useState } from 'react'
-import { IsMobileContext } from '../../contexts/IsMobileContext';
+import { BaseSyntheticEvent, useEffect, useState } from 'react'
 import { ITextInputComponent } from './ITextInputComponent';
 import { InputTypes } from '../../models/constants/InputTypesEnum';
 
 export default function TextInputComponent (props: ITextInputComponent) {
 
     const [errorMessage, setErrorMessage] = useState('');
-
-    const isMobile = useContext<boolean>(IsMobileContext);
 
     useEffect(() => {
         if(props.hasSubmit == true)
@@ -19,7 +16,7 @@ export default function TextInputComponent (props: ITextInputComponent) {
         if(props.inputType == InputTypes.textArea)
             return 'largeInputField'
         else
-            return (isMobile || !props.shortInput ? 'longInputContainer' : 'shortInputContainer') + ' smallInputContainer';
+            return 'smallInputContainer';
     }
 
     const verifyInput = (e: BaseSyntheticEvent) => {
@@ -42,6 +39,9 @@ export default function TextInputComponent (props: ITextInputComponent) {
         else if (props.inputType == InputTypes.name ) {
             e.target.value = e.target.value.replace(/[^a-zA-Z-.\s]/g, '');
         }
+        else if(props.inputType == InputTypes.zip) {
+            e.target.value = e.target.value.replace(/\D/g, '');
+        }
 
         e.target.value = e.target.value
             .replace(/<[^>]*>/g, '')            // Remove HTML tags
@@ -63,7 +63,15 @@ export default function TextInputComponent (props: ITextInputComponent) {
         else if(props.inputType == InputTypes.email){
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             if(!emailRegex.test(props.inputValue)){
-                setErrorMessage("Not a valid Email");
+                setErrorMessage("Not a valid email");
+                props.setValidity(props.variableName, false);
+                return;
+            }
+        }
+        else if(props.inputType == InputTypes.zip) {
+            const zipRegex = /^\d{5}$/;
+            if(!zipRegex.test(props.inputValue)){
+                setErrorMessage("Not a valid US zip code");
                 props.setValidity(props.variableName, false);
                 return;
             }
