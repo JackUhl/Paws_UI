@@ -6,8 +6,6 @@ import './PetDetails.css'
 import { AdoptablePetsRoute } from "../../models/constants/InternalUrlConstants";
 import { IsMobileContext } from "../../contexts/IsMobileContext";
 import { IPetDetails } from "./IPetDetails";
-import LinkButtonComponent from "../../components/LinkButtonComponent/LinkButtonComponent";
-import petfinderIcon from "../../assets/petfinderIcon.png"
 import checkMarkIcon from "../../assets/checkMarkIcon.svg"
 import cancelIcon from "../../assets/cancelIcon.svg"
 import questionMarkIcon from "../../assets/questionMarkIcon.svg"
