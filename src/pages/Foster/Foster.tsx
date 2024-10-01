@@ -5,6 +5,8 @@ import { defaultFosterForm, defaultFosterFormValidity, FosterFormFieldNames } fr
 import { IsMobileContext } from '../../contexts/IsMobileContext';
 import TextInputComponent from '../../components/TextInputComponent/TextInputComponent';
 import { InputTypes } from '../../models/constants/InputTypesEnum';
+import { EmailService } from '../../services/EmailService/EmailService';
+import { FosterApplicationRequest } from '../../models/DTOs/FosterApplicationRequest';
 
 export default function Foster() {
 
@@ -30,16 +32,25 @@ export default function Foster() {
     }
 
     const validateAndSendInfo = () => {
-
         setHasSubmit(true);
 
-        //TODO when BFF is set up
         const allValid = Object.values(validationState).every(v => v);
+        
         if (allValid) {
-            // Submit the form
-            console.log("Form submitted:", fosterForm);
-        } else {
-            console.log("Form contains errors.");
+            const request: FosterApplicationRequest = {
+                firstName: fosterForm.firstName,
+                lastName: fosterForm.lastName,
+                phone: fosterForm.phoneNumber,
+                email: fosterForm.email,
+                whyDoYouWantTo: fosterForm.whyDoYouWantTo,
+                whatAnimalsDoYouHave: fosterForm.whatPetsYouHave,
+                reference1Name: fosterForm.reference1Name,
+                reference1Phone: fosterForm.reference1Phone,
+                reference2Name: fosterForm.reference2Name,
+                reference2Phone: fosterForm.reference2Phone
+            }
+
+            EmailService.PostFosterApplication(request);
         }
     }
 
