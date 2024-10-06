@@ -6,6 +6,8 @@ import { VolunteerFormFieldNames, defaultVolunteerForm, defaultVolunteerFormVali
 import { FormSetterHelper } from '../../utilities/helpers/FormSetterHelper';
 import TextInputComponent from '../../components/TextInputComponent/TextInputComponent';
 import { InputTypes } from '../../models/constants/InputTypesEnum';
+import { VolunteerApplicationRequest } from '../../models/DTOs/VolunteerApplicationRequest';
+import { EmailService } from '../../services/EmailService/EmailService';
 
 export default function Volunteer() {
     const [volunteerForm, setVolunteerForm] = useState(defaultVolunteerForm);
@@ -43,7 +45,6 @@ export default function Volunteer() {
     }
 
     const validateAndSendInfo = () => {
-        //TODO when setting up the email API
         setHasSubmit(true);
 
         setValidationState(FormSetterHelper.setForm(
@@ -62,10 +63,22 @@ export default function Volunteer() {
         const allValid = Object.values(validationState).every(v => v);
 
         if (allValid) {
-            // Submit the form
-            console.log("Form submitted:", volunteerForm);
-        } else {
-            console.log("Form contains errors.");
+            const request: VolunteerApplicationRequest = {
+                firstName: volunteerForm.firstName,
+                lastName: volunteerForm.lastName,
+                email: volunteerForm.email,
+                phone: volunteerForm.phoneNumber,
+                volunteerOptions: {
+                    transport: volunteerForm.canHelpTransport,
+                    eventSetUp: volunteerForm.canHelpEventSetup,
+                    fundraising: volunteerForm.canHelpFundraising,
+                    photography: volunteerForm.canHelpPhotography,
+                    grooming: volunteerForm.canHelpGrooming,
+                    training: volunteerForm.canHelpTraining
+                }
+            }
+
+            EmailService.PostVolunteerApplication(request);
         }
     }
     

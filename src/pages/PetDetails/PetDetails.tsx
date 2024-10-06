@@ -12,6 +12,7 @@ import questionMarkIcon from "../../assets/questionMarkIcon.svg"
 import TextInputComponent from "../../components/TextInputComponent/TextInputComponent";
 import { InputTypes } from "../../models/constants/InputTypesEnum";
 import { AdoptionFormFieldNames, defaultAdoptionForm, defaultAdoptionFormValidity } from "../../models/objects/AdoptionForm";
+import { AnimalSummaryHelper } from "../../utilities/helpers/AnimalSummaryHelper";
 
 export default function PetDetails(props: IPetDetails) {
     const [adoptionForm, setAdoptionForm] = useState(defaultAdoptionForm);
@@ -19,6 +20,8 @@ export default function PetDetails(props: IPetDetails) {
     const [hasSubmit, setHasSubmit] = useState(false);
 
     const isMobile = useContext<boolean>(IsMobileContext);
+
+    const animalSummary = AnimalSummaryHelper.GetAnimalSummary(props.adoptablePetInfo);
 
     const onChange = (event: BaseSyntheticEvent, variableName: string) => {
         const value = event.target.value;
@@ -63,9 +66,6 @@ export default function PetDetails(props: IPetDetails) {
         imageSliderSlides.push(slide);
     });
 
-    const fullBreed = `${props.adoptablePetInfo.age} ${props.adoptablePetInfo.breeds.primary + (props.adoptablePetInfo.breeds.mixed ? ` Mix` : "")}`;
-    const genderStatus = `${props.adoptablePetInfo.gender} ${props.adoptablePetInfo.attributes.spayed_neutered ? " (Fixed)" : " (Not Fixed)"}`;
-
     const getPropertyImage = (property: boolean | null): React.ReactNode => {
         let icon;
         
@@ -97,7 +97,7 @@ export default function PetDetails(props: IPetDetails) {
                 <div className={(isMobile ? "petInfoMobileWidth" : "petInfoDesktopWidth") + " flexColumn rowGap"}>
                     <div>
                         <h2>{props.adoptablePetInfo.name}</h2>
-                        <p>{fullBreed} | {genderStatus}</p>
+                        <p>{`${animalSummary.fullBreed} | ${animalSummary.genderStatus}`}</p>
                     </div>
 
                     <div>
