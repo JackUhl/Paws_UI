@@ -89,7 +89,7 @@ export default function Volunteer() {
             ></TitleBanner>
 
             <div className={(isMobile ? 'justifyCenter' : 'justifyAround') + ' mainContainer flexRow rowGap flexWrap'}>
-                <div className={(isMobile ? 'whyYouShouldMobileWidth' : 'whyYouShouldDesktopWidth') + ' whyYouShould flexColumn rowGap'}>
+                <div className={(isMobile ? 'whyYouShouldMobileWidth' : 'whyYouShouldDesktopWidth') + ' contentBox whyYouShould flexColumn rowGap'}>
                     <h2 className='centerJustifySelf'>Join Our Cause!</h2>
                     <div className='pinkBackground flexColumn rowGap'>
                         <p>Volunteering at P.A.W.S offers a chance to directly impact the lives of animals in need. By dedicating your time, you provide essential care and attention to neglected or abandoned pets, helping them on their path to finding loving homes.</p>  
@@ -98,7 +98,7 @@ export default function Volunteer() {
                     </div>
                 </div>
                 <div className={(isMobile ? 'hidden' : '') + ' seperator'}/>
-                <div className={(isMobile ? 'formWidthMobile' : 'volunteerFormWidthDesktop') + ' flexColumn rowGap'}>
+                <div className={(isMobile ? 'formWidthMobile' : 'volunteerFormWidthDesktop') + ' contentBox flexColumn rowGap'}>
                     <div>
                         <h2 className='centerJustifySelf'>Contact Information</h2>
                         <div className='flexRow centerJustifySelf'>

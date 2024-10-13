@@ -8,7 +8,7 @@
     .petImage {
         width: 100%;
         min-height: 100px;
-        max-height: 160px;
+        max-height: 250px;
         object-fit: cover;
         border-top-left-radius: 2%;
         border-top-right-radius: 2%;

@@ -6,15 +6,8 @@
                 url('https://pawsomeanimalwelfare.com/wp-content/uploads/2023/09/dog-grooming_32.jpg') !important;
         }
     }
-    
-    .mainContainer{
-        padding: 0px !important;
-    }
 
     .fosterHeros {
-        padding-top: 30px;
-        padding-bottom: 30px;
-
         p {
             margin: 3%;
         }
