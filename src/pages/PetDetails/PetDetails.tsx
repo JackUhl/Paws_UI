@@ -290,7 +290,7 @@ export default function PetDetails(props: IPetDetails) {
                     <TextInputComponent
                         inputType={InputTypes.textArea}
 
-                        labelName = "What's the name and age of your household members"
+                        labelName = "What's the name and age of your household members?"
                         isRequired = {false}
                         maxInput = {500}
 
