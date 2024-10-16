@@ -127,7 +127,7 @@ export default function PetDetails(props: IPetDetails) {
                     <div>
                         <h2 className="centerJustifySelf">Interested in Adoption?</h2>
                         <div className="centerJustifySelf">
-                            <p>Fields marked with a <span className='required'> * </span> are required</p>
+                            <p>Fields marked with a <span className='colorRed'> * </span> are required</p>
                         </div>
                     </div>
                     
@@ -450,7 +450,7 @@ export default function PetDetails(props: IPetDetails) {
                     />
 
                     <div className="centerJustifySelf">
-                        <button className='submitBtn' onClick={validateAndSendInfo}>Submit</button>
+                        <button className='submitButton' onClick={validateAndSendInfo}>Submit</button>
                     </div>
                 </div>
             </div>

@@ -7,12 +7,15 @@ import TextInputComponent from '../../components/TextInputComponent/TextInputCom
 import { InputTypes } from '../../models/constants/InputTypesEnum';
 import { EmailService } from '../../services/EmailService/EmailService';
 import { FosterApplicationRequest } from '../../models/DTOs/FosterApplicationRequest';
+import { FormLoadingStatus } from '../../models/constants/FormLoadingEnum';
+import SubmitButtonComponent from '../../components/SubmitButtonComponent/SubmitButtonComponent';
 
 export default function Foster() {
 
     const [fosterForm, setFosterForm] = useState(defaultFosterForm);
     const [validationState, setValidationState] = useState(defaultFosterFormValidity);
     const [hasSubmit, setHasSubmit] = useState(false);
+    const [formLoadingStatus, setFormLoadingStatus] = useState(FormLoadingStatus.notSubmitted);
     
     const isMobile = useContext<boolean>(IsMobileContext)
 
@@ -37,7 +40,7 @@ export default function Foster() {
         const allValid = Object.values(validationState).every(v => v);
         
         if (allValid) {
-            const request: FosterApplicationRequest = {
+            const fosterApplicationRequest: FosterApplicationRequest = {
                 firstName: fosterForm.firstName,
                 lastName: fosterForm.lastName,
                 phone: fosterForm.phoneNumber,
@@ -50,7 +53,15 @@ export default function Foster() {
                 reference2Phone: fosterForm.reference2Phone
             }
 
-            EmailService.PostFosterApplication(request);
+            setFormLoadingStatus(FormLoadingStatus.loading);
+
+            EmailService.PostFosterApplication(fosterApplicationRequest)
+            .then(() => {
+                setFormLoadingStatus(FormLoadingStatus.success)
+            })
+            .catch(() => {
+                setFormLoadingStatus(FormLoadingStatus.failed);
+            });
         }
     }
 
@@ -73,7 +84,7 @@ export default function Foster() {
                     <div>
                         <h2 className='centerJustifySelf'>Foster Application</h2>
                         <div className='centerJustifySelf'>
-                            <p>Fields marked with a <span className='required'> * </span> are required</p>
+                            <p>Fields marked with a <span className='colorRed'> * </span> are required</p>
                         </div>
                     </div>
                     <div className='flexRow flexWrap rowGap columnGap'>
@@ -167,7 +178,7 @@ export default function Foster() {
                         setValidity={setValidity}
                         hasSubmit={hasSubmit}
                     />
-                    <div className='flexRow flexWrap rowGap columnGap alignEnd'>
+                    <div className='flexRow flexWrap rowGap columnGap alignStart'>
                         <div className={isMobile ? "formFlexItemMobile" : "formFlexItemDesktop"}>
                             <TextInputComponent
                                 inputType={InputTypes.name}
@@ -199,7 +210,7 @@ export default function Foster() {
                             />
                         </div>
                     </div>
-                    <div className='flexRow flexWrap rowGap columnGap alignEnd'>
+                    <div className='flexRow flexWrap rowGap columnGap alignStart'>
                         <div className={isMobile ? "formFlexItemMobile" : "formFlexItemDesktop"}>
                             <TextInputComponent
                                 inputType={InputTypes.name}
@@ -232,7 +243,13 @@ export default function Foster() {
                         </div>
                     </div>
                     <div className='centerJustifySelf'>
-                        <button className='submitBtn' onClick={validateAndSendInfo}>Submit</button>
+                        <SubmitButtonComponent 
+                            validateAndSendInfo={validateAndSendInfo} 
+                            loadingStatus={formLoadingStatus}
+                            submitButtonText="Submit"
+                            successText="Thank you for your foster application, we'll reach out shortly"
+                            failedText="Something went wrong submitting, please try again later"
+                        />
                     </div>
                 </div>
             </div>

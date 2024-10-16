@@ -3,61 +3,76 @@ import TitleBanner from '../../components/TitleBannerComponent/TitleBannerCompon
 import './Volunteer.css'
 import { IsMobileContext } from '../../contexts/IsMobileContext';
 import { VolunteerFormFieldNames, defaultVolunteerForm, defaultVolunteerFormValidity } from '../../models/objects/VolunteerForm';
-import { FormSetterHelper } from '../../utilities/helpers/FormSetterHelper';
 import TextInputComponent from '../../components/TextInputComponent/TextInputComponent';
 import { InputTypes } from '../../models/constants/InputTypesEnum';
 import { VolunteerApplicationRequest } from '../../models/DTOs/VolunteerApplicationRequest';
 import { EmailService } from '../../services/EmailService/EmailService';
+import { FormLoadingStatus } from '../../models/constants/FormLoadingEnum';
+import SubmitButtonComponent from '../../components/SubmitButtonComponent/SubmitButtonComponent';
 
 export default function Volunteer() {
     const [volunteerForm, setVolunteerForm] = useState(defaultVolunteerForm);
     const [validationState, setValidationState] = useState(defaultVolunteerFormValidity);
     const [hasSubmit, setHasSubmit] = useState(false);
-    const [canHelpWithErrorMsg, setCanHelpErrMsg] = useState('');
+    const [canHelpWithErrorMessage, setCanHelpErrorMessage] = useState("");
+    const [formLoadingStatus, setFormLoadingStatus] = useState(FormLoadingStatus.notSubmitted);
 
-    const isMobile = useContext<boolean>(IsMobileContext)
+    const isMobile = useContext<boolean>(IsMobileContext);
 
     const onChange = (event: BaseSyntheticEvent, variableName: string) => {
         const value = event.target.value;
-        setVolunteerForm(volunteerForm => ({
+        setVolunteerForm({
             ...volunteerForm,
             [variableName]: value
-        }));
+        });
     }
 
-    const onChangeBool = (variable: boolean, variableName: string) => {
-        const value = !variable;
-        setVolunteerForm(volunteerForm => ({
-            ...volunteerForm,
-            [variableName]: value
-        }));
-        setValidationState(validationState => ({
-            ...validationState,
-            ['canHelpValidity']: volunteerForm.canHelpEventSetup || volunteerForm.canHelpFundraising || volunteerForm.canHelpGrooming || volunteerForm.canHelpPhotography || volunteerForm.canHelpTraining || volunteerForm.canHelpTransport
-        }));
+    const onChangeBool = (event: BaseSyntheticEvent, variableName: string) => {
+        const value = event.target.checked;
+        
+        setVolunteerForm(previousVolunteerForm => {
+            const updatedVolunteerForm = {
+                ...previousVolunteerForm,
+                [variableName]: value
+            };
+    
+            const newCanHelpValidity =
+                updatedVolunteerForm.canHelpEventSetup ||
+                updatedVolunteerForm.canHelpFundraising ||
+                updatedVolunteerForm.canHelpGrooming ||
+                updatedVolunteerForm.canHelpPhotography ||
+                updatedVolunteerForm.canHelpTraining ||
+                updatedVolunteerForm.canHelpTransport;
+            
+            //Hide error message if it's showing and the new validity state is set to true
+            if(canHelpWithErrorMessage != '' && newCanHelpValidity) {
+                setCanHelpErrorMessage("");
+            }
+
+            setValidationState(prevValidationState => ({
+                ...prevValidationState,
+                canHelpValidity: newCanHelpValidity
+            }));
+    
+            return updatedVolunteerForm;
+        });
     }
 
-    const setValidity = (variable: string, validity:boolean) =>{
-        setValidationState(validationState => ({
+    const setValidity = (variable: string, validity: boolean) =>{
+        setValidationState({
             ...validationState,
             [variable]: validity
-        }));
+        });
     }
 
     const validateAndSendInfo = () => {
         setHasSubmit(true);
 
-        setValidationState(FormSetterHelper.setForm(
-            'canHelpValidity',
-            volunteerForm.canHelpEventSetup || volunteerForm.canHelpFundraising || volunteerForm.canHelpGrooming || volunteerForm.canHelpPhotography || volunteerForm.canHelpTraining || volunteerForm.canHelpTransport,
-            validationState
-        ));
-
         if (!validationState.canHelpValidity){
-            setCanHelpErrMsg("Must have at least one field selected");
+            setCanHelpErrorMessage("Must have at least one field selected");
         }
         else{
-            setCanHelpErrMsg("");
+            setCanHelpErrorMessage("");
         }
 
         const allValid = Object.values(validationState).every(v => v);
@@ -78,7 +93,15 @@ export default function Volunteer() {
                 }
             }
 
-            EmailService.PostVolunteerApplication(request);
+            setFormLoadingStatus(FormLoadingStatus.loading);
+
+            EmailService.PostVolunteerApplication(request)
+            .then(() => {
+                setFormLoadingStatus(FormLoadingStatus.success)
+            })
+            .catch(() => {
+                setFormLoadingStatus(FormLoadingStatus.failed);
+            });
         }
     }
     
@@ -102,7 +125,7 @@ export default function Volunteer() {
                     <div>
                         <h2 className='centerJustifySelf'>Contact Information</h2>
                         <div className='flexRow centerJustifySelf'>
-                            <p>Fields marked with a <span className='required'> * </span> are required</p>
+                            <p>Fields marked with a <span className='colorRed'> * </span> are required</p>
                         </div>
                     </div>
                     <div className='flexRow flexWrap rowGap columnGap'>
@@ -167,36 +190,42 @@ export default function Volunteer() {
                     <div className='flexColumn'>
                         <label>
                             <span>What can you help with? </span>
-                            <span className='required'> * </span>
-                            <span className='err'>{canHelpWithErrorMsg}</span>
+                            <span className='colorRed'> * </span>
+                            <span className='error'>{canHelpWithErrorMessage}</span>
                         </label>
                         <div className='flexRow alignCenter'>
-                            <input type='checkbox' checked={volunteerForm.canHelpTransport} onChange={() => onChangeBool(volunteerForm.canHelpTransport, VolunteerFormFieldNames.canHelpTransport)}></input>
+                            <input type='checkbox' checked={volunteerForm.canHelpTransport} onChange={(e) => onChangeBool(e, VolunteerFormFieldNames.canHelpTransport)}></input>
                             <label>Transport</label>
                         </div>
                         <div className='flexRow alignCenter'>
-                            <input type='checkbox' checked={volunteerForm.canHelpEventSetup} onChange={() => onChangeBool(volunteerForm.canHelpEventSetup, VolunteerFormFieldNames.canHelpEventSetup)}></input>
+                            <input type='checkbox' checked={volunteerForm.canHelpEventSetup} onChange={(e) => onChangeBool(e, VolunteerFormFieldNames.canHelpEventSetup)}></input>
                             <label>Event Setup</label>
                         </div>
                         <div className='flexRow alignCenter'>
-                            <input type='checkbox' checked={volunteerForm.canHelpFundraising} onChange={() => onChangeBool(volunteerForm.canHelpFundraising, VolunteerFormFieldNames.canHelpFundraising)}></input>
+                            <input type='checkbox' checked={volunteerForm.canHelpFundraising} onChange={(e) => onChangeBool(e, VolunteerFormFieldNames.canHelpFundraising)}></input>
                             <label>Fundraising</label>
                         </div>
                         <div className='flexRow alignCenter'>
-                            <input type='checkbox' checked={volunteerForm.canHelpPhotography} onChange={() => onChangeBool(volunteerForm.canHelpPhotography, VolunteerFormFieldNames.canHelpPhotography)}></input>
+                            <input type='checkbox' checked={volunteerForm.canHelpPhotography} onChange={(e) => onChangeBool(e, VolunteerFormFieldNames.canHelpPhotography)}></input>
                             <label>Photography</label>
                         </div>
                         <div className='flexRow alignCenter'>
-                            <input type='checkbox' checked={volunteerForm.canHelpGrooming} onChange={() => onChangeBool(volunteerForm.canHelpGrooming, VolunteerFormFieldNames.canHelpGrooming)}></input>
+                            <input type='checkbox' checked={volunteerForm.canHelpGrooming} onChange={(e) => onChangeBool(e, VolunteerFormFieldNames.canHelpGrooming)}></input>
                             <label>Grooming</label>
                         </div>
                         <div className='flexRow alignCenter'>
-                            <input type='checkbox' checked={volunteerForm.canHelpTraining} onChange={() => onChangeBool(volunteerForm.canHelpTraining, VolunteerFormFieldNames.canHelpTraining)}></input>
+                            <input type='checkbox' checked={volunteerForm.canHelpTraining} onChange={(e) => onChangeBool(e, VolunteerFormFieldNames.canHelpTraining)}></input>
                             <label>Training</label>
                         </div>
                     </div>
                     <div className='centerJustifySelf'>
-                        <button className='submitBtn' onClick={validateAndSendInfo}>Submit</button>
+                        <SubmitButtonComponent 
+                            validateAndSendInfo={validateAndSendInfo} 
+                            loadingStatus={formLoadingStatus}
+                            submitButtonText="Submit"
+                            successText="Thank you for your volunteer application, we'll reach out shortly!"
+                            failedText="Something went wrong submitting, please try again later"
+                        />
                     </div>
                 </div>
             </div>

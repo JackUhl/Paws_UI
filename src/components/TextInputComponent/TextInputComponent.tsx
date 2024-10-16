@@ -92,7 +92,7 @@ export default function TextInputComponent (props: ITextInputComponent) {
         <div className={getInputClass() + ' textInputContainer'}>
             <label> 
                 {props.labelName} 
-                {props.isRequired ? <span className='required'> * </span> : '' }
+                {props.isRequired ? <span className='colorRed'> * </span> : '' }
             </label><br/>
             
             {
@@ -116,7 +116,7 @@ export default function TextInputComponent (props: ITextInputComponent) {
                 </textarea>
             }
             <br/>
-            <span className='err'> {errorMessage} </span>
+            <span className='error'> {errorMessage} </span>
         </div>
     )
 }
