@@ -1,0 +1,23 @@
+export interface AdoptionApplicationRequest {
+    petApplyingFor: string,
+    firstName: string,
+    lastName: string,
+    email: string,
+    phone: string,
+    addressLineOne: string,
+    addressLineTwo: string,
+    city: string,
+    state: string,
+    zip: string,
+    currentPets: string,
+    householdMembers: string,
+    landlordInfo: string,
+    reference1Name: string,
+    reference1Phone: string,
+    reference2Name: string,
+    reference2Phone: string,
+    reference3Name: string,
+    reference3Phone: string,
+    vetName: string,
+    vetPhone: string
+}

@@ -7,12 +7,16 @@ import TextInputComponent from '../../components/TextInputComponent/TextInputCom
 import { InputTypes } from '../../models/constants/InputTypesEnum';
 import { EmailService } from '../../services/EmailService/EmailService';
 import { FosterApplicationRequest } from '../../models/DTOs/FosterApplicationRequest';
+import { RequestLoadingStatus } from '../../models/constants/FormLoadingEnum';
+import SubmitButtonComponent from '../../components/SubmitButtonComponent/SubmitButtonComponent';
+import fosterHeroes from '../../assets/fosterHeroes.jpg'
 
 export default function Foster() {
 
     const [fosterForm, setFosterForm] = useState(defaultFosterForm);
     const [validationState, setValidationState] = useState(defaultFosterFormValidity);
     const [hasSubmit, setHasSubmit] = useState(false);
+    const [formLoadingStatus, setFormLoadingStatus] = useState(RequestLoadingStatus.notRequested);
     
     const isMobile = useContext<boolean>(IsMobileContext)
 
@@ -37,7 +41,7 @@ export default function Foster() {
         const allValid = Object.values(validationState).every(v => v);
         
         if (allValid) {
-            const request: FosterApplicationRequest = {
+            const fosterApplicationRequest: FosterApplicationRequest = {
                 firstName: fosterForm.firstName,
                 lastName: fosterForm.lastName,
                 phone: fosterForm.phoneNumber,
@@ -50,7 +54,15 @@ export default function Foster() {
                 reference2Phone: fosterForm.reference2Phone
             }
 
-            EmailService.PostFosterApplication(request);
+            setFormLoadingStatus(RequestLoadingStatus.loading);
+
+            EmailService.PostFosterApplication(fosterApplicationRequest)
+            .then(() => {
+                setFormLoadingStatus(RequestLoadingStatus.success)
+            })
+            .catch(() => {
+                setFormLoadingStatus(RequestLoadingStatus.failed);
+            });
         }
     }
 
@@ -62,7 +74,7 @@ export default function Foster() {
             <div className='mainContainer flexRow justifyCenter rowGap flexWrap'>
                 <div className='fosterHeros'>
                     <div className='contentBox flexRow justifyAround alignCenter columnGap rowGap flexWrap flexWrapReverse'>
-                        <img src='https://pawsomeanimalwelfare.com/wp-content/uploads/2024/02/425834462_122118173588181652_7023249176980479669_n-1.jpg' className={isMobile ? 'imageMobileWidth' : 'imageDesktopWidth' + ' displayImage'}/>
+                        <img src={fosterHeroes} className={isMobile ? 'imageMobileWidth' : 'imageDesktopWidth' + ' displayImage'}/>
                         <div className={(isMobile ? 'pinkBackgroundMobileWidth' : 'pinkBackgroundDesktopWidth') + ' pinkBackground flexColumn'}>
                             <h2 className='centerJustifySelf'>Become a Foster Hero</h2>
                             <p>Our foster volunteers are the heart and soul of our pet rescue efforts. Their willingness to open up their homes and hearts to animals in need is what allows us to save lives and find forever homes. The more people who step up to foster, the more animals we can help. It's thanks to our amazing fosters that we can make a difference in the lives of these deserving animals. Become a Foster Hero Today!</p>
@@ -73,7 +85,7 @@ export default function Foster() {
                     <div>
                         <h2 className='centerJustifySelf'>Foster Application</h2>
                         <div className='centerJustifySelf'>
-                            <p>Fields marked with a <span className='required'> * </span> are required</p>
+                            <p>Fields marked with a <span className='colorRed'> * </span> are required</p>
                         </div>
                     </div>
                     <div className='flexRow flexWrap rowGap columnGap'>
@@ -167,7 +179,7 @@ export default function Foster() {
                         setValidity={setValidity}
                         hasSubmit={hasSubmit}
                     />
-                    <div className='flexRow flexWrap rowGap columnGap alignEnd'>
+                    <div className='flexRow flexWrap rowGap columnGap alignStart'>
                         <div className={isMobile ? "formFlexItemMobile" : "formFlexItemDesktop"}>
                             <TextInputComponent
                                 inputType={InputTypes.name}
@@ -199,7 +211,7 @@ export default function Foster() {
                             />
                         </div>
                     </div>
-                    <div className='flexRow flexWrap rowGap columnGap alignEnd'>
+                    <div className='flexRow flexWrap rowGap columnGap alignStart'>
                         <div className={isMobile ? "formFlexItemMobile" : "formFlexItemDesktop"}>
                             <TextInputComponent
                                 inputType={InputTypes.name}
@@ -232,7 +244,13 @@ export default function Foster() {
                         </div>
                     </div>
                     <div className='centerJustifySelf'>
-                        <button className='submitBtn' onClick={validateAndSendInfo}>Submit</button>
+                        <SubmitButtonComponent 
+                            validateAndSendInfo={validateAndSendInfo} 
+                            loadingStatus={formLoadingStatus}
+                            submitButtonText="Submit"
+                            successText="Thank you for your foster application, we'll reach out shortly"
+                            failedText="Something went wrong submitting, please try again later"
+                        />
                     </div>
                 </div>
             </div>
