@@ -1,12 +1,4 @@
 .foster {  
-    @media (prefers-color-scheme: dark) {
-        .fosterHeros {
-            background:
-                linear-gradient( rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.2) ),
-                url('https://pawsomeanimalwelfare.com/wp-content/uploads/2023/09/dog-grooming_32.jpg') !important;
-        }
-    }
-
     .fosterHeros {
         p {
             margin: 3%;
