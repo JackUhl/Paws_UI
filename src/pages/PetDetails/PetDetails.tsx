@@ -13,11 +13,16 @@ import TextInputComponent from "../../components/TextInputComponent/TextInputCom
 import { InputTypes } from "../../models/constants/InputTypesEnum";
 import { AdoptionFormFieldNames, defaultAdoptionForm, defaultAdoptionFormValidity } from "../../models/objects/AdoptionForm";
 import { AnimalSummaryHelper } from "../../utilities/helpers/AnimalSummaryHelper";
+import { AdoptionApplicationRequest } from "../../models/DTOs/AdoptionApplicationRequest";
+import { EmailService } from "../../services/EmailService/EmailService";
+import { FormLoadingStatus } from "../../models/constants/FormLoadingEnum";
+import SubmitButtonComponent from "../../components/SubmitButtonComponent/SubmitButtonComponent";
 
 export default function PetDetails(props: IPetDetails) {
     const [adoptionForm, setAdoptionForm] = useState(defaultAdoptionForm);
     const [validationState, setValidationState] = useState(defaultAdoptionFormValidity);
     const [hasSubmit, setHasSubmit] = useState(false);
+    const [formLoadingStatus, setFormLoadingStatus] = useState(FormLoadingStatus.notSubmitted);
 
     const isMobile = useContext<boolean>(IsMobileContext);
 
@@ -39,17 +44,44 @@ export default function PetDetails(props: IPetDetails) {
     }
 
     const validateAndSendInfo = () => {
-        //TODO when setting up the email API
         setHasSubmit(true);
 
         const allValid = Object.values(validationState).every(v => v);
-        console.log(validationState);
 
         if (allValid) {
-            // Submit the form
-            console.log("Form submitted:", adoptionForm);
-        } else {
-            console.log("Form contains errors.");
+            const request: AdoptionApplicationRequest = {
+                petApplyingFor: props.adoptablePetInfo.name,
+                firstName: adoptionForm.firstName,
+                lastName: adoptionForm.lastName,
+                email: adoptionForm.email,
+                phone: adoptionForm.phoneNumber,
+                addressLineOne: adoptionForm.address1,
+                addressLineTwo: adoptionForm.address2,
+                city: adoptionForm.city,
+                state: adoptionForm.state,
+                zip: adoptionForm.zip,
+                currentPets: adoptionForm.currentPets,
+                householdMembers: adoptionForm.householdMembers,
+                landlordInfo: adoptionForm.landlordInfo,
+                reference1Name: adoptionForm.reference1Name,
+                reference1Phone: adoptionForm.reference1Phone,
+                reference2Name: adoptionForm.reference2Name,
+                reference2Phone: adoptionForm.reference2Phone,
+                reference3Name: adoptionForm.reference3Name,
+                reference3Phone: adoptionForm.reference3Phone,
+                vetName: adoptionForm.vetName,
+                vetPhone: adoptionForm.vetPhone
+            }
+
+            setFormLoadingStatus(FormLoadingStatus.loading);
+
+            EmailService.PostAdoptionApplication(request)
+            .then(() => {
+                setFormLoadingStatus(FormLoadingStatus.success);
+            })
+            .catch(() => {
+                setFormLoadingStatus(FormLoadingStatus.failed);
+            })
         }
     }
 
@@ -449,8 +481,14 @@ export default function PetDetails(props: IPetDetails) {
                         hasSubmit={hasSubmit}
                     />
 
-                    <div className="centerJustifySelf">
-                        <button className='submitButton' onClick={validateAndSendInfo}>Submit</button>
+                    <div className='centerJustifySelf'>
+                        <SubmitButtonComponent 
+                            validateAndSendInfo={validateAndSendInfo} 
+                            loadingStatus={formLoadingStatus}
+                            submitButtonText="Submit"
+                            successText="Thank you for your adoption application, we'll reach out shortly!"
+                            failedText="Something went wrong submitting, please try again later"
+                        />
                     </div>
                 </div>
             </div>
