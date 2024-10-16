@@ -4,7 +4,6 @@ import { useContext } from 'react';
 import { IsMobileContext } from '../../contexts/IsMobileContext';
 
 export default function NotFound() {
-
     const isMobile = useContext<boolean>(IsMobileContext);
     
     return (
@@ -14,7 +13,7 @@ export default function NotFound() {
                     <img src={notFound} className={(isMobile ? 'imageMobileWidth' : 'imageDesktopWidth') + ' image'} />
                     <div className={isMobile ? 'infoMobileWidth' : 'infoDesktopWidth'}>
                         <h2>404 Not Found</h2>
-                        <p>This page does not exist or was moved. Please try your request again.</p>
+                        <p>This page does not exist or was moved. Please try again later.</p>
                     </div>
                 </div>
             </div>

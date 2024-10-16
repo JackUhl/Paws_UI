@@ -1,8 +1,8 @@
-import { FormLoadingStatus } from "../../models/constants/FormLoadingEnum";
+import { RequestLoadingStatus } from "../../models/constants/FormLoadingEnum";
 
 export interface ISubmitButtonComponent {
     validateAndSendInfo: () => void;
-    loadingStatus: FormLoadingStatus;
+    loadingStatus: RequestLoadingStatus;
     submitButtonText: string,
     successText: string,
     failedText: string

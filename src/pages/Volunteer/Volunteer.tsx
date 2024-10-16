@@ -7,7 +7,7 @@ import TextInputComponent from '../../components/TextInputComponent/TextInputCom
 import { InputTypes } from '../../models/constants/InputTypesEnum';
 import { VolunteerApplicationRequest } from '../../models/DTOs/VolunteerApplicationRequest';
 import { EmailService } from '../../services/EmailService/EmailService';
-import { FormLoadingStatus } from '../../models/constants/FormLoadingEnum';
+import { RequestLoadingStatus } from '../../models/constants/FormLoadingEnum';
 import SubmitButtonComponent from '../../components/SubmitButtonComponent/SubmitButtonComponent';
 
 export default function Volunteer() {
@@ -15,7 +15,7 @@ export default function Volunteer() {
     const [validationState, setValidationState] = useState(defaultVolunteerFormValidity);
     const [hasSubmit, setHasSubmit] = useState(false);
     const [canHelpWithErrorMessage, setCanHelpErrorMessage] = useState("");
-    const [formLoadingStatus, setFormLoadingStatus] = useState(FormLoadingStatus.notSubmitted);
+    const [formLoadingStatus, setFormLoadingStatus] = useState(RequestLoadingStatus.notRequested);
 
     const isMobile = useContext<boolean>(IsMobileContext);
 
@@ -93,14 +93,14 @@ export default function Volunteer() {
                 }
             }
 
-            setFormLoadingStatus(FormLoadingStatus.loading);
+            setFormLoadingStatus(RequestLoadingStatus.loading);
 
             EmailService.PostVolunteerApplication(request)
             .then(() => {
-                setFormLoadingStatus(FormLoadingStatus.success)
+                setFormLoadingStatus(RequestLoadingStatus.success)
             })
             .catch(() => {
-                setFormLoadingStatus(FormLoadingStatus.failed);
+                setFormLoadingStatus(RequestLoadingStatus.failed);
             });
         }
     }

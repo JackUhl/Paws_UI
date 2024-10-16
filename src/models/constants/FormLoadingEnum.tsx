@@ -1,5 +1,5 @@
-export enum FormLoadingStatus{
-    notSubmitted,
+export enum RequestLoadingStatus{
+    notRequested,
     loading,
     success,
     failed

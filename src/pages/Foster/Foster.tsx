@@ -7,7 +7,7 @@ import TextInputComponent from '../../components/TextInputComponent/TextInputCom
 import { InputTypes } from '../../models/constants/InputTypesEnum';
 import { EmailService } from '../../services/EmailService/EmailService';
 import { FosterApplicationRequest } from '../../models/DTOs/FosterApplicationRequest';
-import { FormLoadingStatus } from '../../models/constants/FormLoadingEnum';
+import { RequestLoadingStatus } from '../../models/constants/FormLoadingEnum';
 import SubmitButtonComponent from '../../components/SubmitButtonComponent/SubmitButtonComponent';
 
 export default function Foster() {
@@ -15,7 +15,7 @@ export default function Foster() {
     const [fosterForm, setFosterForm] = useState(defaultFosterForm);
     const [validationState, setValidationState] = useState(defaultFosterFormValidity);
     const [hasSubmit, setHasSubmit] = useState(false);
-    const [formLoadingStatus, setFormLoadingStatus] = useState(FormLoadingStatus.notSubmitted);
+    const [formLoadingStatus, setFormLoadingStatus] = useState(RequestLoadingStatus.notRequested);
     
     const isMobile = useContext<boolean>(IsMobileContext)
 
@@ -53,14 +53,14 @@ export default function Foster() {
                 reference2Phone: fosterForm.reference2Phone
             }
 
-            setFormLoadingStatus(FormLoadingStatus.loading);
+            setFormLoadingStatus(RequestLoadingStatus.loading);
 
             EmailService.PostFosterApplication(fosterApplicationRequest)
             .then(() => {
-                setFormLoadingStatus(FormLoadingStatus.success)
+                setFormLoadingStatus(RequestLoadingStatus.success)
             })
             .catch(() => {
-                setFormLoadingStatus(FormLoadingStatus.failed);
+                setFormLoadingStatus(RequestLoadingStatus.failed);
             });
         }
     }

@@ -15,14 +15,14 @@ import { AdoptionFormFieldNames, defaultAdoptionForm, defaultAdoptionFormValidit
 import { AnimalSummaryHelper } from "../../utilities/helpers/AnimalSummaryHelper";
 import { AdoptionApplicationRequest } from "../../models/DTOs/AdoptionApplicationRequest";
 import { EmailService } from "../../services/EmailService/EmailService";
-import { FormLoadingStatus } from "../../models/constants/FormLoadingEnum";
+import { RequestLoadingStatus } from "../../models/constants/FormLoadingEnum";
 import SubmitButtonComponent from "../../components/SubmitButtonComponent/SubmitButtonComponent";
 
 export default function PetDetails(props: IPetDetails) {
     const [adoptionForm, setAdoptionForm] = useState(defaultAdoptionForm);
     const [validationState, setValidationState] = useState(defaultAdoptionFormValidity);
     const [hasSubmit, setHasSubmit] = useState(false);
-    const [formLoadingStatus, setFormLoadingStatus] = useState(FormLoadingStatus.notSubmitted);
+    const [formLoadingStatus, setFormLoadingStatus] = useState(RequestLoadingStatus.notRequested);
 
     const isMobile = useContext<boolean>(IsMobileContext);
 
@@ -73,14 +73,14 @@ export default function PetDetails(props: IPetDetails) {
                 vetPhone: adoptionForm.vetPhone
             }
 
-            setFormLoadingStatus(FormLoadingStatus.loading);
+            setFormLoadingStatus(RequestLoadingStatus.loading);
 
             EmailService.PostAdoptionApplication(request)
             .then(() => {
-                setFormLoadingStatus(FormLoadingStatus.success);
+                setFormLoadingStatus(RequestLoadingStatus.success);
             })
             .catch(() => {
-                setFormLoadingStatus(FormLoadingStatus.failed);
+                setFormLoadingStatus(RequestLoadingStatus.failed);
             })
         }
     }
