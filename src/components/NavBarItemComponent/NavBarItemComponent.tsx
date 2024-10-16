@@ -21,9 +21,8 @@ export default function NavBarItemComponent(props: INavBarItemComponent) {
         <>
             <div 
                 className="navBarItemContainer"
-                onClick={handleNavBarItemClicked}
             >
-                <Link to={props.item.route} className={"navBarItemText " + (navItemSelected() ? "navBarItemTextSelected" : "navBarItemTextNormal")}>{props.item.title}</Link>
+                <Link to={props.item.route} onClick={handleNavBarItemClicked} className={"navBarItemText " + (navItemSelected() ? "navBarItemTextSelected" : "navBarItemTextNormal")}>{props.item.title}</Link>
             </div>
         </>
     )
