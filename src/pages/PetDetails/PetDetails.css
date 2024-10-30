@@ -1,3 +1,25 @@
 .petDetails {
+    .petInfoDesktopWidth {
+        width: 45%;
+    }
+
+    .petInfoMobileWidth {
+        width: 100%;
+    }
+
+    .petImagesDesktopWidth {
+        width: 45%
+    }
     
+    .petImagesMobileWidth {
+        width: 100%
+    }
+
+    .clickItem {
+        color: light-dark(#483174, #CB6CE6);
+    }
+
+    .columnWidth {
+        width: 200px
+    }
 }

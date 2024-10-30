@@ -2,27 +2,31 @@ import { useContext } from "react";
 import { IPetCard } from "./IPetCardComponent";
 import "./PetCardComponent.css"
 import { IsMobileContext } from "../../contexts/IsMobileContext";
-import { Link } from "react-router-dom";
-import { AdoptablePetsRoute } from "../../models/constants/InternalUrlConstants";
+import { useNavigate } from "react-router-dom";
+import { AdoptablePetsIdRoute } from "../../models/constants/InternalUrlConstants";
+import { AnimalSummaryHelper } from "../../utilities/helpers/AnimalSummaryHelper";
 
 export default function PetCardComponent(props: IPetCard) {
     const isMobile = useContext(IsMobileContext);
+    const navigate = useNavigate();
 
-    const maxDescriptionLength = 75;
+    const animalSummary = AnimalSummaryHelper.GetAnimalSummary(props.adoptablePetInfo);
+
+    const handleOnClick = () => {
+        navigate(AdoptablePetsIdRoute(props.adoptablePetInfo.id.toString()));
+    }
 
     return (
-        <div className={(isMobile ? "petCardWidthMobile" : "petCardWidthDesktop") + " petCard"}>
-            <img src={props.petInfo.photos[0].medium} className="petImage"/>
+        <div 
+            className={(isMobile ? "petCardWidthMobile" : "petCardWidthDesktop") + " petCard"}
+            onClick={handleOnClick}
+        >
+            <img src={props.adoptablePetInfo.primary_photo_cropped.full} className="petImage"/>
             <div className="petText">
-                <Link 
-                    to={AdoptablePetsRoute + `/${props.petInfo.id}`} 
-                    state= {{
-                        petInfo: props.petInfo
-                    }}
-                >
-                    <h2 className="petName routeLink">{props.petInfo.name}</h2>
-                </Link>
-                <p>{props.petInfo.description.substring(0, maxDescriptionLength)} {props.petInfo.description.length > maxDescriptionLength && (<span className="readMore routeLink">Read More...</span>)}</p>
+                <h2 className="petName">{props.adoptablePetInfo.name}</h2>
+                <p>{animalSummary.fullBreed}</p>
+                <p>{animalSummary.genderStatus}</p>
+                <span className="readMore routeLink">Read More</span>
             </div>
         </div>
     )

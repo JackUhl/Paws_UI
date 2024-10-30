@@ -1,3 +1,25 @@
 .adoptablePets {
-    
+    .adoptablePetsColumnGap {
+        column-gap: 3%;
+    }
+
+    .loadingContainer {
+        height: 500px
+    }
+
+    .imageDesktopWidth {
+        width: 30%;
+    }
+
+    .imageMobileWidth {
+        width: 100%;
+    }
+
+    .infoDesktopWidth {
+        width: 60%;
+    }
+
+    .infoMobileWidth {
+        width: 100%;
+    }
 }

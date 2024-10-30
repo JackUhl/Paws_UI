@@ -1,6 +1,6 @@
-import { PetInfo } from "../DTOs/PetInfo";
+import { PetfinderResponse } from "../DTOs/PetfinderResponse"
 
-export const TestPets: PetInfo = {
+export const TestPets: PetfinderResponse = {
     "animals": [
         {
             "id": 120,
@@ -53,6 +53,12 @@ export const TestPets: PetInfo = {
                     "full": "https://photos.petfinder.com/photos/pets/42706540/1/?bust=1546042081"
                 }
             ],
+            primary_photo_cropped: {
+                "small": "https://photos.petfinder.com/photos/pets/42706540/1/?bust=1546042081&width=100",
+                "medium": "https://photos.petfinder.com/photos/pets/42706540/1/?bust=1546042081&width=300",
+                "large": "https://photos.petfinder.com/photos/pets/42706540/1/?bust=1546042081&width=600",
+                "full": "https://photos.petfinder.com/photos/pets/42706540/1/?bust=1546042081"
+            },
             "videos": [
                 {
                     "embed": "<iframe src=\"https://www.youtube.com/embed/xaXbs1fRFRM\" frameborder=\"0\" allowfullscreen></iframe>"

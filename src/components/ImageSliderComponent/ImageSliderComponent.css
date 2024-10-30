@@ -58,20 +58,29 @@
         width: 100%;
         height: 100%;
         object-fit: cover;
-        filter: brightness(50%);
         opacity: 0;
+    }
+
+    .roundedImages {
+        border-radius: 2%;
     }
     
     .first {
         opacity: 1;
     }
+
     .active {
         opacity: 1;
         animation: fadeIn 1s;
     }
+
     .inactive{
         opacity: 0;
         animation: fadeOut 1s;
+    }
+
+    .imageTextFilter {
+        filter: brightness(50%);
     }
 
     .relativeContainer{
@@ -80,7 +89,6 @@
         width: 100%;
         height: 30vw;
         min-height: 250px;
-        max-height: 400px;
     }
 
     .absoluteContainer {
